@@ -22,7 +22,7 @@ import frc.robot.subsystems.CommandSwerveDrivetrain;
 
 import static edu.wpi.first.units.Units.*;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 
 public class SwerveDrive extends Command {    
@@ -34,7 +34,7 @@ public class SwerveDrive extends Command {
     private BooleanSupplier m_robotCentricSup;
     private BooleanSupplier m_isEvading;
 
-    //FIXME: get actual wheel positions 
+    
     private static final Translation2d[] WHEEL_POSITIONS =
         Arrays.copyOf(Constants.moduleTranslations, Constants.moduleTranslations.length);
         
@@ -54,7 +54,7 @@ public class SwerveDrive extends Command {
         m_rotationSup = rotationSup;
         m_robotCentricSup = robotCentricSup;
         m_isEvading = isEvading;
-        SmartDashboard.putBoolean("running", false);
+        
        
 
     }
@@ -91,11 +91,7 @@ public class SwerveDrive extends Command {
 
     @Override
     public void execute() {
-        SmartDashboard.putNumber("Xinput", m_translationSup.getAsDouble());
-        SmartDashboard.putNumber("Yinput", m_strafeSup.getAsDouble());
-        SmartDashboard.putNumber("rotationinput", m_rotationSup.getAsDouble());
-        SmartDashboard.putBoolean("running", true);
-        SmartDashboard.putBoolean("evading", m_isEvading.getAsBoolean());
+       
 
 
           double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond);
@@ -114,12 +110,14 @@ public class SwerveDrive extends Command {
 
         SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
-            .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
+            .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
+            
+            // Use open-loop control for drive motors
 
         m_swerveDrivetrain.setControl(
-                drive.withVelocityX(m_translationSup.getAsDouble() *- MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY(m_strafeSup.getAsDouble() * -MaxSpeed) // Drive left with negative X (left)
-                    .withRotationalRate(m_rotationSup.getAsDouble() * -MaxAngularRate)
+                drive.withVelocityX(m_translationSup.getAsDouble()*m_translationSup.getAsDouble()*Math.signum(m_translationSup.getAsDouble()) *- MaxSpeed) // Drive forward with negative Y (forward)
+                    .withVelocityY(m_strafeSup.getAsDouble() *m_strafeSup.getAsDouble()*Math.signum(m_strafeSup.getAsDouble())* -MaxSpeed) // Drive left with negative X (left)
+                    .withRotationalRate(m_rotationSup.getAsDouble()*m_rotationSup.getAsDouble()*Math.signum(m_rotationSup.getAsDouble()) * -MaxAngularRate)
                     .withCenterOfRotation(newCenterOfRotation) // Drive counterclockwise with negative X (left)
                     
 

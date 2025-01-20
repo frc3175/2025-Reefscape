@@ -34,7 +34,7 @@ public class RobotContainer {
 
     private final SwerveRequest.FieldCentric evade = new SwerveRequest.FieldCentric();
 
-    // private final Telemetry logger = new Telemetry(MaxSpeed);
+     private final Telemetry logger = new Telemetry(MaxSpeed);
 
     private final CommandXboxController joystick = new CommandXboxController(0);
 
@@ -76,7 +76,7 @@ public class RobotContainer {
 
       
 
-        // drivetrain.registerTelemetry(logger::telemeterize);
+         drivetrain.registerTelemetry(logger::telemeterize);
     }
 
     public Command getAutonomousCommand() {
