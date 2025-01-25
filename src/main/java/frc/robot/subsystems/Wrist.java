@@ -54,7 +54,7 @@ public Wrist() {
   }
 
   public Double getpose(){ // if you need negative pos, you need to change this
-  return  Math.abs(m_motor.getPosition().getValueAsDouble());
+  return  m_motor.getPosition().getValueAsDouble();
 
  
 
