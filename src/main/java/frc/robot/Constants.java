@@ -12,5 +12,51 @@ public class Constants {
             new Translation2d(WHEEL_BASE / 2.0, -TRACK_WIDTH / 2.0),
             new Translation2d(-WHEEL_BASE / 2.0, TRACK_WIDTH / 2.0),
             new Translation2d(-WHEEL_BASE / 2.0, -TRACK_WIDTH / 2.0)};
+
+
+
+            
+    public static final String CANIVORE = "";
+    public static final String RIO = "";
+
+
+
+
+    public class ElevatorConstants {
+
+    public static final int RIGHTID = 0;
+    public static final int LEFTID = 1;
+
+    public static final int HOME = 0;
+    public static final int HUMAN = 0;
+    public static final int L1 = 0;
+    public static final int L2 = 0;
+    public static final int L3 = 0;
+    public static final int L4 = 0;
+    public static final int BARGE = 0;
+    public static final int ALGAET2 = 0;
+    public static final int ALGAET3 = 0;
+
+
+
+    
+}
+
+
+public class WristConstants {
+
+    public static final int MOTORID = 2;
+   
+
+    public static final int HOME = 0;
+    public static final int HUMAN = 0;
+    public static final int L1 = 0;
+    public static final int L2 = 0;
+    public static final int L3 = 0;
+    public static final int L4 = 0;
+    public static final int BARGE = 0;
+    public static final int ALGAET2 = 0;
+    public static final int ALGAET3 = 0;
+}
     
 }
