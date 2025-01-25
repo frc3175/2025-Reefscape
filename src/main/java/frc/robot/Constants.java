@@ -83,6 +83,11 @@ public class WristConstants {
 
         } 
     }
+    public class EOATconstants{
+        public enum EOATstate{
+            
+        }
+    }
 
      
     
