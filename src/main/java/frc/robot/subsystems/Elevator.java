@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+
 public class Elevator extends SubsystemBase {
   
 
@@ -20,9 +21,12 @@ MotionMagicVoltage m_motmag;
 TalonFX m_right;
 TalonFX m_left;
 
+
 public Elevator() {
     m_right = new TalonFX(Constants.ElevatorConstants.RIGHTID , Constants.CANIVORE);
     m_left = new TalonFX(Constants.ElevatorConstants.LEFTID , Constants.CANIVORE);
+
+    
 
 
     m_motmag = new MotionMagicVoltage(0);

@@ -6,14 +6,28 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Intake extends SubsystemBase {
-  /** Creates a new Intake. */
-  public Intake() {
+public class RobotState extends SubsystemBase {
 
+  private BotState m_botState; 
+  /** Creates a new RobotState. */
+  public RobotState() {
 
-
-    
   }
+
+  public void setRobotState(BotState state) {
+
+    m_botState = state;
+
+}
+
+public BotState getRobotState() {
+
+    return m_botState;
+
+} 
+public enum BotState {
+  
+}
 
   @Override
   public void periodic() {

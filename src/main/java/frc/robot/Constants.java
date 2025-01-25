@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.util.Units;
+import frc.robot.subsystems.RobotState.BotState;
 
 public class Constants {
     public static final double TRACK_WIDTH = Units.inchesToMeters(18.875);
@@ -41,6 +42,14 @@ public class Constants {
         public static final int ALGAET3 = 0;
 
 
+        public enum ElevatorState {
+
+           
+
+           
+        }
+
+
 
     
 }
@@ -60,6 +69,21 @@ public class WristConstants {
     public static final int BARGE = 0;
     public static final int ALGAET2 = 0;
     public static final int ALGAET3 = 0;
+
+
+
+    public enum WristState{
+
+    }
 }
+
+    public class AlgaeIntakeConstants {
+        public enum AlgaeIntakeState {
+
+
+        } 
+    }
+
+     
     
 }
