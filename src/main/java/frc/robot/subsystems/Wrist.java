@@ -50,7 +50,7 @@ public Wrist() {
   @Override
   public void periodic() {
     m_motmag.Slot = 0;
-    SmartDashboard.putNumber("intake height", getpose());
+    SmartDashboard.putNumber("wrist angle", getpose());
   }
 
   public Double getpose(){ // if you need negative pos, you need to change this
