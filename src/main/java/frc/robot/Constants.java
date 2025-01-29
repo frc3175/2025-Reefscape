@@ -78,13 +78,19 @@ public class WristConstants {
 }
 
     public class AlgaeIntakeConstants {
+
+        public static final int MOTORID = 3;
+
         public enum AlgaeIntakeState {
 
 
         } 
     }
-    public class EOATconstants{
-        public enum EOATstate{
+    public class IntakeConstants{
+
+        public static final int MOTORID = 4;
+
+        public enum IntakeState{
             
         }
     }

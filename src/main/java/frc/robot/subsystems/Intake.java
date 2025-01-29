@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class  AlgaeIntake extends SubsystemBase {
+public class  Intake extends SubsystemBase {
   
 
 
@@ -25,8 +25,8 @@ VelocityDutyCycle intakeVelocity;
 DutyCycleOut intakePercentOutput;
 
 
-public AlgaeIntake() {
-    m_motor = new TalonFX(Constants.AlgaeIntakeConstants.MOTORID , Constants.CANIVORE);
+public Intake() {
+    m_motor = new TalonFX(Constants.IntakeConstants.MOTORID , Constants.CANIVORE);
 
    
 
@@ -63,6 +63,7 @@ public AlgaeIntake() {
 
 }
 }
+
 
 
 
