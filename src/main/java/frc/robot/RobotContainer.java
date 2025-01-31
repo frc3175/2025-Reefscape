@@ -17,11 +17,16 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.SwerveDrive;
 import frc.robot.generated.TunerConstants;
+import frc.robot.subsystems.AlgaeIntake;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Wrist;
 
 public class RobotContainer {
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -36,9 +41,17 @@ public class RobotContainer {
 
      private final Telemetry logger = new Telemetry(MaxSpeed);
 
-    private final CommandXboxController joystick = new CommandXboxController(0);
+    private final CommandXboxController joystick = new CommandXboxController(Constants.DRIVER_CONTROLER);
+    private final CommandXboxController opController  = new CommandXboxController(Constants.OPERATOR_CONTROLER);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
+
+    public final Elevator m_elevator = new Elevator();
+    public final Wrist m_wrist = new Wrist();
+    public final Intake m_intake = new Intake();
+    public final AlgaeIntake m_algaeIntake = new AlgaeIntake();
+
+
 
     private final int translationAxis = XboxController.Axis.kLeftY.value;
     private final int strafeAxis = XboxController.Axis.kLeftX.value;
@@ -52,6 +65,7 @@ public class RobotContainer {
     public RobotContainer() {
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
         SmartDashboard.putData("Auto Mode", autoChooser);
+        SmartDashboard.putNumber("set elevator", 0);
 
         configureBindings();
     }
@@ -69,15 +83,30 @@ public class RobotContainer {
                 () -> true, 
                 () -> joystick.rightBumper().getAsBoolean())
         );
-
         joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
-        
-
-
-      
-
          drivetrain.registerTelemetry(logger::telemeterize);
-    }
+    
+        opController.rightBumper().onTrue(new InstantCommand(() -> m_elevator.setpose(1))); // zero elevator
+        opController.leftBumper().onTrue(new InstantCommand(() -> m_elevator.setpose(SmartDashboard.getNumber("set elevator", 0)))); // zero elevator
+        
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        }
 
     public Command getAutonomousCommand() {
         /* Run the path selected from the auto chooser */

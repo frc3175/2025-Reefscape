@@ -19,19 +19,42 @@ public class  AlgaeIntake extends SubsystemBase {
   
 
 
-TalonFX m_motor;
+TalonFX m_roller;
+TalonFX m_pivot;
+
 VelocityDutyCycle intakeVelocity; 
+MotionMagicVoltage m_motmag;
 
 DutyCycleOut intakePercentOutput;
 
 
 public AlgaeIntake() {
-    m_motor = new TalonFX(Constants.AlgaeIntakeConstants.MOTORID , Constants.CANIVORE);
-
+    m_roller = new TalonFX(Constants.AlgaeIntakeConstants.MOTORID , Constants.CANIVORE);
+    m_pivot = new TalonFX(Constants.WristConstants.MOTORID , Constants.CANIVORE);
    
 
-   
+    m_motmag = new MotionMagicVoltage(0);
 
+    var talonFXConfigs = new TalonFXConfiguration();
+    
+    var slot0Configs = talonFXConfigs.Slot0;
+    slot0Configs.kS = 0.24; // add 0.24 V to overcome friction
+    slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
+    // PID runs on position
+
+    slot0Configs.kP = 2; // change as needed
+    slot0Configs.kI = 0;
+    slot0Configs.kD = 0;
+
+    var motionMagicConfigs = talonFXConfigs.MotionMagic;
+    motionMagicConfigs.MotionMagicCruiseVelocity = 80; // 80 rps cruise velocity
+    motionMagicConfigs.MotionMagicAcceleration = 120; // 160 rps/s acceleration (0.5 seconds)
+    motionMagicConfigs.MotionMagicJerk = 600; // 1600 rps/s^2 jerk (0.1 seconds)
+
+    m_pivot.getConfigurator().apply(talonFXConfigs, 0.050);
+    m_pivot.setNeutralMode(NeutralModeValue.Brake);
+    // periodic, run Motion Magic with slot 0 configs,
+  
     intakeVelocity = new VelocityDutyCycle(0);
 
     // periodic, run Motion Magic with slot 0 configs,
@@ -39,8 +62,8 @@ public AlgaeIntake() {
   
   @Override
   public void periodic() {
-    
-    SmartDashboard.putNumber("intake height", 0);
+    m_motmag.Slot = 0;
+    SmartDashboard.putNumber("algae intake angle", getpose());
   }
 
   
@@ -52,17 +75,32 @@ public AlgaeIntake() {
 
   public void intakerun(double velocity){
     intakeVelocity.Velocity = velocity;
-        m_motor.setControl(intakeVelocity);
+        m_roller.setControl(intakeVelocity);
   }
 
   public void intakePercentOutput(double percentOutput) {
 
     intakePercentOutput.Output = percentOutput;
-    m_motor.setControl(intakePercentOutput);
+    m_roller.setControl(intakePercentOutput);
 
 
 }
+
+public void setangle(double angle){
+
+  m_pivot.setControl(m_motmag.withPosition(angle));
+
+
 }
+
+public Double getpose(){ // if you need negative pos, you need to change this
+  return  m_pivot.getPosition().getValueAsDouble();
+
+ 
+
+  }
+}
+
 
 
 

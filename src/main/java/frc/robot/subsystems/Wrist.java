@@ -60,9 +60,9 @@ public Wrist() {
 
   }
 
-  public void setpostion(double position){
+  public void setangle(double angle){
 
-    m_motor.setControl(m_motmag.withPosition(position));
+    m_motor.setControl(m_motmag.withPosition(angle));
 
 
   }

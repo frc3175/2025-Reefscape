@@ -61,12 +61,21 @@ public Elevator() {
   @Override
   public void periodic() {
     m_motmag.Slot = 0;
-    SmartDashboard.putNumber("intake height", getpose());
+    SmartDashboard.putNumber("Elevator height", getpose());
+    SmartDashboard.putNumber("Elevator Right Pose", m_right.getPosition().getValueAsDouble());
+    SmartDashboard.putNumber("Elevator Left Pose", m_left.getPosition().getValueAsDouble());
   }
 
 public Double getpose(){ // if you need negative pos, you need to change this
   return Math.abs(Math.abs(m_left.getPosition().getValueAsDouble())+ Math.abs(m_right.getPosition().getValueAsDouble())) / 2;
 }
+
+public void setpose(double pose){
+  m_left.setControl(m_motmag.withPosition(pose));
+  m_right.setControl(m_motmag.withPosition(-pose));
+}
+
+
 }
 
 
