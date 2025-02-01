@@ -30,12 +30,12 @@ public class Constants {
         public static final int BACKID = 19;
         public static final int FRONTID = 3;
 
-        public static final double HOME = 0.0;
+        public static final double HOME = 0.4;
         public static final double HUMAN = 1.0;
-        public static final double L1 = 2.0;
-        public static final double L2 = 3.0;
-        public static final double L3 = 4.0;
-        public static final double L4 = 5.0;
+        public static final double L1 = 0;
+        public static final double L2 = 4;
+        public static final double L3 = 10.0;
+        public static final double L4 = 17.2;
         public static final double BARGE = 6.0;
         public static final double ALGAET2 = 7.0;
         public static final double ALGAET3 = 8.0;
@@ -47,15 +47,17 @@ public class WristConstants {
 
     public static final int MOTORID = 2;
 
-    public static final double HOME = 0.0;
-    public static final double HUMAN = 1.0;
-    public static final double L1 = 2.0;
-    public static final double L2 = 3.0;
-    public static final double L3 = 4.0;
-    public static final double L4 = 5.0;
-    public static final double BARGE = 6.0;
+    public static final double HOME = 0; //working
+    public static final double HUMAN = 19.7;
+    public static final double L1 = -12;
+    public static final double L2 = -8.8;
+    public static final double L3 = -8.8;
+    public static final double L4 = -11;
+    public static final double BARGE = 15;
     public static final double ALGAET2 = 7.0;
     public static final double ALGAET3 = 8.0;
+    public static final double ALGAEIN = 7.7;
+
    
     
 }
@@ -65,9 +67,9 @@ public class WristConstants {
         public static final int PIVOTID = 30;
         public static final int ROLLERID = 22;
 
-        public static final double HOME = 0;
-        public static final double OFFSET = 3;
-        public static final double INTAKEANGLE = 0;
+        public static final double HOME = 0;  
+        public static final double OFFSET = 4.8; //working
+        public static final double INTAKEANGLE = 13.2; //working
 
         public static final double INTAKE = 0.5;
         public static final double STOP = 0;
@@ -78,10 +80,10 @@ public class WristConstants {
 
         public static final int MOTORID = 1;
 
-        public static final double INTAKE = 0.5;
-        public static final double OUTTAKE = -0.5;
-        public static final double STOP = 0.5;
-        public static final double L1 = 0.5;
+        public static final double INTAKE = .7;
+        public static final double OUTTAKE = -0.1; //-0.5
+        public static final double STOP = 0;
+        public static final double L1 = 0.1;
     
     }
     public class ClimberConstants{

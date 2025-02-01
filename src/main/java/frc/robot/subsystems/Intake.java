@@ -51,8 +51,25 @@ public Intake() {
   
 
   public void intakerun(double velocity){
-    intakeVelocity.Velocity = velocity;
-        m_motor.setControl(intakeVelocity);
+    // intakeVelocity.Velocity = velocity;
+    //     m_motor.setControl(intakeVelocity);
+
+    m_motor.set(velocity);
+
+    
+  }
+
+  public void OUTTAKE(double velocity){
+    // intakeVelocity.Velocity = velocity;
+    //     m_motor.setControl(intakeVelocity);
+
+    m_motor.set(velocity);
+
+    if(SmartDashboard.getNumber("intake speed", 1) > 0.1 ){
+      m_motor.set(Constants.IntakeConstants.INTAKE);
+    } else {
+      m_motor.set(Constants.IntakeConstants.L1);
+    }
   }
 
   public void intakePercentOutput(double percentOutput) {

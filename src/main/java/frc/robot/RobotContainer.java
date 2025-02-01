@@ -6,6 +6,9 @@ package frc.robot;
 
 import static edu.wpi.first.units.Units.*;
 
+import java.net.FileNameMap;
+import java.sql.Driver;
+
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
@@ -23,9 +26,12 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.SwerveDrive;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.AlgaeIntake;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.StateManger;
 import frc.robot.subsystems.Wrist;
 
 public class RobotContainer {
@@ -41,7 +47,7 @@ public class RobotContainer {
 
      private final Telemetry logger = new Telemetry(MaxSpeed);
 
-    private final CommandXboxController joystick = new CommandXboxController(Constants.DRIVER_CONTROLER);
+    private final CommandXboxController drivecoController = new CommandXboxController(Constants.DRIVER_CONTROLER);
     private final CommandXboxController opController  = new CommandXboxController(Constants.OPERATOR_CONTROLER);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
@@ -50,8 +56,9 @@ public class RobotContainer {
     public final Wrist m_wrist = new Wrist();
     public final Intake m_intake = new Intake();
     public final AlgaeIntake m_algaeIntake = new AlgaeIntake();
-
-
+    public final Limelight m_ll = new Limelight();
+    public final Climber m_climber = new Climber();
+    public final StateManger m_StateManger = new StateManger(m_wrist, m_elevator, m_intake, m_ll, m_algaeIntake, m_climber  );
 
     private final int translationAxis = XboxController.Axis.kLeftY.value;
     private final int strafeAxis = XboxController.Axis.kLeftX.value;
@@ -77,24 +84,33 @@ public class RobotContainer {
             // Drivetrain will execute this command periodically
             new SwerveDrive(
                 drivetrain, 
-                () -> joystick.getRawAxis(translationAxis), 
-                () -> joystick.getRawAxis(strafeAxis), 
-                () -> joystick.getRawAxis(rotationAxis), 
+                () -> drivecoController.getRawAxis(translationAxis), 
+                () -> drivecoController.getRawAxis(strafeAxis), 
+                () -> drivecoController.getRawAxis(rotationAxis), 
                 () -> true, 
-                () -> joystick.rightBumper().getAsBoolean())
+                () -> drivecoController.rightBumper().getAsBoolean())
         );
-        joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
          drivetrain.registerTelemetry(logger::telemeterize);
+
+        drivecoController.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+        drivecoController.leftBumper().onTrue(new InstantCommand(()-> m_intake.OUTTAKE(Constants.IntakeConstants.OUTTAKE)));
     
-        joystick.a().onTrue(new InstantCommand(() -> m_elevator.setpose(15))); // zero elevator
-        joystick.b().onTrue(new InstantCommand(() -> m_elevator.setpose(SmartDashboard.getNumber("set elevator", 0)))); // zero elevator
-        joystick.y().onTrue(new InstantCommand(() -> m_wrist.setangle(1)));
         
     
-    
-    
-    
-    
+        opController.y().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L4")));
+        opController.b().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L3")));
+        opController.x().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L2")));
+        opController.a().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
+
+        opController.button(10).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L1")));
+        
+
+        opController.rightBumper().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("HP")));
+        opController.leftBumper().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("ALGAE INTAKE")));
+
+
+        
+
     
     
     

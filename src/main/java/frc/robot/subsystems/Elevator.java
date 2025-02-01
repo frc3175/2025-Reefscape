@@ -48,6 +48,7 @@ public Elevator() {
     motionMagicConfigs.MotionMagicCruiseVelocity = 80; // 80 rps cruise velocity
     motionMagicConfigs.MotionMagicAcceleration = 120; // 160 rps/s acceleration (0.5 seconds)
     motionMagicConfigs.MotionMagicJerk = 600; // 1600 rps/s^2 jerk (0.1 seconds)
+    m_motmag.EnableFOC = true;
 
 
 

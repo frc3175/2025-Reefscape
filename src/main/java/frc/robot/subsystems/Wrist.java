@@ -42,10 +42,12 @@ public Wrist() {
     slot0Configs.kD = 0;
 
     var motionMagicConfigs = talonFXConfigs.MotionMagic;
-    motionMagicConfigs.MotionMagicCruiseVelocity = 80; // 80 rps cruise velocity
-    motionMagicConfigs.MotionMagicAcceleration = 120; // 160 rps/s acceleration (0.5 seconds)
+    motionMagicConfigs.MotionMagicCruiseVelocity = 160; // 80 rps cruise velocity
+    motionMagicConfigs.MotionMagicAcceleration = 240; // 160 rps/s acceleration (0.5 seconds)
     motionMagicConfigs.MotionMagicJerk = 600; // 1600 rps/s^2 jerk (0.1 seconds)
 
+    m_motmag.EnableFOC = true;
+    
     m_motor.getConfigurator().apply(talonFXConfigs, 0.050);
     m_motor.setNeutralMode(NeutralModeValue.Brake);
     // periodic, run Motion Magic with slot 0 configs,
@@ -66,7 +68,7 @@ public Wrist() {
 
   public void setangle(double angle){
 
-    m_motor.setControl(m_PositionDutyCycle.withPosition(angle));
+    m_motor.setControl(m_motmag.withPosition(angle));
 
 
   }

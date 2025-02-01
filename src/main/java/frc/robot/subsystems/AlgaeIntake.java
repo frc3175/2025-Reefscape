@@ -47,10 +47,12 @@ public AlgaeIntake() {
     slot0Configs.kD = 0;
 
     var motionMagicConfigs = talonFXConfigs.MotionMagic;
-    motionMagicConfigs.MotionMagicCruiseVelocity = 80; // 80 rps cruise velocity
-    motionMagicConfigs.MotionMagicAcceleration = 120; // 160 rps/s acceleration (0.5 seconds)
-    motionMagicConfigs.MotionMagicJerk = 600; // 1600 rps/s^2 jerk (0.1 seconds)
+    motionMagicConfigs.MotionMagicCruiseVelocity = 120; // 80 rps cruise velocity
+    motionMagicConfigs.MotionMagicAcceleration = 240; // 160 rps/s acceleration (0.5 seconds)
+    motionMagicConfigs.MotionMagicJerk = 800; // 1600 rps/s^2 jerk (0.1 seconds)
 
+    m_motmag.EnableFOC = true;
+    
     m_pivot.getConfigurator().apply(talonFXConfigs, 0.050);
     m_pivot.setNeutralMode(NeutralModeValue.Brake);
     // periodic, run Motion Magic with slot 0 configs,
@@ -80,15 +82,17 @@ public AlgaeIntake() {
 
   public void intakePercentOutput(double percentOutput) {
 
-    intakePercentOutput.Output = percentOutput;
-    m_roller.setControl(intakePercentOutput);
+    // intakePercentOutput.Output = percentOutput;
+    // m_roller.setControl(intakePercentOutput);
+
+    m_roller.set(percentOutput);
 
 
 }
 
 public void setangle(double angle){
 
-  m_pivot.setControl(m_motmag.withPosition(angle));
+  m_pivot.setControl(m_motmag.withPosition(-angle));
 
 
 }
