@@ -7,7 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class RobotStatecopy extends SubsystemBase {
+public class StateManger extends SubsystemBase {
 
   public Elevator m_Elevator;
   public Wrist    m_Wrist;
@@ -17,7 +17,7 @@ public class RobotStatecopy extends SubsystemBase {
   public Climber m_climber;
 
   /** Creates a new RobotState. */
-  public RobotStatecopy(Wrist wrist, Elevator elevator, Intake intake, Limelight ll, AlgaeIntake algaeIntake, Climber climber) {
+  public StateManger(Wrist wrist, Elevator elevator, Intake intake, Limelight ll, AlgaeIntake algaeIntake, Climber climber) {
     m_Elevator = elevator;
     m_Wrist    = wrist;
     m_Intake = intake;

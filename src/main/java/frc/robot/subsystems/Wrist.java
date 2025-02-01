@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
+import com.ctre.phoenix6.controls.PositionDutyCycle;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
@@ -13,10 +14,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+
 public class Wrist extends SubsystemBase {
   
 
 MotionMagicVoltage m_motmag;
+
+PositionDutyCycle m_PositionDutyCycle;
 TalonFX m_motor;
 
 
@@ -62,7 +66,7 @@ public Wrist() {
 
   public void setangle(double angle){
 
-    m_motor.setControl(m_motmag.withPosition(angle));
+    m_motor.setControl(m_PositionDutyCycle.withPosition(angle));
 
 
   }

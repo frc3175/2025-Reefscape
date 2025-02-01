@@ -23,8 +23,8 @@ TalonFX m_left;
 
 
 public Elevator() {
-    m_right = new TalonFX(Constants.ElevatorConstants.RIGHTID , Constants.CANIVORE);
-    m_left = new TalonFX(Constants.ElevatorConstants.LEFTID , Constants.CANIVORE);
+    m_right = new TalonFX(Constants.ElevatorConstants.BACKID , Constants.CANIVORE);
+    m_left = new TalonFX(Constants.ElevatorConstants.FRONTID , Constants.CANIVORE);
 
     
 
@@ -71,8 +71,8 @@ public Double getpose(){ // if you need negative pos, you need to change this
 }
 
 public void setpose(double pose){
-  m_left.setControl(m_motmag.withPosition(pose));
-  m_right.setControl(m_motmag.withPosition(-pose));
+  m_left.setControl(m_motmag.withPosition(-pose));
+  m_right.setControl(m_motmag.withPosition(pose));
 }
 
 

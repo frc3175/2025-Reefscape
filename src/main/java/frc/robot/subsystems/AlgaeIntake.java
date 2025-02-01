@@ -29,8 +29,8 @@ DutyCycleOut intakePercentOutput;
 
 
 public AlgaeIntake() {
-    m_roller = new TalonFX(Constants.AlgaeIntakeConstants.MOTORID , Constants.CANIVORE);
-    m_pivot = new TalonFX(Constants.WristConstants.MOTORID , Constants.CANIVORE);
+    m_roller = new TalonFX(Constants.AlgaeIntakeConstants.ROLLERID , Constants.CANIVORE);
+    m_pivot = new TalonFX(Constants.AlgaeIntakeConstants.PIVOTID , Constants.CANIVORE);
    
 
     m_motmag = new MotionMagicVoltage(0);

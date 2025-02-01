@@ -4,8 +4,8 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.util.Units;
 
 public class Constants {
-    public static final double TRACK_WIDTH = Units.inchesToMeters(18.875);
-    public static final double WHEEL_BASE = Units.inchesToMeters(18.875);
+    public static final double TRACK_WIDTH = Units.inchesToMeters(22.875);
+    public static final double WHEEL_BASE = Units.inchesToMeters(22.875);
 
      public static final Translation2d[] moduleTranslations = new Translation2d[]{
             new Translation2d(WHEEL_BASE / 2.0, TRACK_WIDTH / 2.0),
@@ -16,8 +16,8 @@ public class Constants {
 
 
 
-    public static final String CANIVORE = "";
-    public static final String RIO = "";
+    public static final String CANIVORE = "elevatoryiboi";
+    public static final String RIO = "rio";
 
     public static final int DRIVER_CONTROLER = 0;
     public static final int OPERATOR_CONTROLER = 1;
@@ -27,8 +27,8 @@ public class Constants {
 
     public class ElevatorConstants {
 
-        public static final int RIGHTID = 0;
-        public static final int LEFTID = 1;
+        public static final int BACKID = 19;
+        public static final int FRONTID = 3;
 
         public static final double HOME = 0.0;
         public static final double HUMAN = 1.0;
@@ -62,8 +62,8 @@ public class WristConstants {
 
     public class AlgaeIntakeConstants {
 
-        public static final int PIVOT = 3;
-        public static final int ROLLER = 7;
+        public static final int PIVOTID = 30;
+        public static final int ROLLERID = 22;
 
         public static final double HOME = 0;
         public static final double OFFSET = 3;
@@ -76,7 +76,7 @@ public class WristConstants {
     }
     public class IntakeConstants{
 
-        public static final int MOTORID = 4;
+        public static final int MOTORID = 1;
 
         public static final double INTAKE = 0.5;
         public static final double OUTTAKE = -0.5;
@@ -86,7 +86,7 @@ public class WristConstants {
     }
     public class ClimberConstants{
 
-        public static final int MOTORID = 5;
+        public static final int MOTORID = 37;
         
         public static final double NONE = 0;
     }

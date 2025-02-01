@@ -86,9 +86,9 @@ public class RobotContainer {
         joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
          drivetrain.registerTelemetry(logger::telemeterize);
     
-        opController.rightBumper().onTrue(new InstantCommand(() -> m_elevator.setpose(1))); // zero elevator
-        opController.leftBumper().onTrue(new InstantCommand(() -> m_elevator.setpose(SmartDashboard.getNumber("set elevator", 0)))); // zero elevator
-        
+        joystick.a().onTrue(new InstantCommand(() -> m_elevator.setpose(15))); // zero elevator
+        joystick.b().onTrue(new InstantCommand(() -> m_elevator.setpose(SmartDashboard.getNumber("set elevator", 0)))); // zero elevator
+        joystick.y().onTrue(new InstantCommand(() -> m_wrist.setangle(1)));
         
     
     
