@@ -66,7 +66,7 @@ public Intake() {
     m_motor.set(velocity);
 
     if(SmartDashboard.getNumber("intake speed", 1) > 0.1 ){
-      m_motor.set(Constants.IntakeConstants.INTAKE);
+      m_motor.set(velocity);
     } else {
       m_motor.set(Constants.IntakeConstants.L1);
     }

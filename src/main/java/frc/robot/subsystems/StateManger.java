@@ -49,9 +49,9 @@ public class StateManger extends SubsystemBase {
 
       case "ALGAE INTAKE":
         SmartDashboard.putNumber("intake speed", 1);
-        m_Wrist.setangle(Constants.WristConstants.ALGAEIN);
+        m_Wrist.setangle(13);
         m_Elevator.setpose(Constants.ElevatorConstants.HOME);
-        m_Intake.intakerun(Constants.IntakeConstants.INTAKE);
+        m_Intake.OUTTAKE(-.5);
         m_algaeIntake.intakePercentOutput(.5);
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.INTAKEANGLE);
       break;
@@ -94,7 +94,7 @@ public class StateManger extends SubsystemBase {
       case "L1":
         SmartDashboard.putNumber("intake speed", 0);
         m_Wrist.setangle(Constants.WristConstants.L1);
-        m_Elevator.setpose(Constants.ElevatorConstants.L1);
+        m_Elevator.setpose(Constants.ElevatorConstants.HOME);
         m_Intake.intakerun(Constants.IntakeConstants.STOP);
         m_algaeIntake.intakePercentOutput(0);
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);

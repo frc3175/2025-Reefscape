@@ -105,10 +105,14 @@ public class RobotContainer {
         opController.button(10).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L1")));
         
 
-        opController.rightBumper().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("HP")));
-        opController.leftBumper().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("ALGAE INTAKE")));
+        opController.rightBumper().whileTrue(new InstantCommand(() -> m_StateManger.setRobotState("HP")));
+        opController.leftBumper().whileTrue(new InstantCommand(() -> m_StateManger.setRobotState("ALGAE INTAKE")));
 
+        opController.rightBumper().onFalse(new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
+        opController.leftBumper().onFalse(new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
 
+        opController.pov(180).whileTrue(new InstantCommand(() -> m_algaeIntake.intakePercentOutput(-.5)));
+        opController.pov(180).onFalse(new InstantCommand(() -> m_algaeIntake.intakePercentOutput(0)));
         
 
     
