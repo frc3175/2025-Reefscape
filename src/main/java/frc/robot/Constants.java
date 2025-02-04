@@ -90,7 +90,7 @@ public class WristConstants {
 
         public static final int MOTORID = 37;
         
-        public static final double NONE = 0;
+        public static final double HOME = 0;
     }
 
      

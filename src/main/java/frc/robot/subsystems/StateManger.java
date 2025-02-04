@@ -21,7 +21,7 @@ public class StateManger extends SubsystemBase {
   /** Creates a new RobotState. */
   public StateManger(Wrist wrist, Elevator elevator, Intake intake, Limelight ll, AlgaeIntake algaeIntake, Climber climber) {
     m_Elevator = elevator;
-    m_Wrist    = wrist;
+    m_Wrist = wrist;
     m_Intake = intake;
     m_ll = ll;
     m_algaeIntake = algaeIntake;
