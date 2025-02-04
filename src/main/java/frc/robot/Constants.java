@@ -93,6 +93,10 @@ public class WristConstants {
         public static final double HOME = 0;
     }
 
+    public class CANdleConstants{
+        public static final int CANdleID = 43;
+    }
+
      
     
 }

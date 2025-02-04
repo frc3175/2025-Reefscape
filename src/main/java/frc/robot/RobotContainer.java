@@ -30,6 +30,7 @@ import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LED;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.StateManger;
 import frc.robot.subsystems.Wrist;
@@ -58,6 +59,7 @@ public class RobotContainer {
     public final AlgaeIntake m_algaeIntake = new AlgaeIntake();
     public final Limelight m_ll = new Limelight();
     public final Climber m_climber = new Climber();
+    public final LED m_LED = new LED();
     public final StateManger m_StateManger = new StateManger(m_wrist, m_elevator, m_intake, m_ll, m_algaeIntake, m_climber  );
 
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -88,7 +90,8 @@ public class RobotContainer {
                 () -> drivecoController.getRawAxis(strafeAxis), 
                 () -> drivecoController.getRawAxis(rotationAxis), 
                 () -> true, 
-                () -> drivecoController.rightBumper().getAsBoolean())
+                () -> drivecoController.rightBumper().getAsBoolean(),
+                () -> drivecoController.a().getAsBoolean())
         );
          drivetrain.registerTelemetry(logger::telemeterize);
 
