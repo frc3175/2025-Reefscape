@@ -119,9 +119,9 @@ public class SwerveDrive extends Command {
 
          if (m_isCrawling.getAsBoolean()){
             m_swerveDrivetrain.setControl(
-                drive.withVelocityX(m_translationSup.getAsDouble()*m_translationSup.getAsDouble()*Math.signum(m_translationSup.getAsDouble()) *- MaxSpeed*0.1) // Drive forward with negative Y (forward)
-                    .withVelocityY(m_strafeSup.getAsDouble() *m_strafeSup.getAsDouble()*Math.signum(m_strafeSup.getAsDouble())* -MaxSpeed*0.1) // Drive left with negative X (left)
-                    .withRotationalRate(m_rotationSup.getAsDouble()*m_rotationSup.getAsDouble()*Math.signum(m_rotationSup.getAsDouble()) * -MaxAngularRate*0.1)
+                drive.withVelocityX(m_translationSup.getAsDouble()*m_translationSup.getAsDouble()*Math.signum(m_translationSup.getAsDouble()) * MaxSpeed*0.25) // Drive forward with negative Y (forward)
+                    .withVelocityY(m_strafeSup.getAsDouble() *m_strafeSup.getAsDouble()*Math.signum(m_strafeSup.getAsDouble())* MaxSpeed*0.25) // Drive left with negative X (left)
+                    .withRotationalRate(m_rotationSup.getAsDouble()*m_rotationSup.getAsDouble()*Math.signum(m_rotationSup.getAsDouble()) * MaxAngularRate*0.25)
                     .withCenterOfRotation(newCenterOfRotation));
                      // Drive counterclockwise with negative X (left)
                     
@@ -134,9 +134,9 @@ public class SwerveDrive extends Command {
 
 
         m_swerveDrivetrain.setControl(
-                drive.withVelocityX(m_translationSup.getAsDouble()*m_translationSup.getAsDouble()*Math.signum(m_translationSup.getAsDouble()) *- MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY(m_strafeSup.getAsDouble() *m_strafeSup.getAsDouble()*Math.signum(m_strafeSup.getAsDouble())* -MaxSpeed) // Drive left with negative X (left)
-                    .withRotationalRate(m_rotationSup.getAsDouble()*m_rotationSup.getAsDouble()*Math.signum(m_rotationSup.getAsDouble()) * -MaxAngularRate)
+                drive.withVelocityX(m_translationSup.getAsDouble()*m_translationSup.getAsDouble()*Math.signum(m_translationSup.getAsDouble()) * MaxSpeed) // Drive forward with negative Y (forward)
+                    .withVelocityY(m_strafeSup.getAsDouble() *m_strafeSup.getAsDouble()*Math.signum(m_strafeSup.getAsDouble())* MaxSpeed) // Drive left with negative X (left)
+                    .withRotationalRate(m_rotationSup.getAsDouble()*m_rotationSup.getAsDouble()*Math.signum(m_rotationSup.getAsDouble()) * MaxAngularRate)
                     .withCenterOfRotation(newCenterOfRotation) // Drive counterclockwise with negative X (left)
         
                     

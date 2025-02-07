@@ -37,8 +37,8 @@ public class Constants {
         public static final double L3 = 10.0;
         public static final double L4 = 17.2;
         public static final double BARGE = 6.0;
-        public static final double ALGAET2 = 7.0;
-        public static final double ALGAET3 = 8.0;
+        public static final double ALGAET2 = 1.37;
+        public static final double ALGAET3 = 7.15;
 
 }
 
@@ -54,9 +54,11 @@ public class WristConstants {
     public static final double L3 = -8.8;
     public static final double L4 = -11;
     public static final double BARGE = 15;
-    public static final double ALGAET2 = 7.0;
-    public static final double ALGAET3 = 8.0;
+    public static final double ALGAET2 = -11.27;
+    public static final double ALGAET3 = -11.27;
     public static final double ALGAEIN = 7.7;
+
+
 
    
     
@@ -81,7 +83,8 @@ public class WristConstants {
         public static final int MOTORID = 1;
 
         public static final double INTAKE = .7;
-        public static final double OUTTAKE = -0.1; //-0.5
+        public static final double OUTTAKE = -0.5;
+        public static final double OUTTAKEFAST = -0.7; //-0.5
         public static final double STOP = 0;
         public static final double L1 = 0.1;
     

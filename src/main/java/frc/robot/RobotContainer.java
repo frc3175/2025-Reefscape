@@ -50,6 +50,9 @@ public class RobotContainer {
 
     private final CommandXboxController drivecoController = new CommandXboxController(Constants.DRIVER_CONTROLER);
     private final CommandXboxController opController  = new CommandXboxController(Constants.OPERATOR_CONTROLER);
+    private final CommandXboxController testController  = new CommandXboxController(5);
+   
+    
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
@@ -59,7 +62,8 @@ public class RobotContainer {
     public final AlgaeIntake m_algaeIntake = new AlgaeIntake();
     public final Limelight m_ll = new Limelight();
     public final Climber m_climber = new Climber();
-    public final LED m_LED = new LED();
+    public LED m_Led = new LED();
+   
     public final StateManger m_StateManger = new StateManger(m_wrist, m_elevator, m_intake, m_ll, m_algaeIntake, m_climber  );
 
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -91,7 +95,7 @@ public class RobotContainer {
                 () -> drivecoController.getRawAxis(rotationAxis), 
                 () -> true, 
                 () -> drivecoController.rightBumper().getAsBoolean(),
-                () -> drivecoController.a().getAsBoolean())
+                () -> SmartDashboard.getBoolean("Max speed", false))
         );
          drivetrain.registerTelemetry(logger::telemeterize);
 
@@ -116,6 +120,11 @@ public class RobotContainer {
 
         opController.pov(180).whileTrue(new InstantCommand(() -> m_algaeIntake.intakePercentOutput(-.5)));
         opController.pov(180).onFalse(new InstantCommand(() -> m_algaeIntake.intakePercentOutput(0)));
+
+        opController.pov(90).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT2")));
+        opController.pov(270).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT3")));
+
+        testController.a().onTrue(new InstantCommand(() -> m_Led.setLEDs(0, 0, 255)));
         
 
     
