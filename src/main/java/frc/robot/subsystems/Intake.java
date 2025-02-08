@@ -53,10 +53,10 @@ public Intake() {
   
 
   public void intakerun(double velocity){
-    // intakeVelocity.Velocity = velocity;
-    //     m_motor.setControl(intakeVelocity);
+    intakeVelocity.Velocity = velocity * 5;
+        m_motor.setControl(intakeVelocity);
 
-    m_motor.set(velocity);
+    // m_motor.set(velocity);
 
     
   }
