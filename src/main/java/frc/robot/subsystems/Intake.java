@@ -27,10 +27,12 @@ DutyCycleOut intakePercentOutput;
 
 public Intake() {
     m_motor = new TalonFX(Constants.IntakeConstants.MOTORID , Constants.CANIVORE);
-
+    final TalonFXConfiguration configuration = new TalonFXConfiguration();
+    configuration.CurrentLimits.withStatorCurrentLimitEnable(true);
+    configuration.CurrentLimits.withStatorCurrentLimit(40);
    
 
-   
+    m_motor.getConfigurator().apply(configuration, 0.050);
 
     intakeVelocity = new VelocityDutyCycle(0);
 

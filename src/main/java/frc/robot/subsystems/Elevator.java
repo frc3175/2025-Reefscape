@@ -29,15 +29,17 @@ public Elevator() {
     
 
 
-    m_motmag = new MotionMagicVoltage(0);
+    m_motmag = new MotionMagicVoltage(0);    
 
     var talonFXConfigs = new TalonFXConfiguration();
+    talonFXConfigs.CurrentLimits.withStatorCurrentLimitEnable(true);
+    talonFXConfigs.CurrentLimits.withStatorCurrentLimit(40);
     
     var slot0Configs = talonFXConfigs.Slot0;
     slot0Configs.kS = 0.24; // add 0.24 V to overcome friction
     slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
     // PID runs on position
-
+    
     slot0Configs.kP = 2; // change as needed
     slot0Configs.kI = 0;
     slot0Configs.kD = 0;
