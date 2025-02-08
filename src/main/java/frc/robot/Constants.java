@@ -86,7 +86,7 @@ public class WristConstants {
         public static final double OUTTAKE = -0.5;
         public static final double OUTTAKEFAST = -0.7; //-0.5
         public static final double STOP = 0;
-        public static final double L1 = 0.1;
+        public static final double L1 = -0.15;
     
     }
     public class ClimberConstants{

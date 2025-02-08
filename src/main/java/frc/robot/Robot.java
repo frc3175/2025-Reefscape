@@ -27,10 +27,10 @@ public class Robot extends TimedRobot {
     {
         // Make sure you only configure port forwarding once in your robot code.
         // Do not place these function calls in any periodic functions
-        for (int port = 5800; port <= 5809; port++) {
-            PortForwarder.add(port, "limelight.local", port);
-            PortForwarder.add(port+10, "limelight1.local", port);
-        }
+        // for (int port = 5800; port <= 5809; port++) {
+        //     PortForwarder.add(port, "limelight.local", port);
+        //     PortForwarder.add(port+10, "limelight1.local", port);
+        // }
     }
 
   @Override

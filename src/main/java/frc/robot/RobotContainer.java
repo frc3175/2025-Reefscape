@@ -13,6 +13,7 @@ import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.Joystick;
@@ -73,10 +74,18 @@ public class RobotContainer {
 
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
+
+
+
+    
     
 
     public RobotContainer() {
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
+
+        NamedCommands.registerCommand("Intake",  new InstantCommand(() -> m_StateManger.setRobotState("HP")));
+        NamedCommands.registerCommand("Outtake", new InstantCommand(() -> m_intake.OUTTAKE(Constants.IntakeConstants.OUTTAKE)));
+
         SmartDashboard.putData("Auto Mode", autoChooser);
         SmartDashboard.putNumber("set elevator", 0);
 
@@ -90,9 +99,9 @@ public class RobotContainer {
             // Drivetrain will execute this command periodically
             new SwerveDrive(
                 drivetrain, 
-                () -> drivecoController.getRawAxis(translationAxis), 
-                () -> drivecoController.getRawAxis(strafeAxis), 
-                () -> drivecoController.getRawAxis(rotationAxis), 
+                () -> -drivecoController.getRawAxis(translationAxis), 
+                () -> -drivecoController.getRawAxis(strafeAxis), 
+                () -> -drivecoController.getRawAxis(rotationAxis), 
                 () -> true, 
                 () -> drivecoController.rightBumper().getAsBoolean(),
                 () -> SmartDashboard.getBoolean("Max speed", false))
