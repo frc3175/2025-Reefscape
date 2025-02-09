@@ -30,6 +30,7 @@ public class Constants {
         public static final int BACKID = 19;
         public static final int FRONTID = 3;
 
+        //set points
         public static final double HOME = 0.4;
         public static final double HUMAN = 1.0;
         public static final double L1 = 0;
@@ -39,6 +40,19 @@ public class Constants {
         public static final double BARGE = 6.0;
         public static final double ALGAET2 = 1.37;
         public static final double ALGAET3 = 7.15;
+        
+        //configs
+        public static final double kp = 2;
+        public static final double ki = 0;
+        public static final double kD = 0;
+
+        public static final double  MotionMagicCruiseVelocity = 80;
+        public static final double  MotionMagicAcceleration = 120;
+        public static final double  MotionMagicJerk = 600;
+        public static final boolean EnableFOC = true;
+
+        public static final boolean CurrentLimitEnable = true;
+        public static final double  CurrentLimit       = 40;
 
 }
 

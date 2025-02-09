@@ -26,39 +26,8 @@ public Elevator() {
     m_right = new TalonFX(Constants.ElevatorConstants.BACKID , Constants.CANIVORE);
     m_left = new TalonFX(Constants.ElevatorConstants.FRONTID , Constants.CANIVORE);
 
-    
+    config();
 
-
-    m_motmag = new MotionMagicVoltage(0);    
-
-    var talonFXConfigs = new TalonFXConfiguration();
-    talonFXConfigs.CurrentLimits.withStatorCurrentLimitEnable(true);
-    talonFXConfigs.CurrentLimits.withStatorCurrentLimit(40);
-    
-    var slot0Configs = talonFXConfigs.Slot0;
-    slot0Configs.kS = 0.24; // add 0.24 V to overcome friction
-    slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
-    // PID runs on position
-    
-    slot0Configs.kP = 2; // change as needed
-    slot0Configs.kI = 0;
-    slot0Configs.kD = 0;
-
-    
-
-    var motionMagicConfigs = talonFXConfigs.MotionMagic;
-    motionMagicConfigs.MotionMagicCruiseVelocity = 80; // 80 rps cruise velocity
-    motionMagicConfigs.MotionMagicAcceleration = 120; // 160 rps/s acceleration (0.5 seconds)
-    motionMagicConfigs.MotionMagicJerk = 600; // 1600 rps/s^2 jerk (0.1 seconds)
-    m_motmag.EnableFOC = true;
-
-
-
-    m_left.getConfigurator().apply(talonFXConfigs, 0.050);
-    m_left.setNeutralMode(NeutralModeValue.Brake);
-    m_right.getConfigurator().apply(talonFXConfigs, 0.050);
-    m_right.setNeutralMode(NeutralModeValue.Brake);
-    // periodic, run Motion Magic with slot 0 configs,
   }
   
   @Override
@@ -69,7 +38,7 @@ public Elevator() {
     SmartDashboard.putNumber("Elevator Left Pose", m_left.getPosition().getValueAsDouble());
   }
 
-public Double getpose(){ // if you need negative pos, you need to change this
+public Double getpose(){
   return Math.abs(Math.abs(m_left.getPosition().getValueAsDouble())+ Math.abs(m_right.getPosition().getValueAsDouble())) / 2;
 }
 
@@ -78,6 +47,40 @@ public void setpose(double pose){
   m_right.setControl(m_motmag.withPosition(pose));
 }
 
+
+
+
+public void config(){
+  m_motmag = new MotionMagicVoltage(0);    
+
+  var talonFXConfigs = new TalonFXConfiguration();
+    talonFXConfigs.CurrentLimits.withStatorCurrentLimitEnable(Constants.ElevatorConstants.CurrentLimitEnable);
+    talonFXConfigs.CurrentLimits.withStatorCurrentLimit(Constants.ElevatorConstants.CurrentLimit);
+    
+  var slot0Configs = talonFXConfigs.Slot0;
+    slot0Configs.kS = 0.24; // add 0.24 V to overcome friction
+    slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
+
+    
+    slot0Configs.kP = Constants.ElevatorConstants.kp;
+    slot0Configs.kI = Constants.ElevatorConstants.kI;
+    slot0Configs.kD = Constants.ElevatorConstants.kD;
+
+    var motionMagicConfigs = talonFXConfigs.MotionMagic;
+    motionMagicConfigs.MotionMagicCruiseVelocity = Constants.ElevatorConstants.MotionMagicCruiseVelocity; // 80 rps cruise velocity
+    motionMagicConfigs.MotionMagicAcceleration   = Constants.ElevatorConstants.MotionMagicAcceleration; // 160 rps/s acceleration (0.5 seconds)
+    motionMagicConfigs.MotionMagicJerk           = Constants.ElevatorConstants.MotionMagicJerk; // 1600 rps/s^2 jerk (0.1 seconds)
+    m_motmag.EnableFOC = Constants.ElevatorConstants.EnableFOC;
+
+
+
+    m_left.getConfigurator().apply(talonFXConfigs, 0.050);
+    m_left.setNeutralMode(NeutralModeValue.Brake);
+    m_right.getConfigurator().apply(talonFXConfigs, 0.050);
+    m_right.setNeutralMode(NeutralModeValue.Brake);
+
+}
+  
 
 }
 
