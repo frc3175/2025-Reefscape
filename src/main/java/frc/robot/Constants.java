@@ -72,7 +72,18 @@ public class WristConstants {
     public static final double ALGAET3 = -11.27;
     public static final double ALGAEIN = 7.7;
 
+    //configs
+    public static final double kp = 2;
+    public static final double ki = 0;
+    public static final double kD = 0;
 
+    public static final double  MotionMagicCruiseVelocity = 80;
+    public static final double  MotionMagicAcceleration = 120;
+    public static final double  MotionMagicJerk = 600;
+    public static final boolean EnableFOC = true;
+
+    public static final boolean CurrentLimitEnable = true;
+    public static final double  CurrentLimit       = 40;
 
    
     
@@ -89,6 +100,20 @@ public class WristConstants {
 
         public static final double INTAKE = 0.5;
         public static final double STOP = 0;
+
+
+        //configs
+        public static final double kp = 2;
+        public static final double ki = 0;
+        public static final double kD = 0;
+
+        public static final double  MotionMagicCruiseVelocity = 120;
+        public static final double  MotionMagicAcceleration = 240;
+        public static final double  MotionMagicJerk = 800;
+        public static final boolean EnableFOC = true;
+
+        public static final boolean CurrentLimitEnable = true;
+        public static final double  CurrentLimit       = 40;
 
          
     }

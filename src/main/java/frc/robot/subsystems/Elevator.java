@@ -18,16 +18,37 @@ public class Elevator extends SubsystemBase {
   
 
 MotionMagicVoltage m_motmag;
+
 TalonFX m_right;
 TalonFX m_left;
 
+private ElevatorState elevState;
 
 public Elevator() {
+
     m_right = new TalonFX(Constants.ElevatorConstants.BACKID , Constants.CANIVORE);
     m_left = new TalonFX(Constants.ElevatorConstants.FRONTID , Constants.CANIVORE);
 
     config();
 
+  }
+
+  public void setpose(double pose){
+    m_left.setControl(m_motmag.withPosition(-pose));
+    m_right.setControl(m_motmag.withPosition(pose));
+  }
+
+  public Double getpose(){
+    return Math.abs(Math.abs(m_left.getPosition().getValueAsDouble())+ Math.abs(m_right.getPosition().getValueAsDouble())) / 2;
+  }
+
+  public void setElevatorState(ElevatorState state) {
+    setpose(state.elevSetpoint);
+    elevState = state;
+  }
+
+  public ElevatorState getElevatorState() {
+    return elevState;
   }
   
   @Override
@@ -38,14 +59,26 @@ public Elevator() {
     SmartDashboard.putNumber("Elevator Left Pose", m_left.getPosition().getValueAsDouble());
   }
 
-public Double getpose(){
-  return Math.abs(Math.abs(m_left.getPosition().getValueAsDouble())+ Math.abs(m_right.getPosition().getValueAsDouble())) / 2;
-}
 
-public void setpose(double pose){
-  m_left.setControl(m_motmag.withPosition(-pose));
-  m_right.setControl(m_motmag.withPosition(pose));
-}
+
+  public enum ElevatorState {
+
+    L1(Constants.ElevatorConstants.L1),
+    L2(Constants.ElevatorConstants.L2),
+    L3(Constants.ElevatorConstants.L3),
+    L4(Constants.ElevatorConstants.L4),
+    BARGE(Constants.ElevatorConstants.BARGE),
+    ALGAET2(Constants.ElevatorConstants.ALGAET2),
+    ALGAET3(Constants.ElevatorConstants.ALGAET3),
+    HP(Constants.ElevatorConstants.HUMAN),
+    HOME(Constants.ElevatorConstants.HOME);
+
+    public int elevSetpoint;
+    private ElevatorState(int setpoint) {
+        this.elevSetpoint = setpoint;
+    }
+    
+  }
 
 
 
@@ -80,7 +113,6 @@ public void config(){
     m_right.setNeutralMode(NeutralModeValue.Brake);
 
 }
-  
 
 }
 

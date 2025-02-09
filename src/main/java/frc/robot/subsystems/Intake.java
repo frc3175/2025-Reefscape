@@ -81,6 +81,18 @@ public Intake() {
 
 
 }
+
+enum IntakeState{
+  INTAKE(Constants.IntakeConstants.INTAKE),
+  OUTTAKE(Constants.IntakeConstants.OUTTAKE),
+  STOP(Constants.IntakeConstants.STOP);
+
+  public double speed;
+  IntakeState(double speed){
+    this.speed = speed;
+  }
+  
+}
 }
 
 
