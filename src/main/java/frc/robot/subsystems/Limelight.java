@@ -31,11 +31,23 @@ public class Limelight extends SubsystemBase {
         return limelightalgae.getEntry("ta").getDouble(0.0) > 0.0; // If target area is > 0
 
     }
+
+    public double getTargetid() {
+        return limelightTable.getEntry("tid").getDouble(0.0); // If target area is > 0
+
+    }
+
+    public double algaegetTargetid() {
+        return limelightalgae.getEntry("tid").getDouble(0.0); // If target area is > 0
+
+    }
      @Override
   public void periodic() {
     SmartDashboard.putNumber("horizontal offset",getHorizontalOffset());
     SmartDashboard.putBoolean("has tag",hasTarget());
     SmartDashboard.putNumber("algae horizontal offset",algaegetHorizontalOffset());
     SmartDashboard.putBoolean("algae has tag",algaehasTarget());
+    SmartDashboard.putNumber("targetid", getTargetid());
+    SmartDashboard.putNumber("alagaetargetid", algaegetTargetid());
   }
 }
