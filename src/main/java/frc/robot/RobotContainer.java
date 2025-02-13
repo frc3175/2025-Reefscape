@@ -48,7 +48,7 @@ public class RobotContainer {
 
      private final Telemetry logger = new Telemetry(MaxSpeed);
 
-    private final CommandXboxController drivecoController = new CommandXboxController(Constants.DRIVER_CONTROLER);
+    private final CommandXboxController driverController = new CommandXboxController(Constants.DRIVER_CONTROLER);
     private final CommandXboxController opController  = new CommandXboxController(Constants.OPERATOR_CONTROLER);
     private final CommandXboxController testController  = new CommandXboxController(5);
    
@@ -100,18 +100,18 @@ public class RobotContainer {
             // Drivetrain will execute this command periodically
             new SwerveDrive(
                 drivetrain, 
-                () -> -drivecoController.getRawAxis(translationAxis), 
-                () -> -drivecoController.getRawAxis(strafeAxis), 
-                () -> -drivecoController.getRawAxis(rotationAxis), 
+                () -> -driverController.getRawAxis(translationAxis), 
+                () -> -driverController.getRawAxis(strafeAxis), 
+                () -> -driverController.getRawAxis(rotationAxis), 
                 () -> true, 
-                () -> drivecoController.rightBumper().getAsBoolean(),
+                () -> driverController.rightBumper().getAsBoolean(),
                 () -> SmartDashboard.getBoolean("Max speed", false))
         );
          drivetrain.registerTelemetry(logger::telemeterize);
 
-        drivecoController.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
-        drivecoController.leftBumper().onTrue(new InstantCommand(()-> m_intake.OUTTAKE(Constants.IntakeConstants.OUTTAKE)));
-    
+         driverController.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+         driverController.leftBumper().onTrue(new InstantCommand(()-> m_intake.OUTTAKE(Constants.IntakeConstants.OUTTAKE)));
+         driverController.a().onTrue(new InstantCommand(() -> m_wrist.setangle(-27)));
          
     
         opController.y().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L4")));
@@ -138,7 +138,8 @@ public class RobotContainer {
         
 
     
- 
+    
+    
     
     
     

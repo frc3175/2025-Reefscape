@@ -119,8 +119,18 @@ public class StateManger extends SubsystemBase {
 
     case "AlgaeT3":
     SmartDashboard.putNumber("intake speed", 0);
-    SmartDashboard.putBoolean("Max speed", true);
+    SmartDashboard.putBoolean("Max speed", false);
     m_Wrist.setangle(Constants.WristConstants.ALGAET3);
+    m_Elevator.setpose(Constants.ElevatorConstants.ALGAET3);
+    m_Intake.intakerun(Constants.IntakeConstants.OUTTAKEFAST);
+    m_algaeIntake.intakePercentOutput(0);
+    m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
+  break;
+
+  case "flip":
+    SmartDashboard.putNumber("intake speed", 0);
+    SmartDashboard.putBoolean("Max speed", false);
+    m_Wrist.setangle(-27);
     m_Elevator.setpose(Constants.ElevatorConstants.ALGAET3);
     m_Intake.intakerun(Constants.IntakeConstants.OUTTAKEFAST);
     m_algaeIntake.intakePercentOutput(0);

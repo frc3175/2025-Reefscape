@@ -98,7 +98,7 @@ public class SwerveDrive extends Command {
 
 
           double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond);
-        double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSekcond); // 3/4 of a rotation per second max angular velocity
+        double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
 
         Translation2d newCenterOfRotation = new Translation2d();
         Translation2d translation = new Translation2d(m_translationSup.getAsDouble(), m_strafeSup.getAsDouble()).times(MaxSpeed);
@@ -144,5 +144,6 @@ public class SwerveDrive extends Command {
         );
          }
     }
+    
 
 }
