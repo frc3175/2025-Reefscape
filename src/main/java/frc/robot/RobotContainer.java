@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.Auto;
 import frc.robot.commands.Autotranslate;
 import frc.robot.commands.Autoturn;
 import frc.robot.commands.SwerveDrive;
@@ -67,6 +68,7 @@ public class RobotContainer {
     public final AlgaeIntake m_algaeIntake = new AlgaeIntake();
     
     public final Climber m_climber = new Climber();
+    public final Auto m_auto = new Auto(drivetrain, m_ll);
     // public LED m_Led = new LED();
    
     public final StateManger m_StateManger = new StateManger(m_wrist, m_elevator, m_intake, m_ll, m_algaeIntake, m_climber  );
@@ -92,6 +94,10 @@ public class RobotContainer {
         NamedCommands.registerCommand("L4", new InstantCommand(() -> m_StateManger.setRobotState("L4")));
         NamedCommands.registerCommand("HOME", new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
 
+
+    
+ 
+       
         SmartDashboard.putData("Auto Mode", autoChooser);
         SmartDashboard.putNumber("set elevator", 0);
 
@@ -146,12 +152,11 @@ public class RobotContainer {
         // testController.a().whileTrue(new SequentialCommandGroup(new Autoturn(drivetrain, m_ll, driverController, true), ));
         // testController.a().whileTrue(new InstantCommand(()->m_auto.meth()));
         
-        testController.y().onTrue(new InstantCommand(()->m_intake.intakerunvoltage(13)));
+        testController.y().onTrue(AutoBuilder.followPath(m_auto.getPath()));
     
     
     
-    
-    
+       
     
     
     
