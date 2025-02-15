@@ -73,6 +73,8 @@ public class WristConstants {
     public static final double ALGAEIN = 7.7;
 
 
+    public static final double climb = -15; //-15 //-32 is up
+
 
    
     
@@ -86,6 +88,7 @@ public class WristConstants {
         public static final double HOME = 0;  
         public static final double OFFSET = 4.8; //working
         public static final double INTAKEANGLE = 13.2; //working
+        public static final double climb = 19.583984375;
 
         public static final double INTAKE = 0.5;
         public static final double STOP = 0;

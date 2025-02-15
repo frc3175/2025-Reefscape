@@ -15,6 +15,7 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
+import edu.wpi.first.epilogue.logging.FileBackend;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -22,8 +23,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.Autotranslate;
+import frc.robot.commands.Autoturn;
 import frc.robot.commands.SwerveDrive;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.AlgaeIntake;
@@ -50,7 +54,7 @@ public class RobotContainer {
 
     private final CommandXboxController driverController = new CommandXboxController(Constants.DRIVER_CONTROLER);
     private final CommandXboxController opController  = new CommandXboxController(Constants.OPERATOR_CONTROLER);
-    private final CommandXboxController testController  = new CommandXboxController(5);
+    private final CommandXboxController testController  = new CommandXboxController(4);
    
     
 
@@ -112,6 +116,8 @@ public class RobotContainer {
          driverController.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
          driverController.leftBumper().onTrue(new InstantCommand(()-> m_intake.OUTTAKE(Constants.IntakeConstants.OUTTAKE)));
          driverController.a().onTrue(new InstantCommand(() -> m_wrist.setangle(-27)));
+        // driverController.a().onTrue(new InstantCommand(() -> m_wrist.setangle(Constants.WristConstants.climb)));
+        //  driverController.a().onTrue(new InstantCommand(() -> m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.climb)));
          
     
         opController.y().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L4")));
@@ -134,9 +140,11 @@ public class RobotContainer {
         opController.pov(90).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT2")));
         opController.pov(270).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT3")));
 
-        // testController.a().onTrue(new InstantCommand(() -> m_Led.setLEDs(0, 0, 255)));
+        testController.a().whileTrue(new Autoturn(drivetrain, m_ll, testController, true));
+        // testController.a().whileTrue(new SequentialCommandGroup(new Autoturn(drivetrain, m_ll, driverController, true), ));
+        // testController.a().whileTrue(new InstantCommand(()->m_auto.meth()));
         
-
+        testController.y().onTrue(new InstantCommand(()->m_intake.intakerunvoltage(13)));
     
     
     

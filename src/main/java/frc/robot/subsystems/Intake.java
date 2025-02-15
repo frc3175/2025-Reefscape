@@ -61,6 +61,14 @@ public Intake() {
     
   }
 
+  public void intakerunvoltage(double velocity){
+        m_motor.setVoltage(velocity);
+
+    // m_motor.set(velocity);
+
+    
+  }
+
   public void OUTTAKE(double velocity){
     // intakeVelocity.Velocity = velocity;
     //     m_motor.setControl(intakeVelocity);
