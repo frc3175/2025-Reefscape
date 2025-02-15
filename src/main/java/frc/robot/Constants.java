@@ -121,6 +121,9 @@ public class WristConstants {
         public static final int CANdleID = 43;
     }
 
+    public static double stickDeadband = 0.1;
+    
+
      
     
 }

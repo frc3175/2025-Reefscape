@@ -8,6 +8,7 @@ import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.ctre.phoenix6.swerve.SwerveDrivetrain.SwerveDriveState;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -34,6 +35,9 @@ public class SwerveDrive extends Command {
     private BooleanSupplier m_robotCentricSup;
     private BooleanSupplier m_isEvading;
     public BooleanSupplier m_isCrawling;
+    public SlewRateLimiter xAxisLimiter;
+    public SlewRateLimiter yAxisLimiter;
+    
 
     
     private static final Translation2d[] WHEEL_POSITIONS =
@@ -57,6 +61,12 @@ public class SwerveDrive extends Command {
         m_robotCentricSup = robotCentricSup;
         m_isEvading = isEvading;
         m_isCrawling = isCrawling;
+
+
+
+          xAxisLimiter = new SlewRateLimiter(1.5);
+          yAxisLimiter = new SlewRateLimiter(1.5);
+
         
        
 
@@ -94,6 +104,17 @@ public class SwerveDrive extends Command {
 
     @Override
     public void execute() {
+
+        double xAxis = MathUtil.applyDeadband(m_translationSup.getAsDouble(), Constants.stickDeadband);
+        double yAxis = MathUtil.applyDeadband(m_strafeSup.getAsDouble(), Constants.stickDeadband);
+        double rAxis = MathUtil.applyDeadband(m_rotationSup.getAsDouble(), Constants.stickDeadband);
+
+        double xAxisSquared = xAxis * xAxis * Math.signum(xAxis);
+        double yAxisSquared = yAxis * yAxis * Math.signum(yAxis);
+        double rAxisSquared = rAxis * rAxis * Math.signum(rAxis);
+
+        double xAxisFiltered = xAxisLimiter.calculate(xAxisSquared);
+        double yAxisFiltered = yAxisLimiter.calculate(yAxisSquared);
        
 
 
@@ -119,10 +140,10 @@ public class SwerveDrive extends Command {
 
          if (m_isCrawling.getAsBoolean()){
             m_swerveDrivetrain.setControl(
-                drive.withVelocityX(m_translationSup.getAsDouble()*m_translationSup.getAsDouble()*Math.signum(m_translationSup.getAsDouble()) * MaxSpeed*0.15) // Drive forward with negative Y (forward)
-                    .withVelocityY(m_strafeSup.getAsDouble() *m_strafeSup.getAsDouble()*Math.signum(m_strafeSup.getAsDouble())* MaxSpeed*0.15) // Drive left with negative X (left)
-                    .withRotationalRate(m_rotationSup.getAsDouble()*m_rotationSup.getAsDouble()*Math.signum(m_rotationSup.getAsDouble()) * MaxAngularRate*0.5)
-                    .withCenterOfRotation(newCenterOfRotation));
+                drive.withVelocityX( xAxisFiltered * MaxSpeed *0.15) // Drive forward with negative Y (forward)
+                    .withVelocityY( yAxisFiltered * MaxSpeed *0.15) // Drive left with negative X (left)
+                    .withRotationalRate(rAxisSquared * MaxAngularRate *0.5)
+                    .withCenterOfRotation(newCenterOfRotation)); // Drive counterclockwise with negative X (left)
                      // Drive counterclockwise with negative X (left)
                     
 
@@ -130,13 +151,15 @@ public class SwerveDrive extends Command {
          } 
 
          else{
+            
+
 
 
 
         m_swerveDrivetrain.setControl(
-                drive.withVelocityX(m_translationSup.getAsDouble()*m_translationSup.getAsDouble()*Math.signum(m_translationSup.getAsDouble()) * MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY(m_strafeSup.getAsDouble() *m_strafeSup.getAsDouble()*Math.signum(m_strafeSup.getAsDouble())* MaxSpeed) // Drive left with negative X (left)
-                    .withRotationalRate(m_rotationSup.getAsDouble()*m_rotationSup.getAsDouble()*Math.signum(m_rotationSup.getAsDouble()) * MaxAngularRate)
+                drive.withVelocityX( xAxisFiltered * MaxSpeed) // Drive forward with negative Y (forward)
+                    .withVelocityY( yAxisFiltered * MaxSpeed) // Drive left with negative X (left)
+                    .withRotationalRate(rAxisSquared * MaxAngularRate)
                     .withCenterOfRotation(newCenterOfRotation) // Drive counterclockwise with negative X (left)
         
                     
