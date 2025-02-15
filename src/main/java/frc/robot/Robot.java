@@ -9,6 +9,7 @@ import com.ctre.phoenix6.Utils;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -54,13 +55,16 @@ public class Robot extends TimedRobot {
       LimelightHelpers.SetRobotOrientation("limelight", headingDeg, 0, 0, 0, 0, 0);
       // LimelightHelpers.SetRobotOrientation("limelight-algae", headingDeg, 0, 0, 0, 0, 0);
       // var llMeasurementalgae = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-algae");
-      var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight");
+      var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiRed_MegaTag2("limelight");
       if (llMeasurement != null && llMeasurement.tagCount > 0 && Math.abs(omegaRps) < 2.0) {
         m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose, llMeasurement.timestampSeconds);
         // m_robotContainer.drivetrain.addVisionMeasurement(llMeasurementalgae.pose, llMeasurement.timestampSeconds);
 
       }
+
     }
+    SmartDashboard.putNumber("limelight pose X", LimelightHelpers.getBotPoseEstimate_wpiRed_MegaTag2("limelight").pose.getX());
+    SmartDashboard.putNumber("limelight pose Y", LimelightHelpers.getBotPoseEstimate_wpiRed_MegaTag2("limelight").pose.getY());
   }
 
   @Override
