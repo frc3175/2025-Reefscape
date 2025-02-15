@@ -22,11 +22,12 @@ MotionMagicVoltage m_motmag;
 
 PositionDutyCycle m_PositionDutyCycle;
 TalonFX m_motor;
+double nudge = 0;
 
 
 public Wrist() {
     m_motor = new TalonFX(Constants.WristConstants.MOTORID , Constants.CANIVORE);
-   
+    
 
     m_motmag = new MotionMagicVoltage(0);
 
@@ -68,9 +69,12 @@ public Wrist() {
 
   public void setangle(double angle){
 
-    m_motor.setControl(m_motmag.withPosition(angle));
+    m_motor.setControl(m_motmag.withPosition(angle+nudge));
 
 
+  }
+  public void setnudge(double change){
+    nudge = nudge + change;
   }
 
 }

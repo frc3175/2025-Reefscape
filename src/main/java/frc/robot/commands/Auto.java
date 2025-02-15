@@ -26,7 +26,7 @@ public class Auto {
 // The rotation component of the pose should be the direction of travel. Do not use holonomic rotation.
 List<Waypoint> waypoints = PathPlannerPath.waypointsFromPoses(
         drivetrain.getState().Pose,
-        new Pose2d(3, 3, Rotation2d.fromDegrees(Autoangles.getAngle(limelight.getTargetid())))
+        new Pose2d(-1, 1, Rotation2d.fromDegrees(Autoangles.getAngle(limelight.getTargetid())))
 );
 
 PathConstraints constraints = new PathConstraints(3.0, 3.0, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.

@@ -55,7 +55,7 @@ public class RobotContainer {
 
     private final CommandXboxController driverController = new CommandXboxController(Constants.DRIVER_CONTROLER);
     private final CommandXboxController opController  = new CommandXboxController(Constants.OPERATOR_CONTROLER);
-    private final CommandXboxController testController  = new CommandXboxController(4);
+    private final CommandXboxController testController  = new CommandXboxController(5);
    
     
     public final Limelight m_ll = new Limelight();
@@ -124,6 +124,11 @@ public class RobotContainer {
          driverController.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
          driverController.leftBumper().onTrue(new InstantCommand(()-> m_intake.OUTTAKE(Constants.IntakeConstants.OUTTAKE)));
          driverController.a().onTrue(new InstantCommand(() -> m_wrist.setangle(-27)));
+         driverController.pov(0).onTrue(new InstantCommand(()-> m_wrist.setnudge(-.1)));
+         driverController.pov(180).onTrue(new InstantCommand(()-> m_wrist.setnudge(.1)));
+         driverController.button(7).onTrue(new InstantCommand(() -> m_intake.intakerunvoltage(12)));
+         driverController.pov(180).onTrue(new InstantCommand(()-> m_wrist.setangle(m_wrist.getpose())));
+         driverController.pov(0).onTrue(new InstantCommand(()-> m_wrist.setangle(m_wrist.getpose())));
         // driverController.a().onTrue(new InstantCommand(() -> m_wrist.setangle(Constants.WristConstants.climb)));
         //  driverController.a().onTrue(new InstantCommand(() -> m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.climb)));
          
@@ -147,6 +152,7 @@ public class RobotContainer {
 
         opController.pov(90).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT2")));
         opController.pov(270).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT3")));
+        opController.pov(0).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("Barge")));
 
         testController.a().whileTrue(new Autoturn(drivetrain, m_ll, testController, true));
         // testController.a().whileTrue(new SequentialCommandGroup(new Autoturn(drivetrain, m_ll, driverController, true), ));
