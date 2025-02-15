@@ -298,21 +298,21 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
 
 
-        m_PoseEstimator.update(
-            get2dgyro(),
-            getState().ModulePositions
-        );
+        // m_PoseEstimator.update(
+        //     get2dgyro(),
+        //     getState().ModulePositions
+        // );
 
         
-        // Pose2d visionMeasurement2d = visionMeasurement3d.toPose2d();
-        m_PoseEstimator.addVisionMeasurement(m_Limelight.getpose3d(), Timer.getFPGATimestamp());
-        m_PoseEstimator.addVisionMeasurement(m_Limelight.algaegetpose2d(), Timer.getFPGATimestamp());
-        Pose2d currentpose = m_PoseEstimator.getEstimatedPosition();
-        double[] currentposearray = new double[3];
-        currentposearray[0] = currentpose.getX();
-        currentposearray[1] = currentpose.getY();
-        currentposearray[2] = currentpose.getRotation().getDegrees();
-        SmartDashboard.putNumberArray("pose estmator",  currentposearray);
+        // // Pose2d visionMeasurement2d = visionMeasurement3d.toPose2d();
+        // m_PoseEstimator.addVisionMeasurement(m_Limelight.getpose3d(), Timer.getFPGATimestamp());
+        // m_PoseEstimator.addVisionMeasurement(m_Limelight.algaegetpose2d(), Timer.getFPGATimestamp());
+        // Pose2d currentpose = m_PoseEstimator.getEstimatedPosition();
+        // double[] currentposearray = new double[3];
+        // currentposearray[0] = currentpose.getX();
+        // currentposearray[1] = currentpose.getY();
+        // currentposearray[2] = currentpose.getRotation().getDegrees();
+        // SmartDashboard.putNumberArray("pose estmator",  currentposearray);
     }
 
     private void startSimThread() {
@@ -339,18 +339,18 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return m_pigeon.getRotation2d();
     }
 
-    public final SwerveDrivePoseEstimator m_PoseEstimator = 
-    new SwerveDrivePoseEstimator(
-        getKinematics(),
-        get2dgyro(),
-        getState().ModulePositions,
-        new Pose2d(),
-        VecBuilder.fill(0.1, 0.1, 0.1),
-        VecBuilder.fill(0.1, 0.1, 0.1)
-    );
+    // public final SwerveDrivePoseEstimator m_PoseEstimator = 
+    // new SwerveDrivePoseEstimator(
+    //     getKinematics(),
+    //     get2dgyro(),
+    //     getState().ModulePositions,
+    //     new Pose2d(),
+    //     VecBuilder.fill(0.1, 0.1, 0.1),
+    //     VecBuilder.fill(0.1, 0.1, 0.1)
+    // );
 
-    public void setLL(Limelight ll){
-        m_Limelight = ll;
-    }
+    // public void setLL(Limelight ll){
+    //     m_Limelight = ll;
+    // }
     
 }

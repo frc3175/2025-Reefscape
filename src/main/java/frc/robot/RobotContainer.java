@@ -85,7 +85,6 @@ public class RobotContainer {
     
 
     public RobotContainer() {
-        drivetrain.setLL(m_ll);
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
 
         NamedCommands.registerCommand("Intake",  new InstantCommand(() -> m_StateManger.setRobotState("HP")));
