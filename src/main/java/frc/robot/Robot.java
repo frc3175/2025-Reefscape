@@ -61,10 +61,12 @@ public class Robot extends TimedRobot {
         // m_robotContainer.drivetrain.addVisionMeasurement(llMeasurementalgae.pose, llMeasurement.timestampSeconds);
 
       }
-
+      SmartDashboard.putNumber("111 limelight pose X", llMeasurement.pose.getX());
+      SmartDashboard.putNumber("111 limelight pose Y",  llMeasurement.pose.getY());
+      SmartDashboard.putNumber("111 drive pose X", m_robotContainer.drivetrain.getState().Pose.getX());
+      SmartDashboard.putNumber("111 drive pose Y",  m_robotContainer.drivetrain.getState().Pose.getY());
     }
-    SmartDashboard.putNumber("limelight pose X", LimelightHelpers.getBotPoseEstimate_wpiRed_MegaTag2("limelight").pose.getX());
-    SmartDashboard.putNumber("limelight pose Y", LimelightHelpers.getBotPoseEstimate_wpiRed_MegaTag2("limelight").pose.getY());
+    
   }
 
   @Override
