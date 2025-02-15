@@ -66,6 +66,10 @@ public void config(){
     slot0Configs.kI = Constants.ElevatorConstants.ki;
     slot0Configs.kD = Constants.ElevatorConstants.kD;
 
+    slot0Configs.kV = Constants.ElevatorConstants.kV;
+    slot0Configs.kS = Constants.ElevatorConstants.kS;
+    slot0Configs.kG = Constants.ElevatorConstants.kG;
+
     var motionMagicConfigs = talonFXConfigs.MotionMagic;
     motionMagicConfigs.MotionMagicCruiseVelocity = Constants.ElevatorConstants.MotionMagicCruiseVelocity; // 80 rps cruise velocity
     motionMagicConfigs.MotionMagicAcceleration   = Constants.ElevatorConstants.MotionMagicAcceleration; // 160 rps/s acceleration (0.5 seconds)

@@ -31,7 +31,7 @@ public class Constants {
         public static final int FRONTID = 3;
 
         //set points
-        public static final double HOME = 0.4;
+        public static final double HOME = 0.4;  //0.4
         public static final double HUMAN = 1.0;
         public static final double L1 = 0;
         public static final double L2 = 4;
@@ -42,17 +42,20 @@ public class Constants {
         public static final double ALGAET3 = 7.15;
         
         //configs
-        public static final double kp = 2;
-        public static final double ki = 0;
-        public static final double kD = 0;
+        public static final double kp = 1; //1
+        public static final double ki = 0; //0
+        public static final double kD = 0.05; //0.2
+        public static final double kV = 0.05; //0.05
+        public static final double kS = 0.08; //0.08
+        public static final double kG = 0.16; //0.16
 
-        public static final double  MotionMagicCruiseVelocity = 80;
-        public static final double  MotionMagicAcceleration = 120;
+        public static final double  MotionMagicCruiseVelocity = 90;
+        public static final double  MotionMagicAcceleration = 180;
         public static final double  MotionMagicJerk = 600;
         public static final boolean EnableFOC = true;
 
         public static final boolean CurrentLimitEnable = true;
-        public static final double  CurrentLimit       = 40;
+        public static final double  CurrentLimit       = 80;
 
 }
 
