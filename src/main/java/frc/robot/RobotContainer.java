@@ -57,14 +57,15 @@ public class RobotContainer {
     private final CommandXboxController testController  = new CommandXboxController(4);
    
     
-
+    public final Limelight m_ll = new Limelight();
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
+
 
     public final Elevator m_elevator = new Elevator();
     public final Wrist m_wrist = new Wrist();
     public final Intake m_intake = new Intake();
     public final AlgaeIntake m_algaeIntake = new AlgaeIntake();
-    public final Limelight m_ll = new Limelight();
+    
     public final Climber m_climber = new Climber();
     // public LED m_Led = new LED();
    
@@ -84,6 +85,7 @@ public class RobotContainer {
     
 
     public RobotContainer() {
+        drivetrain.setLL(m_ll);
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
 
         NamedCommands.registerCommand("Intake",  new InstantCommand(() -> m_StateManger.setRobotState("HP")));
@@ -95,6 +97,7 @@ public class RobotContainer {
         SmartDashboard.putNumber("set elevator", 0);
 
         configureBindings();
+        
     }
 
     private void configureBindings() {

@@ -19,8 +19,11 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.Pair;
+import edu.wpi.first.math.VecBuilder;
+import edu.wpi.first.math.estimator.DifferentialDrivePoseEstimator;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -34,6 +37,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
@@ -50,6 +54,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private static final double kSimLoopPeriod = 0.005; // 5 ms
     private Notifier m_simNotifier = null;
     private double m_lastSimTime;
+    public Limelight m_Limelight;
 
     public Pigeon2 m_pigeon = new Pigeon2(0, Constants.RIO);
 
@@ -290,6 +295,24 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
                 m_hasAppliedOperatorPerspective = true;
             });
         }
+
+
+
+        m_PoseEstimator.update(
+            get2dgyro(),
+            getState().ModulePositions
+        );
+
+        
+        // Pose2d visionMeasurement2d = visionMeasurement3d.toPose2d();
+        m_PoseEstimator.addVisionMeasurement(m_Limelight.getpose3d(), Timer.getFPGATimestamp());
+        m_PoseEstimator.addVisionMeasurement(m_Limelight.algaegetpose2d(), Timer.getFPGATimestamp());
+        Pose2d currentpose = m_PoseEstimator.getEstimatedPosition();
+        double[] currentposearray = new double[3];
+        currentposearray[0] = currentpose.getX();
+        currentposearray[1] = currentpose.getY();
+        currentposearray[2] = currentpose.getRotation().getDegrees();
+        SmartDashboard.putNumberArray("pose estmator",  currentposearray);
     }
 
     private void startSimThread() {
@@ -316,5 +339,18 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return m_pigeon.getRotation2d();
     }
 
+    public final SwerveDrivePoseEstimator m_PoseEstimator = 
+    new SwerveDrivePoseEstimator(
+        getKinematics(),
+        get2dgyro(),
+        getState().ModulePositions,
+        new Pose2d(),
+        VecBuilder.fill(0.1, 0.1, 0.1),
+        VecBuilder.fill(0.1, 0.1, 0.1)
+    );
+
+    public void setLL(Limelight ll){
+        m_Limelight = ll;
+    }
     
 }
