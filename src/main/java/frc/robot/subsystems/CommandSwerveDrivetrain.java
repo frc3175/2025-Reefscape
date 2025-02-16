@@ -296,13 +296,19 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
                 m_hasAppliedOperatorPerspective = true;
             });
         }
-
-        addVisionMeasurement(m_Limelight.getpose3d(), kNumConfigAttempts);
-        addVisionMeasurement(m_Limelight.getpose3d(), robotPoseStdDevs, kNumConfigAttempts);
-        addVisionMeasurement(m_Limelight.getpose3d(), Timer.getFPGATimestamp());
-        addDriveMeasurement(get2dgyro(), getState().ModulePositions);
-
         
+        // addVisionMeasurement(m_Limelight.getpose3d(), kNumConfigAttempts);
+        // addVisionMeasurement(m_Limelight.getpose3d(), robotPoseStdDevs, kNumConfigAttempts);
+        // addVisionMeasurement(m_Limelight.getpose3d(), Timer.getFPGATimestamp());
+        // addDriveMeasurement(get2dgyro(), getState().ModulePositions);
+
+        // SmartDashboard.putNumber("555 pose esta get X", poseEstimator.getEstimatedPosition().getX());
+        // SmartDashboard.putNumber("555 pose esta get y", poseEstimator.getEstimatedPosition().getY());
+        // SmartDashboard.putNumber("555 pose esta get R", poseEstimator.getEstimatedPosition().getRotation().getDegrees());
+
+        // SmartDashboard.putNumber("555 current get X", getState().Pose.getX());
+        // SmartDashboard.putNumber("555 current get y", getState().Pose.getY());
+        // SmartDashboard.putNumber("555 current get R", getState().Pose.getRotation().getDegrees());
 
         
 
@@ -372,9 +378,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         poseEstimator.addVisionMeasurement(pose, timestamp, stdDevs);
     }
 
-    public void setLL(Limelight ll){
-        m_Limelight = ll;
-    }   
-
+    // public void setlimelight(Limelight ll){
+    //     m_Limelight = ll;
+    // }
     
 }
