@@ -302,13 +302,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         addVisionMeasurement(m_Limelight.getpose3d(), Timer.getFPGATimestamp());
         addDriveMeasurement(get2dgyro(), getState().ModulePositions);
 
-        SmartDashboard.putNumber("555 pose esta get X", poseEstimator.getEstimatedPosition().getX());
-        SmartDashboard.putNumber("555 pose esta get y", poseEstimator.getEstimatedPosition().getY());
-        SmartDashboard.putNumber("555 pose esta get R", poseEstimator.getEstimatedPosition().getRotation().getDegrees());
-
-        SmartDashboard.putNumber("555 current get X", getState().Pose.getX());
-        SmartDashboard.putNumber("555 current get y", getState().Pose.getY());
-        SmartDashboard.putNumber("555 current get R", getState().Pose.getRotation().getDegrees());
+        
 
         
 
@@ -377,6 +371,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public void addVisionMeasurement(Pose2d pose, Matrix<N3, N1> stdDevs, double timestamp) {
         poseEstimator.addVisionMeasurement(pose, timestamp, stdDevs);
     }
+
+    public void setLL(Limelight ll){
+        m_Limelight = ll;
+    }   
 
     
 }

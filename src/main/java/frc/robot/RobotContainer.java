@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.Auto;
+import frc.robot.commands.AutoNEW;
 import frc.robot.commands.Autotranslate;
 import frc.robot.commands.Autoturn;
 import frc.robot.commands.SwerveDrive;
@@ -39,6 +40,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.StateManger;
 import frc.robot.subsystems.Wrist;
+import frc.robot.subsystems.poseEsta;
 
 public class RobotContainer {
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -60,6 +62,7 @@ public class RobotContainer {
     
     public final Limelight m_ll = new Limelight();
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
+    public final poseEsta m_poseEsta = new poseEsta(drivetrain, m_ll);
 
 
     public final Elevator m_elevator = new Elevator();
@@ -69,6 +72,7 @@ public class RobotContainer {
     
     public final Climber m_climber = new Climber();
     public final Auto m_auto = new Auto(drivetrain, m_ll);
+    public final AutoNEW m_autoNEW = new AutoNEW(drivetrain, m_ll, m_poseEsta);
     // public LED m_Led = new LED();
    
     public final StateManger m_StateManger = new StateManger(m_wrist, m_elevator, m_intake, m_ll, m_algaeIntake, m_climber  );
@@ -87,6 +91,7 @@ public class RobotContainer {
     
 
     public RobotContainer() {
+        
         autoChooser = AutoBuilder.buildAutoChooser("Tests");
 
         NamedCommands.registerCommand("Intake",  new InstantCommand(() -> m_StateManger.setRobotState("HP")));
@@ -159,6 +164,8 @@ public class RobotContainer {
         // testController.a().whileTrue(new InstantCommand(()->m_auto.meth()));
         
         testController.y().onTrue(AutoBuilder.followPath(m_auto.getPath()));
+        testController.y().onTrue(AutoBuilder.followPath(m_autoNEW.getPath()));
+        
     
     
     
