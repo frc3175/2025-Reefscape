@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 1.51125,
-        "y": 7.42775
+        "x": 1.60875,
+        "y": 7.4375
       },
       "prevControl": {
-        "x": 1.2985711182918651,
-        "y": 7.559156595250684
+        "x": 1.396071118291865,
+        "y": 7.568906595250684
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "hp to p2"
     }
   ],
   "rotationTargets": [],
@@ -49,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 125.63980919808668
+    "rotation": -52.68578991399632
   },
   "reversed": false,
   "folder": "3 piece",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 117.07208023799264
+    "rotation": -52.68578991399632
   },
   "useDefaultConstraints": true
 }
