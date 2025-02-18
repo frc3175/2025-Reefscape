@@ -155,8 +155,8 @@ public class RobotContainer {
         opController.pov(180).whileTrue(new InstantCommand(() -> m_algaeIntake.intakePercentOutput(-.5)));
         opController.pov(180).onFalse(new InstantCommand(() -> m_algaeIntake.intakePercentOutput(0)));
 
-        opController.pov(90).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT2")));
-        opController.pov(270).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT3")));
+        opController.pov(270).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT2")));
+        opController.pov(90).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT3")));
         opController.pov(0).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("Barge")));
 
         testController.a().whileTrue(new Autoturn(drivetrain, m_ll, testController, true));
