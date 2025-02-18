@@ -297,38 +297,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             });
         }
         
-        // addVisionMeasurement(m_Limelight.getpose3d(), kNumConfigAttempts);
-        // addVisionMeasurement(m_Limelight.getpose3d(), robotPoseStdDevs, kNumConfigAttempts);
-        // addVisionMeasurement(m_Limelight.getpose3d(), Timer.getFPGATimestamp());
-        // addDriveMeasurement(get2dgyro(), getState().ModulePositions);
-
-        // SmartDashboard.putNumber("555 pose esta get X", poseEstimator.getEstimatedPosition().getX());
-        // SmartDashboard.putNumber("555 pose esta get y", poseEstimator.getEstimatedPosition().getY());
-        // SmartDashboard.putNumber("555 pose esta get R", poseEstimator.getEstimatedPosition().getRotation().getDegrees());
-
-        // SmartDashboard.putNumber("555 current get X", getState().Pose.getX());
-        // SmartDashboard.putNumber("555 current get y", getState().Pose.getY());
-        // SmartDashboard.putNumber("555 current get R", getState().Pose.getRotation().getDegrees());
-
         
-
-
-
-        // m_PoseEstimator.update(
-        //     get2dgyro(),
-        //     getState().ModulePositions
-        // );
-
-        
-        // // Pose2d visionMeasurement2d = visionMeasurement3d.toPose2d();
-        // m_PoseEstimator.addVisionMeasurement(m_Limelight.getpose3d(), Timer.getFPGATimestamp());
-        // m_PoseEstimator.addVisionMeasurement(m_Limelight.algaegetpose2d(), Timer.getFPGATimestamp());
-        // Pose2d currentpose = m_PoseEstimator.getEstimatedPosition();
-        // double[] currentposearray = new double[3];
-        // currentposearray[0] = currentpose.getX();
-        // currentposearray[1] = currentpose.getY();
-        // currentposearray[2] = currentpose.getRotation().getDegrees();
-        // SmartDashboard.putNumberArray("pose estmator",  currentposearray);
     }
 
     private void startSimThread() {
@@ -356,30 +325,37 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     }
 
 
-    //test code
-    private SwerveDrivePoseEstimator poseEstimator;
-    private Matrix<N3, N1> robotPoseStdDevs = VecBuilder.fill(0,0,0);
+   /**
+     * Adds a vision measurement to the Kalman Filter. This will correct the odometry pose estimate
+     * while still accounting for measurement noise.
+     *
+     * @param visionRobotPoseMeters The pose of the robot as measured by the vision camera.
+     * @param timestampSeconds The timestamp of the vision measurement in seconds.
+     */
+    @Override
+    public void addVisionMeasurement(Pose2d visionRobotPoseMeters, double timestampSeconds) {
+        super.addVisionMeasurement(visionRobotPoseMeters, Utils.fpgaToCurrentTime(timestampSeconds));
+    }
 
-    public void initializePoseEstimator(
-        SwerveDriveKinematics kinematics,
-        Rotation2d gyroAngle,
-        SwerveModulePosition[] modulePositions,
-        Pose2d initialPoseMeters
+    /**
+     * Adds a vision measurement to the Kalman Filter. This will correct the odometry pose estimate
+     * while still accounting for measurement noise.
+     * <p>
+     * Note that the vision measurement standard deviations passed into this method
+     * will continue to apply to future measurements until a subsequent call to
+     * {@link #setVisionMeasurementStdDevs(Matrix)} or this method.
+     *
+     * @param visionRobotPoseMeters The pose of the robot as measured by the vision camera.
+     * @param timestampSeconds The timestamp of the vision measurement in seconds.
+     * @param visionMeasurementStdDevs Standard deviations of the vision pose measurement
+     *     in the form [x, y, theta]ᵀ, with units in meters and radians.
+     */
+    @Override
+    public void addVisionMeasurement(
+        Pose2d visionRobotPoseMeters,
+        double timestampSeconds,
+        Matrix<N3, N1> visionMeasurementStdDevs
     ) {
-        poseEstimator = new SwerveDrivePoseEstimator(kinematics, gyroAngle, modulePositions, initialPoseMeters);
+        super.addVisionMeasurement(visionRobotPoseMeters, Utils.fpgaToCurrentTime(timestampSeconds), visionMeasurementStdDevs);
     }
-
-    public void addDriveMeasurement(Rotation2d rotation, SwerveModulePosition[] modulePositions) {
-        poseEstimator.update(rotation, modulePositions);
-
-    }
-
-    public void addVisionMeasurement(Pose2d pose, Matrix<N3, N1> stdDevs, double timestamp) {
-        poseEstimator.addVisionMeasurement(pose, timestamp, stdDevs);
-    }
-
-    // public void setlimelight(Limelight ll){
-    //     m_Limelight = ll;
-    // }
-    
 }
