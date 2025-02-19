@@ -42,7 +42,7 @@ public class StateManger extends SubsystemBase {
         SmartDashboard.putBoolean("Max speed", false);
         m_Wrist.setangle(Constants.WristConstants.HOME);
         m_Elevator.setpose(Constants.ElevatorConstants.HOME);
-        m_Intake.intakerun(Constants.IntakeConstants.STOP);
+        m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
         m_algaeIntake.intakerun(Constants.AlgaeIntakeConstants.STOP);
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
 
@@ -51,9 +51,9 @@ public class StateManger extends SubsystemBase {
       case "ALGAE INTAKE":
         SmartDashboard.putNumber("intake speed", 1);
         SmartDashboard.putBoolean("Max speed", false);
-        m_Wrist.setangle(13);
+        // m_Wrist.setangle(13);
         m_Elevator.setpose(Constants.ElevatorConstants.HOME);
-        m_Intake.OUTTAKE(-.5);
+        // m_Intake.intakerunvoltage(-.5);
         m_algaeIntake.intakePercentOutput(.5);
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.INTAKEANGLE);
       break;
@@ -63,7 +63,7 @@ public class StateManger extends SubsystemBase {
         SmartDashboard.putBoolean("Max speed", false);
         m_Wrist.setangle(Constants.WristConstants.HUMAN);
         m_Elevator.setpose(Constants.ElevatorConstants.HOME);
-        m_Intake.intakerun(Constants.IntakeConstants.INTAKE);
+        m_Intake.intakerunvoltage(Constants.IntakeConstants.INTAKE);
         m_algaeIntake.intakePercentOutput(0);
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
       break;
@@ -73,7 +73,7 @@ public class StateManger extends SubsystemBase {
         SmartDashboard.putBoolean("Max speed", true);
         m_Wrist.setangle(Constants.WristConstants.L4);
         m_Elevator.setpose(Constants.ElevatorConstants.L4);
-        m_Intake.intakerun(Constants.IntakeConstants.STOP);
+        m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
         m_algaeIntake.intakePercentOutput(0);
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
       break;
@@ -83,17 +83,17 @@ public class StateManger extends SubsystemBase {
         SmartDashboard.putBoolean("Max speed", true);
         m_Wrist.setangle(Constants.WristConstants.L3);
         m_Elevator.setpose(Constants.ElevatorConstants.L3);
-        m_Intake.intakerun(Constants.IntakeConstants.STOP);
+        m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
         m_algaeIntake.intakePercentOutput(0);
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
       break;
 
       case "L2":
         SmartDashboard.putNumber("intake speed", 1);
-        SmartDashboard.putBoolean("Max speed", false);
+        SmartDashboard.putBoolean("Max speed", true);
         m_Wrist.setangle(Constants.WristConstants.L2);
         m_Elevator.setpose(Constants.ElevatorConstants.L2);
-        m_Intake.intakerun(Constants.IntakeConstants.STOP);
+        m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
         m_algaeIntake.intakePercentOutput(0);
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
       break;
@@ -102,7 +102,7 @@ public class StateManger extends SubsystemBase {
         SmartDashboard.putBoolean("Max speed", false);
         m_Wrist.setangle(Constants.WristConstants.L1);
         m_Elevator.setpose(Constants.ElevatorConstants.HOME);
-        m_Intake.intakerun(Constants.IntakeConstants.STOP);
+        m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
         m_algaeIntake.intakePercentOutput(0);
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
       break;
@@ -112,17 +112,37 @@ public class StateManger extends SubsystemBase {
       SmartDashboard.putBoolean("Max speed", false);
       m_Wrist.setangle(Constants.WristConstants.ALGAET2);
       m_Elevator.setpose(Constants.ElevatorConstants.ALGAET2);
-      m_Intake.intakerun(Constants.IntakeConstants.OUTTAKEFAST);
+      m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
       m_algaeIntake.intakePercentOutput(0);
       m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
     break;
 
     case "AlgaeT3":
     SmartDashboard.putNumber("intake speed", 0);
-    SmartDashboard.putBoolean("Max speed", true);
+    SmartDashboard.putBoolean("Max speed", false);
     m_Wrist.setangle(Constants.WristConstants.ALGAET3);
     m_Elevator.setpose(Constants.ElevatorConstants.ALGAET3);
-    m_Intake.intakerun(Constants.IntakeConstants.OUTTAKEFAST);
+    m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
+    m_algaeIntake.intakePercentOutput(0);
+    m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
+  break;
+
+  case "flip":
+    SmartDashboard.putNumber("intake speed", 0);
+    SmartDashboard.putBoolean("Max speed", false);
+    m_Wrist.setangle(-27);
+    m_Elevator.setpose(Constants.ElevatorConstants.ALGAET3);
+    m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
+    m_algaeIntake.intakePercentOutput(0);
+    m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
+  break;
+
+  case "Barge":
+    SmartDashboard.putNumber("intake speed", 0);
+    SmartDashboard.putBoolean("Max speed", true);
+    m_Wrist.setangle(Constants.WristConstants.BARGE);
+    m_Elevator.setpose(Constants.ElevatorConstants.BARGE);
+    m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
     m_algaeIntake.intakePercentOutput(0);
     m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
   break;
