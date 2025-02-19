@@ -36,7 +36,7 @@ public class Constants {
         public static final double L1 = 0;
         public static final double L2 = 4.6; //4
         public static final double L3 = 10.2; //10
-        public static final double L4 = 17.6;
+        public static final double L4 = 18.0;
         public static final double BARGE = 17.6;
         public static final double ALGAET2 = 1.37;
         public static final double ALGAET3 = 7.15;
