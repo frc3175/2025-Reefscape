@@ -87,6 +87,8 @@ public class RobotContainer {
 
 
 
+
+
     
     
 
@@ -99,9 +101,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("L4", new InstantCommand(() -> m_StateManger.setRobotState("L4")));
         NamedCommands.registerCommand("HOME", new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
 
-       
-    
- 
+        
        
         SmartDashboard.putData("Auto Mode", autoChooser);
         SmartDashboard.putNumber("set elevator", 0);
