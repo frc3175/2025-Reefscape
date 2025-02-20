@@ -87,8 +87,6 @@ public class RobotContainer {
 
 
 
-
-
     
     
 
@@ -101,7 +99,9 @@ public class RobotContainer {
         NamedCommands.registerCommand("L4", new InstantCommand(() -> m_StateManger.setRobotState("L4")));
         NamedCommands.registerCommand("HOME", new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
 
-        
+       
+    
+ 
        
         SmartDashboard.putData("Auto Mode", autoChooser);
         SmartDashboard.putNumber("set elevator", 0);
@@ -163,7 +163,7 @@ public class RobotContainer {
         // testController.a().whileTrue(new SequentialCommandGroup(new Autoturn(drivetrain, m_ll, driverController, true), ));
         // testController.a().whileTrue(new InstantCommand(()->m_auto.meth()));
         
-        testController.y().onTrue(AutoBuilder.followPath(m_auto.getPath()));
+        testController.y().onTrue(m_auto.getPath());
         // testController.y().onTrue(AutoBuilder.followPath(m_autoNEW.getPath()));
         
     
