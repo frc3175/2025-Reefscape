@@ -158,8 +158,8 @@ public class RobotContainer {
         opController.pov(0).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("Barge")));
         
         // testController.y().onTrue(m_auto.newPath(0,0,0));
-        // driverController.y().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), false)));
-        // driverController.b().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), true)));
+        driverController.y().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), false)));
+        driverController.b().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), true)));
       
     
         }

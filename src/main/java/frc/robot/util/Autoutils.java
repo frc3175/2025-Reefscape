@@ -93,10 +93,10 @@ public class Autoutils {
         if      (input == 6){
             if (isLeft){
                 
-                return new Pose2d(13.568 ,2.861 ,Rotation2d.fromDegrees(120));
+                return new Pose2d(12.87 ,3.2,Rotation2d.fromDegrees(120)); //done
             }
             else{
-                return new Pose2d(13.764 ,3.041,Rotation2d.fromDegrees(120));
+                return new Pose2d(13.2 ,3.4,Rotation2d.fromDegrees(120));//done
             }
         }
 
@@ -113,20 +113,20 @@ public class Autoutils {
         if      (input == 8){
             if (isLeft){
                 
-                return new Pose2d(13.733 ,5.024 ,Rotation2d.fromDegrees(-120));
+                return new Pose2d(13.195,4.87 ,Rotation2d.fromDegrees(-120)); //done
             }
             else{
-                return new Pose2d(13.538 ,5.174,Rotation2d.fromDegrees(-120));
+                return new Pose2d(12.9,5. ,Rotation2d.fromDegrees(-120)); //done
             }
         }
 
         if      (input == 9){
             if (isLeft){
                 
-                return new Pose2d(12.579 ,5.204 ,Rotation2d.fromDegrees(-60));
+                return new Pose2d(12.3 ,5 ,Rotation2d.fromDegrees(-60)); //done
             }
             else{
-                return new Pose2d(12.311 ,5.017,Rotation2d.fromDegrees(-60));
+                return new Pose2d(11.95 ,4.88,Rotation2d.fromDegrees(-60)); //done
             }
         }
 
@@ -143,10 +143,10 @@ public class Autoutils {
         if      (input == 11){
             if (isLeft){
                 
-                return new Pose2d(12.334 ,3.056 ,Rotation2d.fromDegrees(60));
+                return new Pose2d(11.1 ,3.56 ,Rotation2d.fromDegrees(60));
             }
             else{
-                return new Pose2d(12.567 ,2.928,Rotation2d.fromDegrees(60));
+                return new Pose2d(12.29 ,3.15,Rotation2d.fromDegrees(60));
             }
         }
 
