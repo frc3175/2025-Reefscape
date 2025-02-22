@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.Auto;
 import frc.robot.commands.Auto2d;
+import frc.robot.commands.AutoWorkPlease;
 import frc.robot.commands.SwerveDrive;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.AlgaeIntake;
@@ -158,9 +159,11 @@ public class RobotContainer {
         opController.pov(0).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("Barge")));
         
         // testController.y().onTrue(m_auto.newPath(0,0,0));
-        driverController.y().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), false)));
-        driverController.b().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), true)));
-      
+        // driverController.y().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), false)));
+        // driverController.b().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), true)));
+        driverController.y().onTrue(new AutoWorkPlease(Autoutils.getnewpose(m_ll.getTargetid(), false)));
+        driverController.b().onTrue(new AutoWorkPlease(Autoutils.getnewpose(m_ll.getTargetid(), true)));
+        // driverController.b().onFalse( new AutoWorkPlease.changefin(true));
     
         }
 
