@@ -43,14 +43,14 @@ public class Autoutils {
         
         if      (input == 1){
             if (isLeft){
-                goalpose = new Pose2d(15.987 ,0.652 ,Rotation2d.fromDegrees(65)); 
+                return new Pose2d(15.987 ,0.652 ,Rotation2d.fromDegrees(65)); 
             }
             else{
                 return new Pose2d(15.987 ,0.652 ,Rotation2d.fromDegrees(65));
             }
         }
 
-        if      (input == 2){
+        else if      (input == 2){
             if (isLeft){
                 
                 return new Pose2d(16.017 ,7.353,Rotation2d.fromDegrees(95));
@@ -60,7 +60,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 3){
+        else if      (input == 3){
             if (isLeft){
                 
                 return new Pose2d(11.510 ,7.533 ,Rotation2d.fromDegrees(90));
@@ -70,7 +70,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 4){
+        else if      (input == 4){
             if (isLeft){
                 
                 return new Pose2d(999,999, Rotation2d.fromDegrees(999));
@@ -80,7 +80,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 5){
+        else if      (input == 5){
             if (isLeft){
                 
                 return new Pose2d(999,999, Rotation2d.fromDegrees(999));
@@ -90,7 +90,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 6){
+        else if      (input == 6){
             if (isLeft){
                 
                 return new Pose2d(12.87 ,3.2,Rotation2d.fromDegrees(120)); //done
@@ -100,17 +100,17 @@ public class Autoutils {
             }
         }
 
-        if      (input == 7){
+        else if      (input == 7){
             if(isLeft){
                 
-                goalpose = new Pose2d(13.5 ,3.953 ,Rotation2d.fromDegrees(180)); //done
+                return new Pose2d(13.5 ,3.953 ,Rotation2d.fromDegrees(180)); //done
             }
             else{
-                goalpose = new Pose2d(13.5 ,4.3,Rotation2d.fromDegrees(180)); //done
+                return new Pose2d(13.5 ,4.3,Rotation2d.fromDegrees(180)); //done
             }
         }
 
-        if      (input == 8){
+        else if      (input == 8){
             if (isLeft){
                 
                 return new Pose2d(13.195,4.87 ,Rotation2d.fromDegrees(-120)); //done
@@ -120,7 +120,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 9){
+        else if      (input == 9){
             if (isLeft){
                 
                 return new Pose2d(12.3 ,5 ,Rotation2d.fromDegrees(-60)); //done
@@ -130,7 +130,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 10){
+        else if      (input == 10){
             if (isLeft){
                 
                 return new Pose2d(11.821 ,4.165 ,Rotation2d.fromDegrees(0));
@@ -140,7 +140,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 11){
+        else if      (input == 11){
             if (isLeft){
                 
                 return new Pose2d(11.1 ,3.56 ,Rotation2d.fromDegrees(60));
@@ -150,7 +150,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 12){
+        else  if      (input == 12){
             if (isLeft){
                 
                 return new Pose2d(0 ,0 ,Rotation2d.fromDegrees(0));
@@ -160,7 +160,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 13){
+        else if      (input == 13){
             if (isLeft){
                 
                 return new Pose2d(0 ,0 ,Rotation2d.fromDegrees(0));
@@ -170,7 +170,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 14){
+        else if      (input == 14){
             if (isLeft){
                 
                 return new Pose2d(999,999, Rotation2d.fromDegrees(999));
@@ -180,7 +180,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 15){
+        else if      (input == 15){
             if (isLeft){
                 
                 return new Pose2d(999,999, Rotation2d.fromDegrees(999));
@@ -190,7 +190,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 16){
+        else if      (input == 16){
             if (isLeft){
                 
                 return new Pose2d(0 ,0 ,Rotation2d.fromDegrees(0));
@@ -200,7 +200,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 17){
+        else if      (input == 17){
             if (isLeft){
                 
                 return new Pose2d(0 ,0 ,Rotation2d.fromDegrees(0));
@@ -210,7 +210,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 18){
+        else if      (input == 18){
             if (isLeft){
                 
                 return new Pose2d(0 ,0 ,Rotation2d.fromDegrees(0));
@@ -220,7 +220,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 19){
+        else if      (input == 19){
             if (isLeft){
                 
                 return new Pose2d(0 ,0 ,Rotation2d.fromDegrees(0));
@@ -230,7 +230,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 20){
+        else  if      (input == 20){
             if (isLeft){
                 
                 return new Pose2d(0 ,0 ,Rotation2d.fromDegrees(0));
@@ -240,7 +240,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 21){
+        else if      (input == 21){
             if (isLeft){
                 
                 return new Pose2d(0 ,0 ,Rotation2d.fromDegrees(0));
@@ -250,7 +250,7 @@ public class Autoutils {
             }
         }
 
-        if      (input == 22){
+        else if      (input == 22){
             if (isLeft){
                 
                 return new Pose2d(0 ,0 ,Rotation2d.fromDegrees(0));
