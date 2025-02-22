@@ -36,13 +36,13 @@ public class Auto2d {
     }
    
 
-    public Command newPath(Pose2d pose) {
+    public Command newPath(Limelight ll, boolean isLeft) {
 
         // if(pose.getX() == 999){
         //     return new Command() {};
         // }else{
-        
-        Pose2d endPose = pose;
+            m_limelight = ll;
+        Pose2d endPose = Autoutils.getnewpose(m_limelight.getTargetid(), isLeft);
         PathConstraints constraints = new PathConstraints(4, 1, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
 
         // Create the path using the waypoints created above

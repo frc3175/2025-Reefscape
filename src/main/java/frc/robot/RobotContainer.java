@@ -90,12 +90,16 @@ public class RobotContainer {
 
     public RobotContainer() {
         // drivetrain.setlimelight(m_ll);
-        autoChooser = AutoBuilder.buildAutoChooser("Tests");
-
         NamedCommands.registerCommand("Intake",  new InstantCommand(() -> m_StateManger.setRobotState("HP")));
         NamedCommands.registerCommand("Outtake", new InstantCommand(() -> m_intake.OUTTAKE(Constants.IntakeConstants.OUTTAKE)));
         NamedCommands.registerCommand("L4", new InstantCommand(() -> m_StateManger.setRobotState("L4")));
         NamedCommands.registerCommand("HOME", new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
+        NamedCommands.registerCommand("auto1piece", new Auto2d(drivetrain, m_ll).newPath(m_ll, false));
+        
+        autoChooser = AutoBuilder.buildAutoChooser("Tests");
+
+      
+        
 
        
     
@@ -158,9 +162,9 @@ public class RobotContainer {
         opController.pov(0).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("Barge")));
         
         // testController.y().onTrue(m_auto.newPath(0,0,0));
-        driverController.y().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), false)));
-        driverController.b().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), true)));
-      
+        // driverController.y().onTrue(new Auto2d(drivetrain, m_ll).newPath(m_ll, false));
+        // driverController.b().onTrue(new Auto2d(drivetrain, m_ll).newPath(m_ll, true));
+    
     
         }
 
