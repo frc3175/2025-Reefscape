@@ -11,6 +11,7 @@ import com.pathplanner.lib.path.IdealStartingState;
 import com.pathplanner.lib.path.PathConstraints;
 import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.path.Waypoint;
+import com.pathplanner.lib.pathfinding.Pathfinding;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -22,12 +23,12 @@ import frc.robot.util.Autoutils;
 
  
 
-public class Auto {
+public class Auto2d {
     public CommandSwerveDrivetrain m_drivetrain;
     public Limelight m_limelight;
     public Rotation2d negativeHeading;
     public Command m_path;
-    public Auto(CommandSwerveDrivetrain drivetrain, Limelight limelight) {
+    public Auto2d(CommandSwerveDrivetrain drivetrain, Limelight limelight) {
 
 
         m_drivetrain = drivetrain;
@@ -35,20 +36,27 @@ public class Auto {
     }
    
 
-    public Command newPath(double x, double y, double rotation) {
+    public Command newPath(Pose2d pose) {
+
+        // if(pose.getX() == 999){
+        //     return new Command() {};
+        // }else{
         
-        Pose2d endPose = new Pose2d(x, y, Rotation2d.fromDegrees(rotation));
-        PathConstraints constraints = new PathConstraints(2, .5, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
+        Pose2d endPose = pose;
+        PathConstraints constraints = new PathConstraints(4, 1, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
 
         // Create the path using the waypoints created above
         final  Command path =  AutoBuilder.pathfindToPose(
                 endPose,
                 constraints,
                 0
+            
         );
-
         
         return path;
+    // }
+        
+       
     }
     
 }

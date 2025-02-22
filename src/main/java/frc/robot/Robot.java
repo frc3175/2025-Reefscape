@@ -56,8 +56,8 @@ public class Robot extends TimedRobot {
       double reversedegrees =  MathUtil.inputModulus(m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 360);
      
   
-      LimelightHelpers.SetRobotOrientation("limelight",m_robotContainer.drivetrain.getInvert2dgyro(), 0, 0, 0, 0, 0);
-      var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight");
+      LimelightHelpers.SetRobotOrientation("limelight",m_robotContainer.drivetrain.get2dgyro().getDegrees(), 0, 0, 0, 0, 0);
+      var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight");
       if (llMeasurement != null && llMeasurement.tagCount > 0 && Math.abs(omegaRps) < 2.0) {
         m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose, llMeasurement.timestampSeconds);
         

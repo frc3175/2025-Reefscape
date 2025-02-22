@@ -27,9 +27,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.Auto;
-// import frc.robot.commands.AutoNEW;
-import frc.robot.commands.Autotranslate;
-import frc.robot.commands.Autoturn;
+import frc.robot.commands.Auto2d;
 import frc.robot.commands.SwerveDrive;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.AlgaeIntake;
@@ -40,7 +38,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.StateManger;
 import frc.robot.subsystems.Wrist;
-// import frc.robot.subsystems.poseEsta;
+import frc.robot.util.Autoutils;
 
 public class RobotContainer {
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -57,12 +55,12 @@ public class RobotContainer {
 
     private final CommandXboxController driverController = new CommandXboxController(Constants.DRIVER_CONTROLER);
     private final CommandXboxController opController  = new CommandXboxController(Constants.OPERATOR_CONTROLER);
-    private final CommandXboxController testController  = new CommandXboxController(5);
+    private final CommandXboxController testController  = new CommandXboxController(4);
    
     
     public final Limelight m_ll = new Limelight();
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
-    // public final poseEsta m_poseEsta = new poseEsta(drivetrain, m_ll);
+
 
 
     public final Elevator m_elevator = new Elevator();
@@ -71,8 +69,8 @@ public class RobotContainer {
     public final AlgaeIntake m_algaeIntake = new AlgaeIntake();
     
     public final Climber m_climber = new Climber();
-    public final Auto m_auto = new Auto(drivetrain, m_ll);
-    // public final AutoNEW m_autoNEW = new AutoNEW(drivetrain, m_ll, m_poseEsta);
+    public final Auto2d m_auto = new Auto2d(drivetrain, m_ll);
+
     // public LED m_Led = new LED();
    
     public final StateManger m_StateManger = new StateManger(m_wrist, m_elevator, m_intake, m_ll, m_algaeIntake, m_climber  );
@@ -158,23 +156,11 @@ public class RobotContainer {
         opController.pov(270).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT2")));
         opController.pov(90).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT3")));
         opController.pov(0).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("Barge")));
-
-        testController.a().whileTrue(new Autoturn(drivetrain, m_ll, testController, true));
-        // testController.a().whileTrue(new SequentialCommandGroup(new Autoturn(drivetrain, m_ll, driverController, true), ));
-        // testController.a().whileTrue(new InstantCommand(()->m_auto.meth()));
         
-        testController.y().onTrue(m_auto.getPath());
-        // testController.y().onTrue(AutoBuilder.followPath(m_autoNEW.getPath()));
-        
-    
-    
-    
-       
-    
-    
-    
-    
-    
+        // testController.y().onTrue(m_auto.newPath(0,0,0));
+        // driverController.y().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), false)));
+        // driverController.b().onTrue(m_auto.newPath(Autoutils.getnewpose(m_ll.getTargetid(), true)));
+      
     
         }
 

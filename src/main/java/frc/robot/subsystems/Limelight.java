@@ -76,16 +76,7 @@ public class Limelight extends SubsystemBase {
         return botpose3d.toPose2d();
     }
 
-    // public static double[] pose3dToArray(Pose3d pose) {
-    //     double[] result = new double[6];
-    //     result[0] = pose.getTranslation().getX();
-    //     result[1] = pose.getTranslation().getY();
-    //     result[2] = pose.getTranslation().getZ();
-    //     result[3] = Units.radiansToDegrees(pose.getRotation().getX());
-    //     result[4] = Units.radiansToDegrees(pose.getRotation().getY());
-    //     result[5] = Units.radiansToDegrees(pose.getRotation().getZ());
-    //     return result;
-    // }
+
 
 
      @Override
