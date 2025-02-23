@@ -41,10 +41,6 @@ public class AutoWorkPlease extends Command {
   public void initialize() {
     endPose = Autoutils.getnewpose(m_limelight.getTargetid(), m_isLeft);
 
-    if(m_limelight.getTargetid() == -1) {
-      end = true;
-    }
-
             // Create the path using the waypoints created above
             final  Command path =  AutoBuilder.pathfindToPose(
               endPose,
@@ -58,10 +54,11 @@ public class AutoWorkPlease extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(m_limelight.getTargetid()!=-1) {
+      m_path.schedule();
+    }
 
-    m_path.schedule();
     end = true;
-    
   }
 
   // Called once the command ends or is interrupted.
