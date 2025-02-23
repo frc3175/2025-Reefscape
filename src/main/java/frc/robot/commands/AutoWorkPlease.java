@@ -10,6 +10,8 @@ import com.pathplanner.lib.path.PathConstraints;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
+import frc.robot.subsystems.Limelight;
+import frc.robot.util.Autoutils;
 
 
 
@@ -19,22 +21,15 @@ public class AutoWorkPlease extends Command {
   public Command m_path;
  private boolean m_isFinshed;
  private boolean end = false;
+ private Pose2d endPose;
+ private Limelight m_limelight;
+ private boolean m_isLeft;
+ PathConstraints constraints = new PathConstraints(4, 1, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
   /** Creates a new AutoWorkPlease. */
-  public AutoWorkPlease(Pose2d Pose) {
-    Pose2d endPose = Pose;
-        PathConstraints constraints = new PathConstraints(4, 1, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
+  public AutoWorkPlease(Limelight limelight, boolean isLeft) {
+    m_limelight = limelight;
+    m_isLeft = isLeft;
 
-        // Create the path using the waypoints created above
-        final  Command path =  AutoBuilder.pathfindToPose(
-                endPose,
-                constraints,
-                0
-
-
-                
-            
-        );
-        m_path = path;
     // Use addRequirements() here to declare subsystem dependencies.
   }
   public void changefin(boolean isdone){
@@ -43,7 +38,18 @@ public class AutoWorkPlease extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    endPose = Autoutils.getnewpose(m_limelight.getTargetid(), m_isLeft);
+
+            // Create the path using the waypoints created above
+            final  Command path =  AutoBuilder.pathfindToPose(
+              endPose,
+              constraints,
+              0 
+      );
+      m_path = path;
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
