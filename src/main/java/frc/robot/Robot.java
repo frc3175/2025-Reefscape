@@ -5,6 +5,7 @@
 package frc.robot;
 
 import com.ctre.phoenix6.Utils;
+import com.pathplanner.lib.commands.FollowPathCommand;
 
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.net.PortForwarder;
@@ -35,6 +36,7 @@ public class Robot extends TimedRobot {
         //     PortForwarder.add(port, "limelight.local", port);
         //     PortForwarder.add(port+10, "limelight1.local", port);
         // }
+        FollowPathCommand.warmupCommand().schedule();
     }
 
   @Override
