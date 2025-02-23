@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.Auto;
 import frc.robot.commands.Auto2d;
@@ -79,7 +80,6 @@ public class RobotContainer {
     private final int translationAxis = XboxController.Axis.kLeftY.value;
     private final int strafeAxis = XboxController.Axis.kLeftX.value;
     private final int rotationAxis = XboxController.Axis.kRightX.value;
-
 
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
@@ -139,6 +139,9 @@ public class RobotContainer {
          driverController.pov(0).onTrue(new InstantCommand(()-> m_wrist.setangle(m_wrist.getpose())));
         // driverController.a().onTrue(new InstantCommand(() -> m_wrist.setangle(Constants.WristConstants.climb)));
         //  driverController.a().onTrue(new InstantCommand(() -> m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.climb)));
+
+        driverController.rightTrigger().onTrue(new AutoWorkPlease(m_ll, false));
+        driverController.leftTrigger().onFalse(new AutoWorkPlease(m_ll, true));
          
     
         opController.y().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L4")));
@@ -166,8 +169,8 @@ public class RobotContainer {
         //driverController.y().onTrue(new Auto2d(drivetrain, m_ll).newPath(m_ll, false));
         //driverController.b().onTrue(new Auto2d(drivetrain, m_ll).newPath(m_ll, true));
 
-        driverController.y().onTrue(new AutoWorkPlease(m_ll, false));
-        driverController.b().onTrue(new AutoWorkPlease(m_ll, true));
+        //driverController.y().onTrue(new AutoWorkPlease(m_ll, false));
+        //driverController.b().onTrue(new AutoWorkPlease(m_ll, true));
     
     
         }
