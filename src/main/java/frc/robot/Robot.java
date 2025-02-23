@@ -36,7 +36,6 @@ public class Robot extends TimedRobot {
         //     PortForwarder.add(port, "limelight.local", port);
         //     PortForwarder.add(port+10, "limelight1.local", port);
         // }
-        FollowPathCommand.warmupCommand().schedule();
     }
 
   @Override
@@ -102,6 +101,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    FollowPathCommand.warmupCommand().schedule();
   }
 
   @Override
