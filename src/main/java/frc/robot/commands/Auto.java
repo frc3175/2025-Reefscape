@@ -36,7 +36,7 @@ public class Auto {
    
 
     public Command newPath(double x, double y, double rotation) {
-        
+
         Pose2d endPose = new Pose2d(x, y, Rotation2d.fromDegrees(rotation));
         PathConstraints constraints = new PathConstraints(2, .5, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
 

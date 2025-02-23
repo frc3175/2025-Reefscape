@@ -16,6 +16,7 @@ import com.pathplanner.lib.pathfinding.Pathfinding;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.RobotState;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Limelight;
@@ -42,6 +43,7 @@ public class Auto2d {
         //     return new Command() {};
         // }else{
             m_limelight = ll;
+
         Pose2d endPose = Autoutils.getnewpose(m_limelight.getTargetid(), isLeft);
         PathConstraints constraints = new PathConstraints(4, 1, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
 

@@ -163,8 +163,8 @@ public class RobotContainer {
         opController.pov(0).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("Barge")));
         
         // testController.y().onTrue(m_auto.newPath(0,0,0));
-        // driverController.y().onTrue(new Auto2d(drivetrain, m_ll).newPath(m_ll, false));
-        // driverController.b().onTrue(new Auto2d(drivetrain, m_ll).newPath(m_ll, true));
+        driverController.y().onTrue(new Auto2d(drivetrain, m_ll).newPath(m_ll, false));
+        driverController.b().onTrue(new Auto2d(drivetrain, m_ll).newPath(m_ll, true));
     
     
         }
