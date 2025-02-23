@@ -41,6 +41,10 @@ public class AutoWorkPlease extends Command {
   public void initialize() {
     endPose = Autoutils.getnewpose(m_limelight.getTargetid(), m_isLeft);
 
+    if(m_limelight.getTargetid() == -1) {
+      end = true;
+    }
+
             // Create the path using the waypoints created above
             final  Command path =  AutoBuilder.pathfindToPose(
               endPose,
