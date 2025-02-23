@@ -166,8 +166,8 @@ public class RobotContainer {
         //driverController.y().onTrue(new Auto2d(drivetrain, m_ll).newPath(m_ll, false));
         //driverController.b().onTrue(new Auto2d(drivetrain, m_ll).newPath(m_ll, true));
 
-        driverController.y().onTrue(new AutoWorkPlease(m_ll, false));
-        driverController.b().onTrue(new AutoWorkPlease(m_ll, true));
+        driverController.pov(90).onTrue(new AutoWorkPlease(m_ll, false));
+        driverController.pov(270).onTrue(new AutoWorkPlease(m_ll, true));
     
     
         }
