@@ -17,18 +17,18 @@ import frc.robot.util.Autoutils;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 
-public class AutoWorkPlease extends Command {
+public class AutoWorkPleaseLeft extends Command {
   public Command m_path;
  private boolean m_isFinshed;
  private boolean end = false;
  private Pose2d endPose;
  private Limelight m_limelight;
  private boolean m_isLeft;
- PathConstraints constraints = new PathConstraints(4, 1, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
+ PathConstraints constraints = new PathConstraints(4, 2, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
   /** Creates a new AutoWorkPlease. */
-  public AutoWorkPlease(Limelight limelight, boolean isLeft) {
+  public AutoWorkPleaseLeft(Limelight limelight) {
     m_limelight = limelight;
-    m_isLeft = isLeft;
+    m_isLeft = true;
 
     // Use addRequirements() here to declare subsystem dependencies.
   }

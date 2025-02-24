@@ -29,7 +29,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.Auto;
 import frc.robot.commands.Auto2d;
-import frc.robot.commands.AutoWorkPlease;
+import frc.robot.commands.AutoWorkPleaseLeft;
+import frc.robot.commands.AutoWorkPleaseRight;
 import frc.robot.commands.SwerveDrive;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.AlgaeIntake;
@@ -140,8 +141,8 @@ public class RobotContainer {
         // driverController.a().onTrue(new InstantCommand(() -> m_wrist.setangle(Constants.WristConstants.climb)));
         //  driverController.a().onTrue(new InstantCommand(() -> m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.climb)));
 
-        driverController.rightTrigger().onTrue(new AutoWorkPlease(m_ll, false));
-        driverController.leftTrigger().onFalse(new AutoWorkPlease(m_ll, true));
+        driverController.rightTrigger().onTrue(new AutoWorkPleaseRight(m_ll));
+        driverController.leftTrigger().onFalse(new AutoWorkPleaseLeft(m_ll));
          
     
         opController.y().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L4")));

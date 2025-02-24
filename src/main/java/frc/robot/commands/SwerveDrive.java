@@ -36,8 +36,8 @@ public class SwerveDrive extends Command {
     private BooleanSupplier m_robotCentricSup;
     private BooleanSupplier m_isEvading;
     public BooleanSupplier m_isCrawling;
-    public SlewRateLimiter xAxisLimiter;
-    public SlewRateLimiter yAxisLimiter;
+    //public SlewRateLimiter xAxisLimiter;
+    //public SlewRateLimiter yAxisLimiter;
     
 
     
@@ -65,8 +65,8 @@ public class SwerveDrive extends Command {
 
 
 
-          xAxisLimiter = new SlewRateLimiter(1);
-          yAxisLimiter = new SlewRateLimiter(1);
+          //xAxisLimiter = new SlewRateLimiter(1.5);
+          //yAxisLimiter = new SlewRateLimiter(1.5);
 
         
        
@@ -114,11 +114,11 @@ public class SwerveDrive extends Command {
         double yAxisSquared = yAxis * yAxis * Math.signum(yAxis);
         double rAxisSquared = rAxis * rAxis * Math.signum(rAxis);
 
-        double xAxisFiltered;
-        double yAxisFiltered;
+        //double xAxisFiltered;
+        //double yAxisFiltered;
 
-        xAxisFiltered = xAxisLimiter.calculate(xAxisSquared);
-        yAxisFiltered = yAxisLimiter.calculate(yAxisSquared);
+        //xAxisFiltered = xAxisLimiter.calculate(xAxisSquared);
+        //yAxisFiltered = yAxisLimiter.calculate(yAxisSquared);
        
 
 
@@ -161,8 +161,8 @@ public class SwerveDrive extends Command {
 
 
         m_swerveDrivetrain.setControl(
-                drive.withVelocityX( xAxisFiltered * MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY( yAxisFiltered * MaxSpeed) // Drive left with negative X (left)
+                drive.withVelocityX( xAxisSquared * MaxSpeed) // Drive forward with negative Y (forward)
+                    .withVelocityY( yAxisSquared * MaxSpeed) // Drive left with negative X (left)
                     .withRotationalRate(rAxisSquared * MaxAngularRate)
                     .withCenterOfRotation(newCenterOfRotation) // Drive counterclockwise with negative X (left)
         
