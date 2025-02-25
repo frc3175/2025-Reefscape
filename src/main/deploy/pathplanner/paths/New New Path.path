@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.694734589041096,
-        "y": 3.882255993150685
+        "x": 5.303999999999999,
+        "y": 2.8939999999999997
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.980222602739726,
-        "y": 2.7703553082191785
+        "x": 5.091118434989581,
+        "y": 2.528821817314176
       },
       "isLocked": false,
-      "linkedName": "p1 to hp"
+      "linkedName": "center front left"
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 0.8320419520547944
       },
       "prevControl": {
-        "x": 2.9450342465753425,
-        "y": 1.4030179794520552
+        "x": 4.88481038817803,
+        "y": 3.0038953493266054
       },
       "nextControl": null,
       "isLocked": false,
@@ -52,10 +52,10 @@
     "rotation": -127.30394827798351
   },
   "reversed": false,
-  "folder": "Right Center 3-Piece",
+  "folder": "Right Center 4-Piece",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -177.79740183823415
+    "rotation": 121.26373169437751
   },
   "useDefaultConstraints": true
 }
