@@ -43,43 +43,56 @@ public class AutoutilsLeft {
        
         switch(intInput) {
             case 6:
-                return new Pose2d(13.048 ,2.896,Rotation2d.fromDegrees(120)); //done
+                goalpose = new Pose2d(13.048 ,2.896,Rotation2d.fromDegrees(120)); //done
+                break;
 
             case 7:
-                return new Pose2d(13.85 ,3.93 ,Rotation2d.fromDegrees(180)); //done
-            
+                goalpose = new Pose2d(13.85 ,3.93 ,Rotation2d.fromDegrees(180)); //done
+                break; 
+
             case 8:
-                return new Pose2d(13.350,5.132 ,Rotation2d.fromDegrees(-120)); //done
-            
+                goalpose = new Pose2d(13.350,5.132 ,Rotation2d.fromDegrees(-120)); //done
+                break; 
+
             case 9:
-                return new Pose2d(12.073 ,5.317 ,Rotation2d.fromDegrees(-60)); //done
+                goalpose = new Pose2d(12.073 ,5.317 ,Rotation2d.fromDegrees(-60)); //done
+                break;
 
             case 10:
-                return new Pose2d(11.261 ,4.299 ,Rotation2d.fromDegrees(0)); //done
+                goalpose = new Pose2d(11.261 ,4.299 ,Rotation2d.fromDegrees(0)); //done
+                break;
 
             case 11:
-                return new Pose2d(11.739 ,3.075 ,Rotation2d.fromDegrees(60)); //done 
+                goalpose = new Pose2d(11.739 ,3.075 ,Rotation2d.fromDegrees(60)); //done 
+                break;
 
             case 17:
-                return new Pose2d(3.182 ,3.085 ,Rotation2d.fromDegrees(60)); //done
+                goalpose = new Pose2d(3.182 ,3.085 ,Rotation2d.fromDegrees(60)); //done
+                break;
 
             case 18:
-                return new Pose2d(2.691 ,4.289 ,Rotation2d.fromDegrees(0)); //done
+                goalpose = new Pose2d(2.691 ,4.289 ,Rotation2d.fromDegrees(0)); //done
+                break;
 
             case 19:
-                return new Pose2d(3.524 ,5.337 ,Rotation2d.fromDegrees(-60)); //done
+                goalpose = new Pose2d(3.524 ,5.337 ,Rotation2d.fromDegrees(-60)); //done
+                break;
 
             case 20:
-                return new Pose2d(4.789 ,5.140 ,Rotation2d.fromDegrees(-120)); //done
+                goalpose = new Pose2d(4.789 ,5.140 ,Rotation2d.fromDegrees(-120)); //done
+                break;
 
             case 21:
-                return new Pose2d(5.282 ,3.911 ,Rotation2d.fromDegrees(180)); //done
+                goalpose = new Pose2d(5.282 ,3.911 ,Rotation2d.fromDegrees(180)); //done
+                break;
 
             case 22:
-                return new Pose2d(4.472 ,2.893 ,Rotation2d.fromDegrees(120)); //done
+                goalpose = new Pose2d(4.472 ,2.893 ,Rotation2d.fromDegrees(120)); //done
+                break;
 
             case -1:
-                return new Pose2d(999,999, Rotation2d.fromDegrees(999)); // Default case if input is not in the range
+                goalpose = new Pose2d(999,999, Rotation2d.fromDegrees(999)); // Default case if input is not in the range
+                break;
         }
 
         return goalpose;
