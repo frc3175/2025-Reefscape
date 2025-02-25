@@ -6,6 +6,8 @@ package frc.robot.commands;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.path.PathConstraints;
+import com.pathplanner.lib.pathfinding.Pathfinder;
+import com.pathplanner.lib.pathfinding.Pathfinding;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -47,15 +49,15 @@ public class AutoWorkPleaseLeft extends Command {
               endPose,
               constraints,
               0 
-      );
+        );
       m_path = path;
-
   }
+    
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(m_limelight.getTargetid()!=-1) {
+    if(m_limelight.getTargetid()!=-1 && Pathfinding.isNewPathAvailable()) {
       m_path.schedule();
     }
 
