@@ -1,7 +1,5 @@
 package frc.robot.util;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 

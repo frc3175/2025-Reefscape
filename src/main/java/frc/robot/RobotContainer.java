@@ -142,7 +142,7 @@ public class RobotContainer {
         //  driverController.a().onTrue(new InstantCommand(() -> m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.climb)));
 
         driverController.rightTrigger().onTrue(new AutoWorkPleaseRight(m_ll));
-        driverController.leftTrigger().onFalse(new AutoWorkPleaseLeft(m_ll));
+        driverController.leftTrigger().onTrue(new AutoWorkPleaseLeft(m_ll));
          
     
         opController.y().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L4")));
