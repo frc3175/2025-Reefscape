@@ -11,7 +11,8 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Limelight;
-import frc.robot.util.Autoutils;
+import frc.robot.util.AutoutilsLeft;
+import frc.robot.util.AutoutilsRight;
 
 
 
@@ -39,7 +40,7 @@ public class AutoWorkPleaseLeft extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    endPose = Autoutils.getnewpose(m_limelight.getTargetid(), m_isLeft);
+    endPose = AutoutilsLeft.getnewpose(m_limelight.getTargetid());
 
             // Create the path using the waypoints created above
             final  Command path =  AutoBuilder.pathfindToPose(
