@@ -3,7 +3,14 @@
   "command": {
     "type": "sequential",
     "data": {
-      "commands": []
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "3piece move 1"
+          }
+        }
+      ]
     }
   },
   "resetOdom": true,
