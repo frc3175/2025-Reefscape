@@ -43,8 +43,8 @@ public class Limelight extends SubsystemBase {
 
     }
 
-    public double getTargetid() {
-        return limelightTable.getEntry("tid").getDouble(0.0); // If target area is > 0
+    public int getTargetid() {
+        return ((int)limelightTable.getEntry("tid").getDouble(0)); // If target area is > 0
 
     }
 

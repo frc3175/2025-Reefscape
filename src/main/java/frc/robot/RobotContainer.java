@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -41,7 +42,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.StateManger;
 import frc.robot.subsystems.Wrist;
-import frc.robot.util.Autoutils;
+import frc.robot.util.AutoutilsRight;
 
 public class RobotContainer {
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -142,7 +143,9 @@ public class RobotContainer {
         //  driverController.a().onTrue(new InstantCommand(() -> m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.climb)));
 
         driverController.rightTrigger().onTrue(new AutoWorkPleaseRight(m_ll));
-        driverController.leftTrigger().onFalse(new AutoWorkPleaseLeft(m_ll));
+        driverController.leftTrigger().onTrue(new AutoWorkPleaseLeft(m_ll));
+
+        //driverController.rightTrigger().onFalse(new InstantCommand(()-> CommandScheduler.cancel(AutoWorkPleaseRight.getCurrentPath())));
          
     
         opController.y().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L4")));

@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Limelight;
-import frc.robot.util.Autoutils;
+import frc.robot.util.AutoutilsRight;
 
  
 
@@ -44,7 +44,7 @@ public class Auto2d {
         // }else{
             m_limelight = ll;
 
-        Pose2d endPose = Autoutils.getnewpose(m_limelight.getTargetid(), isLeft);
+        Pose2d endPose = AutoutilsRight.getnewpose(m_limelight.getTargetid());
         PathConstraints constraints = new PathConstraints(4, 1, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
 
         // Create the path using the waypoints created above
