@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.9150779047766424,
-        "y": 1.4738846064209872
+        "x": 4.358634868421051,
+        "y": 2.225740131578947
       },
       "isLocked": false,
       "linkedName": "right hp"
     },
     {
       "anchor": {
-        "x": 5.304066780821918,
-        "y": 3.0408176369863016
+        "x": 5.022532894736842,
+        "y": 2.716447368421052
       },
       "prevControl": {
-        "x": 5.543595335193749,
-        "y": 3.112414226573662
+        "x": 4.551069078947368,
+        "y": 2.302713815789474
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "left front right"
+      "linkedName": "left front"
     }
   ],
   "rotationTargets": [],
@@ -34,7 +34,7 @@
   "eventMarkers": [
     {
       "name": "L4",
-      "waypointRelativePos": 0.4956772334293945,
+      "waypointRelativePos": 0.31240188383045425,
       "endWaypointRelativePos": null,
       "command": null
     }
@@ -49,10 +49,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 122.15229514128235
+    "rotation": -148.92834193915374
   },
   "reversed": false,
-  "folder": "Right Center 3-Piece",
+  "folder": "Right Center 4-Piece",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -127.30394827798351
