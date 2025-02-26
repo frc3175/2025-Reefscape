@@ -3,36 +3,36 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.350860655737706,
-        "y": 1.9175614754098353
+        "x": 4.430655737704918,
+        "y": 2.7015573770491788
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.55158543146258,
-        "y": 2.1595809259390846
+        "x": 4.887763105344854,
+        "y": 2.9803152840844724
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "3piece move 3"
     },
     {
       "anchor": {
-        "x": 5.408852459016394,
-        "y": 2.9820696721311464
+        "x": 1.6902663934426232,
+        "y": 0.8530532786885238
       },
       "prevControl": {
-        "x": 6.080934679533715,
-        "y": 2.050018268565721
+        "x": 1.4315589077211193,
+        "y": 0.69543630711164
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "3piece move1"
+      "linkedName": "3piecemove4"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8970394736842108,
+      "minWaypointRelativePos": 0.7720394736842097,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 1.0,
@@ -56,13 +56,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 119.99999999999999
+    "rotation": 55.0
   },
   "reversed": false,
   "folder": "3piece",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 59.99999999999999
   },
   "useDefaultConstraints": true
 }
