@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.221232036794146,
-        "y": 2.3773303784454725
+        "x": 4.329,
+        "y": 2.27
       },
       "isLocked": false,
       "linkedName": "left front"
@@ -55,7 +55,7 @@
   "folder": "Right Side 3piece",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -148.92834193915374
+    "rotation": 120.07946993746714
   },
   "useDefaultConstraints": true
 }

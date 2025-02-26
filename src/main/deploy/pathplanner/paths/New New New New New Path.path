@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.110386625388985,
-        "y": 1.4315329819190743
+        "x": 1.9408984530855458,
+        "y": 2.5956661689737643
       },
       "isLocked": false,
       "linkedName": "right hp"
     },
     {
       "anchor": {
-        "x": 3.935279605263158,
-        "y": 2.774177631578947
+        "x": 3.9585000000000004,
+        "y": 2.7575
       },
       "prevControl": {
-        "x": 3.2811418032880457,
-        "y": 2.2974527340730453
+        "x": 3.164269239740057,
+        "y": 2.21471050846164
       },
       "nextControl": null,
       "isLocked": false,
@@ -49,7 +49,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -120.76271953423897
+    "rotation": 58.74796065885554
   },
   "reversed": false,
   "folder": "Right Side 3piece",
