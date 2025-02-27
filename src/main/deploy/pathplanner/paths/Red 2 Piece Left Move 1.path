@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.6902663934426232,
-        "y": 0.8530532786885238
+        "x": 7.098,
+        "y": 6.3260000000000005
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.9091199760072013,
-        "y": 1.1336230171493504
+        "x": 6.852361264103126,
+        "y": 6.094736003914252
       },
       "isLocked": false,
-      "linkedName": "3piecemove4"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.078217213114755,
-        "y": 2.8382172131147523
+        "x": 5.713499999999999,
+        "y": 4.87325
       },
       "prevControl": {
-        "x": 3.87712305944729,
-        "y": 2.5884227101496347
+        "x": 5.531253521438884,
+        "y": 4.70211782578348
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "red2pieceleftmove1"
     }
   ],
   "rotationTargets": [],
@@ -33,8 +33,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 4.0,
+    "maxVelocity": 2.0,
+    "maxAcceleration": 2.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 59.99999999999999
+    "rotation": -119.99999999999999
   },
   "reversed": false,
-  "folder": "Red 3 Piece Right",
+  "folder": "Red 2 Piece Left",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 55.0
+    "rotation": -119.99999999999999
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

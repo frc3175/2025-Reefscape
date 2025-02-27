@@ -99,7 +99,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("HOME", new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
         NamedCommands.registerCommand("auto1piece", new Auto2d(drivetrain, m_ll).newPath(m_ll, false));
         
-        autoChooser = AutoBuilder.buildAutoChooser("Tests");
+        autoChooser = AutoBuilder.buildAutoChooser("Red 2 Piece Left");
 
       
         
@@ -173,7 +173,7 @@ public class RobotContainer {
 
     public Command getAutonomousCommand() {
         /* Run the path selected from the auto chooser */
-         return autoChooser.getSelected();
+        return autoChooser.getSelected();
        // return null;
     }
 }
