@@ -79,6 +79,7 @@ public class StateManger extends SubsystemBase {
       break;
 
       case "L3":
+      if(Constants.CORALMODE){
         SmartDashboard.putNumber("intake speed", 1);
         SmartDashboard.putBoolean("Max speed", true);
         m_Wrist.setangle(Constants.WristConstants.L3);
@@ -86,9 +87,20 @@ public class StateManger extends SubsystemBase {
         m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
         m_algaeIntake.intakePercentOutput(0);
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
+        }
+        else{
+          SmartDashboard.putNumber("intake speed", 0);
+          SmartDashboard.putBoolean("Max speed", false);
+          m_Wrist.setangle(Constants.WristConstants.ALGAET3);
+          m_Elevator.setpose(Constants.ElevatorConstants.ALGAET3);
+          m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
+          m_algaeIntake.intakePercentOutput(0);
+          m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
+        }
       break;
 
       case "L2":
+      if (Constants.CORALMODE){
         SmartDashboard.putNumber("intake speed", 1);
         SmartDashboard.putBoolean("Max speed", true);
         m_Wrist.setangle(Constants.WristConstants.L2);
@@ -96,6 +108,18 @@ public class StateManger extends SubsystemBase {
         m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
         m_algaeIntake.intakePercentOutput(0);
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
+      }
+      else{
+
+        SmartDashboard.putNumber("intake speed", 0);
+      SmartDashboard.putBoolean("Max speed", false);
+      m_Wrist.setangle(Constants.WristConstants.ALGAET2);
+      m_Elevator.setpose(Constants.ElevatorConstants.ALGAET2);
+      m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
+      m_algaeIntake.intakePercentOutput(0);
+      m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
+
+      }
       break;
       case "L1":
         SmartDashboard.putNumber("intake speed", 0);
@@ -107,26 +131,9 @@ public class StateManger extends SubsystemBase {
         m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
       break;
 
-      case "AlgaeT2":
-      SmartDashboard.putNumber("intake speed", 0);
-      SmartDashboard.putBoolean("Max speed", false);
-      m_Wrist.setangle(Constants.WristConstants.ALGAET2);
-      m_Elevator.setpose(Constants.ElevatorConstants.ALGAET2);
-      m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
-      m_algaeIntake.intakePercentOutput(0);
-      m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
-    break;
+      
 
-    case "AlgaeT3":
-    SmartDashboard.putNumber("intake speed", 0);
-    SmartDashboard.putBoolean("Max speed", false);
-    m_Wrist.setangle(Constants.WristConstants.ALGAET3);
-    m_Elevator.setpose(Constants.ElevatorConstants.ALGAET3);
-    m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
-    m_algaeIntake.intakePercentOutput(0);
-    m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.OFFSET);
-  break;
-
+   
   case "flip":
     SmartDashboard.putNumber("intake speed", 0);
     SmartDashboard.putBoolean("Max speed", false);

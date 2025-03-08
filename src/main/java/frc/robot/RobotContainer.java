@@ -97,6 +97,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("Outtake", new InstantCommand(() -> m_intake.OUTTAKE(Constants.IntakeConstants.OUTTAKE)));
         NamedCommands.registerCommand("L4", new InstantCommand(() -> m_StateManger.setRobotState("L4")));
         NamedCommands.registerCommand("HOME", new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
+        NamedCommands.registerCommand("L2", new InstantCommand(() -> m_StateManger.setRobotState("L2")));
         NamedCommands.registerCommand("auto1piece", new Auto2d(drivetrain, m_ll).newPath(m_ll, false));
         
         autoChooser = AutoBuilder.buildAutoChooser("Red 2 Piece Left");
@@ -133,7 +134,7 @@ public class RobotContainer {
 
          driverController.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
          driverController.leftBumper().onTrue(new InstantCommand(()-> m_intake.OUTTAKE(Constants.IntakeConstants.OUTTAKE)));
-         driverController.a().onTrue(new InstantCommand(() -> m_wrist.setangle(-27)));
+         driverController.a().onTrue(new InstantCommand(() -> m_wrist.setangle(-22)));
          driverController.pov(0).onTrue(new InstantCommand(()-> m_wrist.setnudge(-.1)));
          driverController.pov(180).onTrue(new InstantCommand(()-> m_wrist.setnudge(.1)));
          driverController.button(7).onTrue(new InstantCommand(() -> m_intake.intakerunvoltage(12)));
@@ -149,7 +150,7 @@ public class RobotContainer {
          
     
         opController.y().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L4")));
-        opController.b().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L3")));
+        opController.b().onTrue( new InstantCommand(() -> m_StateManger.setRobotState("L3")));
         opController.x().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L2")));
         opController.a().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
 
@@ -165,8 +166,8 @@ public class RobotContainer {
         opController.pov(180).whileTrue(new InstantCommand(() -> m_algaeIntake.intakePercentOutput(-.5)));
         opController.pov(180).onFalse(new InstantCommand(() -> m_algaeIntake.intakePercentOutput(0)));
 
-        opController.button(7).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT2")));
-        opController.button(8).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("AlgaeT3")));
+        opController.button(7).onTrue(new InstantCommand(() -> Constants.changemode()));
+        opController.button(8).onTrue(new InstantCommand(() -> Constants.changemode()));
         opController.pov(0).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("Barge")));
         
         }

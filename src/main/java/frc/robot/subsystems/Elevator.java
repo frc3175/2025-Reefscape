@@ -36,6 +36,7 @@ public Elevator() {
     SmartDashboard.putNumber("Elevator height", getpose());
     SmartDashboard.putNumber("Elevator Right Pose", m_right.getPosition().getValueAsDouble());
     SmartDashboard.putNumber("Elevator Left Pose", m_left.getPosition().getValueAsDouble());
+    SmartDashboard.putBoolean("Mode", Constants.CORALMODE);
   }
 
 public Double getpose(){

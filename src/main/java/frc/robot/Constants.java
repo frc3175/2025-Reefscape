@@ -22,6 +22,13 @@ public class Constants {
     public static final int DRIVER_CONTROLER = 0;
     public static final int OPERATOR_CONTROLER = 1;
 
+    public static boolean CORALMODE = true;
+
+    
+    public static void changemode(){
+     CORALMODE =  !CORALMODE;
+    }
+
 
 
 
@@ -36,7 +43,7 @@ public class Constants {
         public static final double L1 = 0;
         public static final double L2 = 4.6; //4
         public static final double L3 = 10.2; //10
-        public static final double L4 = 18.0;
+        public static final double L4 = 18;
         public static final double BARGE = 17.6;
         public static final double ALGAET2 = 1.37;
         public static final double ALGAET3 = 7.15;
@@ -66,10 +73,10 @@ public class WristConstants {
     public static final int MOTORID = 2;
 
     public static final double HOME = 0; //working
-    public static final double HUMAN = 19.7;
-    public static final double L1 = -12;
+    public static final double HUMAN = 19.2;
+    public static final double L1 = -12.;
     public static final double L2 = -10;
-    public static final double L3 = -10; //-8.8^
+    public static final double L3 = -10; //-8.8
     public static final double L4 = -11;
     public static final double BARGE = -20;
     public static final double ALGAET2 = -11.27;
@@ -103,7 +110,7 @@ public class WristConstants {
 
         public static final int MOTORID = 1;
 
-        public static final double INTAKE = 13;
+        public static final double INTAKE = 12;
         public static final double OUTTAKE = -10;
         public static final double OUTTAKEFAST = -13; //-0.5
         public static final double STOP = 0;
