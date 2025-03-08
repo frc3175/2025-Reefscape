@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.92625,
-        "y": 7.29125
+        "x": 0.8176704545454547,
+        "y": 7.430298295454545
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.5317427307115206,
-        "y": 6.602594194954577
+        "x": 1.4231631852569753,
+        "y": 6.741642490409122
       },
       "isLocked": false,
       "linkedName": "blue2pieceleftmove2"
@@ -45,7 +45,7 @@
     "rotation": -119.99999999999999
   },
   "reversed": false,
-  "folder": "Blue 2 Piece Left",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": -55.0
