@@ -11,9 +11,11 @@ import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.controls.VelocityDutyCycle;
 
+import edu.wpi.first.wpilibj.CAN;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import com.ctre.phoenix6.hardware.CANrange;
 
 public class  Intake extends SubsystemBase {
   
@@ -23,10 +25,12 @@ TalonFX m_motor;
 VelocityDutyCycle intakeVelocity; 
 
 DutyCycleOut intakePercentOutput;
+CANrange m_canrange;
 
 
 public Intake() {
     m_motor = new TalonFX(Constants.IntakeConstants.MOTORID , Constants.CANIVORE);
+     m_canrange = new CANrange(111);
     final TalonFXConfiguration configuration = new TalonFXConfiguration();
     configuration.CurrentLimits.withStatorCurrentLimitEnable(true);
     configuration.CurrentLimits.withStatorCurrentLimit(40);
@@ -43,6 +47,7 @@ public Intake() {
   public void periodic() {
     
     SmartDashboard.putNumber("intake height", 0);
+    //SmartDashboard.putNumber("Coral Distance", m_canrange.getDistance().getValueAsDouble());
   }
 
   
@@ -87,6 +92,10 @@ public Intake() {
     intakePercentOutput.Output = percentOutput;
     m_motor.setControl(intakePercentOutput);
 
+
+}
+public boolean HasCoral(){
+  return m_canrange.getDistance().getValueAsDouble() == 65.535;
 
 }
 }

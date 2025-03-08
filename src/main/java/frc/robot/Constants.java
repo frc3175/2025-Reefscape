@@ -23,6 +23,7 @@ public class Constants {
     public static final int OPERATOR_CONTROLER = 1;
 
     public static boolean CORALMODE = true;
+    public static boolean INTAKING = false;
 
     
     public static void changemode(){
@@ -74,6 +75,7 @@ public class WristConstants {
 
     public static final double HOME = 0; //working
     public static final double HUMAN = 19.2;
+    public static final double UPHUMAN = 22.5;
     public static final double L1 = -12.;
     public static final double L2 = -10;
     public static final double L3 = -10; //-8.8
@@ -81,7 +83,7 @@ public class WristConstants {
     public static final double BARGE = -20;
     public static final double ALGAET2 = -11.27;
     public static final double ALGAET3 = -11.27;
-    public static final double ALGAEIN = 7.7;
+   
 
 
     public static final double climb = -15; //-15 //-32 is up

@@ -34,7 +34,6 @@ import frc.robot.commands.AutoWorkPleaseLeft;
 import frc.robot.commands.AutoWorkPleaseRight;
 import frc.robot.commands.SwerveDrive;
 import frc.robot.generated.TunerConstants;
-import frc.robot.subsystems.AlgaeIntake;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Elevator;
@@ -70,14 +69,14 @@ public class RobotContainer {
     public final Elevator m_elevator = new Elevator();
     public final Wrist m_wrist = new Wrist();
     public final Intake m_intake = new Intake();
-    public final AlgaeIntake m_algaeIntake = new AlgaeIntake();
+    
     
     public final Climber m_climber = new Climber();
     public final Auto2d m_auto = new Auto2d(drivetrain, m_ll);
 
     // public LED m_Led = new LED();
    
-    public final StateManger m_StateManger = new StateManger(m_wrist, m_elevator, m_intake, m_ll, m_algaeIntake, m_climber  );
+    public final StateManger m_StateManger = new StateManger(m_wrist, m_elevator, m_intake, m_ll,  m_climber  );
 
     private final int translationAxis = XboxController.Axis.kLeftY.value;
     private final int strafeAxis = XboxController.Axis.kLeftX.value;
@@ -158,17 +157,15 @@ public class RobotContainer {
         
 
         opController.rightBumper().whileTrue(new InstantCommand(() -> m_StateManger.setRobotState("HP")));
-        opController.leftBumper().whileTrue(new InstantCommand(() -> m_StateManger.setRobotState("ALGAE INTAKE")));
-
+        // opController.rightBumper().whileFalse(new InstantCommand(() -> m_StateManger.setRobotState("UHP")));
+        
         opController.rightBumper().onFalse(new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
         opController.leftBumper().onFalse(new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
 
-        opController.pov(180).whileTrue(new InstantCommand(() -> m_algaeIntake.intakePercentOutput(-.5)));
-        opController.pov(180).onFalse(new InstantCommand(() -> m_algaeIntake.intakePercentOutput(0)));
+        
 
         opController.button(7).onTrue(new InstantCommand(() -> Constants.changemode()));
         opController.button(8).onTrue(new InstantCommand(() -> Constants.changemode()));
-        opController.pov(0).onTrue(new InstantCommand(() -> m_StateManger.setRobotState("Barge")));
         
         }
 
