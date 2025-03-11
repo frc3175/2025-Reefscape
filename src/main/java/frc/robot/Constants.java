@@ -13,7 +13,7 @@ public class Constants {
             new Translation2d(-WHEEL_BASE / 2.0, TRACK_WIDTH / 2.0),
             new Translation2d(-WHEEL_BASE / 2.0, -TRACK_WIDTH / 2.0)};
 
-
+            public static final double stickDeadband = 0.1;
 
 
     public static final String CANIVORE = "elevatoryiboi";
@@ -23,7 +23,7 @@ public class Constants {
     public static final int OPERATOR_CONTROLER = 1;
 
     public static boolean CORALMODE = true;
-    public static boolean INTAKING = false;
+  
 
     
     public static void changemode(){
@@ -130,7 +130,7 @@ public class WristConstants {
         public static final int CANdleID = 43;
     }
 
-    public static double stickDeadband = 0.1;
+   
     
 
      

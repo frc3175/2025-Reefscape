@@ -9,12 +9,8 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.ctre.phoenix6.swerve.SwerveDrivetrain.SwerveDriveState;
 
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.filter.SlewRateLimiter;
-//import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.util.Units;
-import edu.wpi.first.units.Unit;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.lib.geometry.Translation2dPlus;
 import frc.robot.Constants;
@@ -114,11 +110,6 @@ public class SwerveDrive extends Command {
         double yAxisSquared = yAxis * yAxis * Math.signum(yAxis);
         double rAxisSquared = rAxis * rAxis * Math.signum(rAxis);
 
-        //double xAxisFiltered;
-        //double yAxisFiltered;
-
-        //xAxisFiltered = xAxisLimiter.calculate(xAxisSquared);
-        //yAxisFiltered = yAxisLimiter.calculate(yAxisSquared);
        
 
 

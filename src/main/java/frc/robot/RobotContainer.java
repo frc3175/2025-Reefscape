@@ -9,29 +9,21 @@ import static edu.wpi.first.units.Units.*;
 import java.net.FileNameMap;
 import java.sql.Driver;
 
-import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
-import com.ctre.phoenix6.swerve.SwerveRequest;
+
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.epilogue.logging.FileBackend;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
-import frc.robot.commands.Auto;
-import frc.robot.commands.Auto2d;
-import frc.robot.commands.AutoWorkPleaseLeft;
-import frc.robot.commands.AutoWorkPleaseRight;
+import frc.robot.commands.AutoLeft;
+import frc.robot.commands.AutoRight;
 import frc.robot.commands.SwerveDrive;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.Climber;
@@ -41,18 +33,13 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.StateManger;
 import frc.robot.subsystems.Wrist;
-import frc.robot.util.AutoutilsRight;
+
 
 public class RobotContainer {
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
 
     /* Setting up bindings for necessary control of the swerve drive platform */
-    private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
-    private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
-    private final SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
-            .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
-
-    private final SwerveRequest.FieldCentric evade = new SwerveRequest.FieldCentric();
+    
 
      private final Telemetry logger = new Telemetry(MaxSpeed);
 
@@ -72,9 +59,9 @@ public class RobotContainer {
     
     
     public final Climber m_climber = new Climber();
-    public final Auto2d m_auto = new Auto2d(drivetrain, m_ll);
+   
 
-    // public LED m_Led = new LED();
+    
    
     public final StateManger m_StateManger = new StateManger(m_wrist, m_elevator, m_intake, m_ll,  m_climber  );
 
@@ -91,13 +78,12 @@ public class RobotContainer {
     
 
     public RobotContainer() {
-        // drivetrain.setlimelight(m_ll);
         NamedCommands.registerCommand("Intake",  new InstantCommand(() -> m_StateManger.setRobotState("HP")));
         NamedCommands.registerCommand("Outtake", new InstantCommand(() -> m_intake.OUTTAKE(Constants.IntakeConstants.OUTTAKE)));
         NamedCommands.registerCommand("L4", new InstantCommand(() -> m_StateManger.setRobotState("L4")));
         NamedCommands.registerCommand("HOME", new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
         NamedCommands.registerCommand("L2", new InstantCommand(() -> m_StateManger.setRobotState("L2")));
-        NamedCommands.registerCommand("auto1piece", new Auto2d(drivetrain, m_ll).newPath(m_ll, false));
+        
         
         autoChooser = AutoBuilder.buildAutoChooser("Red 2 Piece Left");
 
@@ -139,13 +125,11 @@ public class RobotContainer {
          driverController.button(7).onTrue(new InstantCommand(() -> m_intake.intakerunvoltage(12)));
          driverController.pov(180).onTrue(new InstantCommand(()-> m_wrist.setangle(m_wrist.getpose())));
          driverController.pov(0).onTrue(new InstantCommand(()-> m_wrist.setangle(m_wrist.getpose())));
-        // driverController.a().onTrue(new InstantCommand(() -> m_wrist.setangle(Constants.WristConstants.climb)));
-        //  driverController.a().onTrue(new InstantCommand(() -> m_algaeIntake.setangle(Constants.AlgaeIntakeConstants.climb)));
+        
+        driverController.rightTrigger().onTrue(new AutoRight(m_ll));
+        driverController.leftTrigger().onTrue(new AutoLeft(m_ll));
 
-        driverController.rightTrigger().onTrue(new AutoWorkPleaseRight(m_ll));
-        driverController.leftTrigger().onTrue(new AutoWorkPleaseLeft(m_ll));
-
-        //driverController.rightTrigger().onFalse(new InstantCommand(()-> CommandScheduler.cancel(AutoWorkPleaseRight.getCurrentPath())));
+        
          
     
         opController.y().onTrue(new InstantCommand(() -> m_StateManger.setRobotState("L4")));
@@ -157,7 +141,7 @@ public class RobotContainer {
         
 
         opController.rightBumper().whileTrue(new InstantCommand(() -> m_StateManger.setRobotState("HP")));
-        // opController.rightBumper().whileFalse(new InstantCommand(() -> m_StateManger.setRobotState("UHP")));
+        
         
         opController.rightBumper().onFalse(new InstantCommand(() -> m_StateManger.setRobotState("HOME")));
         opController.leftBumper().onFalse(new InstantCommand(() -> m_StateManger.setRobotState("HOME")));

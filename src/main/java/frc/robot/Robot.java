@@ -4,8 +4,7 @@
 
 package frc.robot;
 
-import com.ctre.phoenix6.Utils;
-import com.pathplanner.lib.commands.FollowPathCommand;
+
 import com.pathplanner.lib.commands.PathfindingCommand;
 
 import edu.wpi.first.math.util.Units;
@@ -14,8 +13,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.util.invert;
-import edu.wpi.first.math.MathUtil;
+
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
@@ -54,23 +52,22 @@ public class Robot extends TimedRobot {
      */
     if (kUseLimelight) {
       var driveState = m_robotContainer.drivetrain.getState();
-      double headingDeg = m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees();
+      
       double omegaRps = Units.radiansToRotations(driveState.Speeds.omegaRadiansPerSecond);
-      double reversedegrees =  MathUtil.inputModulus(m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 360);
+      
      
   
-      LimelightHelpers.SetRobotOrientation("limelight",m_robotContainer.drivetrain.get2dgyro().getDegrees(), 0, 0, 0, 0, 0);
+      LimelightHelpers.SetRobotOrientation("limelight",m_robotContainer.drivetrain.getgyroyaw().getDegrees(), 0, 0, 0, 0, 0);
       var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight");
       if (llMeasurement != null && llMeasurement.tagCount > 0 && Math.abs(omegaRps) < 2.0) {
         m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose, llMeasurement.timestampSeconds);
         
       }
-      // SmartDashboard.putNumber("111 limelight pose X", llMeasurement.pose.getX());
-      // SmartDashboard.putNumber("111 limelight pose Y",  llMeasurement.pose.getY());
+      
       SmartDashboard.putNumber("111 drive pose X", m_robotContainer.drivetrain.getState().Pose.getX());
       SmartDashboard.putNumber("111 drive pose Y",  m_robotContainer.drivetrain.getState().Pose.getY());
-      // SmartDashboard.putNumber("degrees", m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees());
-    }
+    } 
+      
   }
     
 

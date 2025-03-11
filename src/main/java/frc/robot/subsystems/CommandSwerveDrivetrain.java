@@ -279,7 +279,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("robot yaw", getgyroyaw());
+        SmartDashboard.putNumber("robot yaw", getgyroyaw().getDegrees());
         /*
          * Periodically try to apply the operator perspective.
          * If we haven't applied the operator perspective before, then we should apply it regardless of DS state.
@@ -317,17 +317,13 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     }
 
 
-    public Double getgyroyaw(){
-        return m_pigeon.getYaw().getValueAsDouble();
-    }
+    
 
-    public Rotation2d get2dgyro(){
+    public Rotation2d getgyroyaw(){
         return m_pigeon.getRotation2d();
     }
 
-    public double getInvert2dgyro(){
-        return m_pigeon.getRotation2d().getDegrees() + 180 + 15;
-    }
+    
 
 
    /**

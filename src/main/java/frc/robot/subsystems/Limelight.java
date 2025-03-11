@@ -1,10 +1,5 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Pose3d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -53,28 +48,7 @@ public class Limelight extends SubsystemBase {
 
     }
 
-    public Pose2d getpose3d(){
-       
-        // limelightalgae.getEntry("botpose");
-        
-        double[] botposearray = limelightTable.getEntry("botpose").getDoubleArray(new double[6]);
-        Pose3d botpose3d = new Pose3d(botposearray[0], botposearray[1], botposearray[2],
-                new Rotation3d(botposearray[3], botposearray[4],
-                        botposearray[5]));
-        return botpose3d.toPose2d();
-
-
-    }
-    public Pose2d algaegetpose2d(){
-        
-        double[] botposearray = limelightalgae.getEntry("botpose").getDoubleArray(new double[6]);
-        Pose3d botpose3d = new Pose3d(botposearray[0], botposearray[1], botposearray[2],
-                new Rotation3d(botposearray[3], botposearray[4],
-                        botposearray[5]));
-
-        
-        return botpose3d.toPose2d();
-    }
+    
 
 
 

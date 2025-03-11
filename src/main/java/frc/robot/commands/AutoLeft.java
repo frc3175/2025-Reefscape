@@ -6,38 +6,28 @@ package frc.robot.commands;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.path.PathConstraints;
-import com.pathplanner.lib.pathfinding.Pathfinder;
-import com.pathplanner.lib.pathfinding.Pathfinding;
-
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Limelight;
 import frc.robot.util.AutoutilsLeft;
-import frc.robot.util.AutoutilsRight;
 
 
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 
-public class AutoWorkPleaseLeft extends Command {
+public class AutoLeft extends Command {
   public Command m_path;
- private boolean m_isFinshed;
  private boolean end = false;
  private Pose2d endPose;
  private Limelight m_limelight;
- private boolean m_isLeft;
  PathConstraints constraints = new PathConstraints(4, 2, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
   /** Creates a new AutoWorkPlease. */
-  public AutoWorkPleaseLeft(Limelight limelight) {
+  public AutoLeft(Limelight limelight) {
     m_limelight = limelight;
-    m_isLeft = true;
-
+    
     // Use addRequirements() here to declare subsystem dependencies.
   }
-  public void changefin(boolean isdone){
-    m_isFinshed = isdone;
-  }
+ 
 
   // Called when the command is initially scheduled.
   @Override
