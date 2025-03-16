@@ -40,22 +40,41 @@ public class StateManger extends SubsystemBase {
       case "HOME":
         SmartDashboard.putNumber("intake speed", 1);
         SmartDashboard.putBoolean("Max speed", false);
+        if (m_Intake.HasCoral()) {
+          m_Wrist.setangle(Constants.WristConstants.INTERMEDIATE);
+          m_Elevator.setpose(Constants.ElevatorConstants.INTERMEDIATE);
+          m_Intake.coralintakerunvoltage(Constants.CoralIntakeConstants.HOLD);
+        } else {
         m_Wrist.setangle(Constants.WristConstants.HOME);
         m_Elevator.setpose(Constants.ElevatorConstants.HOME);
-        m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
-        
+        m_Intake.coralintakerunvoltage(Constants.CoralIntakeConstants.STOP);
+        }
+        if (m_Intake.HasAlgae()) {
+          m_Intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.HOLD);
+        } else {
+          m_Intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.STOP);
+        }
 
       break;
 
       
 
       case "HP":
-      // while(!m_Intake.HasCoral()){
-        SmartDashboard.putNumber("intake speed", 1);
-        SmartDashboard.putBoolean("Max speed", false);
-        m_Wrist.setangle(Constants.WristConstants.HUMAN);
-        m_Elevator.setpose(Constants.ElevatorConstants.HOME);
-        m_Intake.intakerunvoltage(Constants.IntakeConstants.INTAKE);
+      if (m_Intake.HasCoral()) {
+        m_Wrist.setangle(Constants.WristConstants.INTERMEDIATE);
+        m_Elevator.setpose(Constants.ElevatorConstants.INTERMEDIATE);
+        m_Intake.coralintakerunvoltage(Constants.CoralIntakeConstants.HOLD);
+      } else {
+      m_Wrist.setangle(Constants.WristConstants.HUMAN);
+      m_Elevator.setpose(Constants.ElevatorConstants.HUMAN);
+      m_Intake.coralintakerunvoltage(Constants.CoralIntakeConstants.INTAKE);
+      }
+      if (m_Intake.HasAlgae()) {
+        m_Intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.HOLD);
+      } else {
+        m_Intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.STOP);
+      }
+        
       //}
       // Timer.delay(0.5);
       // m_Wrist.setangle(Constants.WristConstants.UPHUMAN);
@@ -66,20 +85,20 @@ public class StateManger extends SubsystemBase {
 
 
       case "L4":
+
       if(Constants.CORALMODE){
         SmartDashboard.putNumber("intake speed", 1);
         SmartDashboard.putBoolean("Max speed", true);
         m_Wrist.setangle(Constants.WristConstants.L4);
         m_Elevator.setpose(Constants.ElevatorConstants.L4);
-        m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
-       
-      }
-      else{
+        m_Intake.coralintakerunvoltage(Constants.CoralIntakeConstants.HOLD);
+
+      } else {
         SmartDashboard.putNumber("intake speed", 0);
-    SmartDashboard.putBoolean("Max speed", true);
-    m_Wrist.setangle(Constants.WristConstants.BARGE);
-    m_Elevator.setpose(Constants.ElevatorConstants.BARGE);
-    m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
+        SmartDashboard.putBoolean("Max speed", true);
+        m_Wrist.setangle(Constants.WristConstants.BARGE);
+        m_Elevator.setpose(Constants.ElevatorConstants.BARGE);
+        m_Intake.algaeintakerunvoltage(Constants.CoralIntakeConstants.OUTTAKE);
       }
       break;
 
@@ -89,15 +108,14 @@ public class StateManger extends SubsystemBase {
         SmartDashboard.putBoolean("Max speed", true);
         m_Wrist.setangle(Constants.WristConstants.L3);
         m_Elevator.setpose(Constants.ElevatorConstants.L3);
-        m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
+        m_Intake.coralintakerunvoltage(Constants.CoralIntakeConstants.STOP);
         
-        }
-        else{
+        }else{
           SmartDashboard.putNumber("intake speed", 0);
           SmartDashboard.putBoolean("Max speed", false);
           m_Wrist.setangle(Constants.WristConstants.ALGAET3);
           m_Elevator.setpose(Constants.ElevatorConstants.ALGAET3);
-          m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
+          m_Intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.INTAKE);
          
         }
       break;
@@ -108,16 +126,14 @@ public class StateManger extends SubsystemBase {
         SmartDashboard.putBoolean("Max speed", true);
         m_Wrist.setangle(Constants.WristConstants.L2);
         m_Elevator.setpose(Constants.ElevatorConstants.L2);
-        m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
+        m_Intake.coralintakerunvoltage(Constants.CoralIntakeConstants.STOP);
        
-      }
-      else{
-
+      }else{
         SmartDashboard.putNumber("intake speed", 0);
-      SmartDashboard.putBoolean("Max speed", false);
-      m_Wrist.setangle(Constants.WristConstants.ALGAET2);
-      m_Elevator.setpose(Constants.ElevatorConstants.ALGAET2);
-      m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
+        SmartDashboard.putBoolean("Max speed", false);
+        m_Wrist.setangle(Constants.WristConstants.ALGAET2);
+        m_Elevator.setpose(Constants.ElevatorConstants.ALGAET2);
+        m_Intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.INTAKE);
      
 
       }
@@ -142,6 +158,33 @@ public class StateManger extends SubsystemBase {
     m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
     
   break;
+
+
+  case "INTERMEDIATE":
+        SmartDashboard.putNumber("intake speed", 1);
+        SmartDashboard.putBoolean("Max speed", false);
+        m_Wrist.setangle(Constants.WristConstants.INTERMEDIATE);
+        m_Elevator.setpose(Constants.ElevatorConstants.INTERMEDIATE);
+        m_Intake.coralintakerunvoltage(Constants.CoralIntakeConstants.INTERMEDIATE);
+        m_Intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.INTERMEDIATE);
+        
+
+      break;
+
+    case "FORCE_INTAKE":
+        SmartDashboard.putNumber("intake speed", 1);
+        SmartDashboard.putBoolean("Max speed", false);
+        m_Wrist.setangle(Constants.WristConstants.HUMAN);
+        m_Elevator.setpose(Constants.ElevatorConstants.HUMAN);
+        m_Intake.coralintakerunvoltage(Constants.CoralIntakeConstants.INTAKE);
+        if (m_Intake.HasAlgae()) {
+          m_Intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.HOLD);
+        } else {
+          m_Intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.STOP);
+        }
+        
+
+      break;
 
 
   
