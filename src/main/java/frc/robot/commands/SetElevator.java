@@ -3,19 +3,27 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.RobotState;
 
 public class SetElevator extends Command {
 
     Elevator m_elevator;
     String m_level;
     double wantedPose;
+    RobotState m_robotState;
 
-    public SetElevator(Elevator elevator, String level) {
+    public SetElevator(Elevator elevator, RobotState robotState, String level) {
 
         m_level = level;
         m_elevator = elevator;
-        if(Constants.CORALMODE) {
-            switch (level) {
+        m_robotState = robotState;
+        
+    }
+
+    @Override
+    public void initialize() {
+        if(m_robotState.isCoralMode()) {
+            switch (m_level) {
                 case "HOME":
                     m_elevator.setpose(Constants.ElevatorConstants.HOME);
                     wantedPose = Constants.ElevatorConstants.HOME;
@@ -56,7 +64,7 @@ public class SetElevator extends Command {
                     break;
             }
         } else {
-            switch (level) {
+            switch (m_level) {
                 case "HOME":
                     m_elevator.setpose(Constants.ElevatorConstants.HOME);
                     wantedPose = Constants.ElevatorConstants.HOME;
@@ -99,11 +107,6 @@ public class SetElevator extends Command {
             }
 
         }   
-    }
-
-    @Override
-    public void initialize() {
-
     }
 
     @Override

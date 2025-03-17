@@ -3,17 +3,24 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.RobotState;
 
 public class SetIntake extends Command {
 
     Intake m_intake;
     String m_level;
+    RobotState m_robotState;
 
-    public SetIntake(Intake intake, String level) {
+    public SetIntake(Intake intake, RobotState robotState, String level) {
 
         m_level = level;
         m_intake = intake;
+        m_robotState = robotState;
 
+    }
+
+    @Override
+    public void initialize() {
         if (m_intake.HasCoral()) {
             m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.HOLD);
         } 
@@ -21,8 +28,8 @@ public class SetIntake extends Command {
             m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.HOLD);
         }
 
-        if(Constants.CORALMODE && !m_intake.HasCoral()) {
-            switch (level) {
+        if(m_robotState.isCoralMode() && !m_intake.HasCoral()) {
+            switch (m_level) {
                 case "HOME":
                     m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.STOP);
                     break;
@@ -58,8 +65,8 @@ public class SetIntake extends Command {
                     m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.OUTTAKE);
                     break;
             }
-        } else if (!Constants.CORALMODE && !m_intake.HasAlgae()) {
-            switch (level) {
+        } else if (!m_robotState.isCoralMode() && !m_intake.HasAlgae()) {
+            switch (m_level) {
                 case "HOME":
                     m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.STOP);
                     break;
@@ -97,12 +104,7 @@ public class SetIntake extends Command {
                     break;
             }
 
-        }   
-    }
-
-    @Override
-    public void initialize() {
-
+        } 
     }
 
     @Override

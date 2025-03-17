@@ -21,17 +21,9 @@ public class Constants {
 
     public static final int DRIVER_CONTROLER = 0;
     public static final int OPERATOR_CONTROLER = 1;
-
-    public static boolean CORALMODE = true;
   
 
     
-    public static void changemode(){
-     CORALMODE =  !CORALMODE;
-    }
-
-
-
 
     public class ElevatorConstants {
 

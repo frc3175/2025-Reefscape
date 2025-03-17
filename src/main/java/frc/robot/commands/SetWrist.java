@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.subsystems.RobotState;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Wrist;
@@ -9,13 +10,19 @@ public class SetWrist extends Command {
     Wrist m_wrist;
     String m_level;
     double wantedPose;
+    RobotState m_robotState;
 
-    public SetWrist(Wrist wrist, String level) {
+    public SetWrist(Wrist wrist, RobotState robotState, String level) {
 
         m_level = level;
         m_wrist = wrist;
-        if(Constants.CORALMODE) {
-            switch (level) {
+        m_robotState = robotState;
+    }
+
+    @Override
+    public void initialize() {
+        if(m_robotState.isCoralMode()) {
+            switch (m_level) {
                 case "HOME":
                     m_wrist.setangle(Constants.WristConstants.HOME);
                     wantedPose = Constants.WristConstants.HOME;
@@ -56,7 +63,7 @@ public class SetWrist extends Command {
                     break;
             }
         } else {
-            switch (level) {
+            switch (m_level) {
                 case "HOME":
                     m_wrist.setangle(Constants.WristConstants.HOME);
                     wantedPose = Constants.WristConstants.HOME;
@@ -98,12 +105,7 @@ public class SetWrist extends Command {
                     break;
             }
 
-        }   
-    }
-
-    @Override
-    public void initialize() {
-
+        }  
     }
 
     @Override
