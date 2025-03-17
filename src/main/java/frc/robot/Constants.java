@@ -49,6 +49,9 @@ public class Constants {
         public static final double ALGAET2 = 1.37;
         public static final double ALGAET3 = 7.15;
         public static final double INTERMEDIATE = 0;
+        public static final double INTAKE = 0;
+        public static final double CLIMB = 0;
+        public static final double PROCESSOR = 0;
         
 
         //configs
@@ -86,10 +89,10 @@ public class WristConstants {
     public static final double ALGAET2 = -11.27;
     public static final double ALGAET3 = -11.27;
     public static final double INTERMEDIATE = 0;
+    public static final double INTAKE = 0;
+    public static final double CLIMB = 0;
+    public static final double PROCESSOR = 0;
    
-
-
-    public static final double climb = -15; //-15 //-32 is up
 
          
     }

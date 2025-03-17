@@ -143,7 +143,7 @@ public class StateManger extends SubsystemBase {
         SmartDashboard.putBoolean("Max speed", false);
         m_Wrist.setangle(Constants.WristConstants.L1);
         m_Elevator.setpose(Constants.ElevatorConstants.HOME);
-        m_Intake.intakerunvoltage(Constants.IntakeConstants.STOP);
+        m_Intake.coralintakerunvoltage(Constants.CoralIntakeConstants.STOP);
        
       break;
 
@@ -155,7 +155,7 @@ public class StateManger extends SubsystemBase {
     SmartDashboard.putBoolean("Max speed", false);
     m_Wrist.setangle(-27);
     m_Elevator.setpose(Constants.ElevatorConstants.ALGAET3);
-    m_Intake.intakerunvoltage(Constants.IntakeConstants.OUTTAKEFAST);
+    m_Intake.coralintakerunvoltage(Constants.CoralIntakeConstants.OUTTAKEFAST);
     
   break;
 
