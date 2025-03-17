@@ -155,12 +155,12 @@ public class RobotContainer {
             .andThen(new SetElevator(m_elevator, m_robotState, "L2"))
             .andThen(new SetWrist(m_wrist, m_robotState, "L2")));
 
-        opController.a().onTrue(new SetIntake(m_intake, m_robotState, "HOME").onlyIf(()->!m_intake.HasCoral())
+        opController.a().onTrue(new SetIntake(m_intake, m_robotState, "HOME").unless(()->m_intake.HasCoral())
             .andThen(new SetIntake(m_intake, m_robotState, "INTERMEDIATE").onlyIf(()->m_intake.HasCoral()))
             .andThen(new SetWrist(m_wrist, m_robotState, "INTERMEDIATE"))
-            .andThen(new SetElevator(m_elevator, m_robotState, "HOME").onlyIf(()->!m_intake.HasCoral()))
+            .andThen(new SetElevator(m_elevator, m_robotState, "HOME").unless(()->m_intake.HasCoral()))
             .andThen(new SetElevator(m_elevator, m_robotState, "INTERMEDIATE").onlyIf(()->m_intake.HasCoral()))
-            .andThen(new SetWrist(m_wrist, m_robotState, "HOME").onlyIf(()->!m_intake.HasCoral())));
+            .andThen(new SetWrist(m_wrist, m_robotState, "HOME").unless(()->m_intake.HasCoral())));
         
         opController.button(10).onTrue(new SetIntake(m_intake, m_robotState, "L1")
             .andThen(new SetElevator(m_elevator, m_robotState, "L1"))
@@ -172,9 +172,9 @@ public class RobotContainer {
             .andThen(new SetWrist(m_wrist, m_robotState, "INTAKE").onlyIf(()->m_intake.HasCoral())));
 
         opController.rightBumper().onFalse(new SetWrist(m_wrist, m_robotState, "INTERMEDIATE").onlyIf(()->m_intake.HasCoral())
-            .andThen(new SetElevator(m_elevator, m_robotState, "HOME").onlyIf(()->!m_intake.HasCoral()))
+            .andThen(new SetElevator(m_elevator, m_robotState, "HOME").unless(()->m_intake.HasCoral()))
             .andThen(new SetElevator(m_elevator, m_robotState, "INTERMEDIATE").onlyIf(()->m_intake.HasCoral()))
-            .andThen(new SetWrist(m_wrist, m_robotState, "HOME").onlyIf(()->!m_intake.HasCoral())));
+            .andThen(new SetWrist(m_wrist, m_robotState, "HOME").unless(()->m_intake.HasCoral())));
 
         opController.start().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
 
