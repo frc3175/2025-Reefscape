@@ -4,13 +4,17 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.configs.CANcoderConfiguration;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.PositionDutyCycle;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.ctre.phoenix6.signals.SensorDirectionValue;
 
+import static edu.wpi.first.units.Units.Rotations;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -29,12 +33,14 @@ double nudge = 0;
 
 public Wrist() {
     m_motor = new TalonFX(Constants.WristConstants.MOTORID , Constants.CANIVORE);
-    
+    m_canCoder = new CANcoder(Constants.WristConstants.CANCODERID, Constants.CANIVORE);
 
     m_motmag = new MotionMagicVoltage(0);
 
     var talonFXConfigs = new TalonFXConfiguration();
     
+    var canCoderConfigs = new CANcoderConfiguration();
+
     var slot0Configs = talonFXConfigs.Slot0;
     slot0Configs.kS = 0.24; // add 0.24 V to overcome friction
     slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
@@ -50,8 +56,19 @@ public Wrist() {
     motionMagicConfigs.MotionMagicJerk = 600; // 1600 rps/s^2 jerk (0.1 seconds)
 
     m_motmag.EnableFOC = true;
+
+    talonFXConfigs.Feedback.FeedbackRemoteSensorID = m_canCoder.getDeviceID();
+    talonFXConfigs.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.FusedCANcoder;
+    talonFXConfigs.Feedback.SensorToMechanismRatio = -1.0;
+    talonFXConfigs.Feedback.RotorToSensorRatio = 60.7639;
+
+    canCoderConfigs.MagnetSensor.withAbsoluteSensorDiscontinuityPoint(1);
+    canCoderConfigs.MagnetSensor.withSensorDirection(SensorDirectionValue.CounterClockwise_Positive);
+    canCoderConfigs.MagnetSensor.withMagnetOffset(Rotations.of(0.1));
+
     
     m_motor.getConfigurator().apply(talonFXConfigs, 0.050);
+    m_canCoder.getConfigurator().apply(canCoderConfigs);
     m_motor.setNeutralMode(NeutralModeValue.Brake);
     // periodic, run Motion Magic with slot 0 configs,
   }
