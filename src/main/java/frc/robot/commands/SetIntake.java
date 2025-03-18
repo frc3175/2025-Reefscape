@@ -21,25 +21,14 @@ public class SetIntake extends Command {
 
     @Override
     public void initialize() {
-        if (m_intake.HasCoral()) {
-            m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.HOLD);
-        } 
-        if (m_intake.HasAlgae()) {
-            m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.HOLD);
-        }
-
-        if(m_robotState.isCoralMode() && !m_intake.HasCoral()) {
+        if(m_robotState.isCoralMode()) {
             switch (m_level) {
                 case "HOME":
-                    m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.STOP);
+                    m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.HOLD);
                     break;
 
                 case "INTAKE":
                     m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.INTAKE);
-                    break;
-
-                case "INTERMEDIATE":
-                    m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.HOLD);
                     break;
 
                 case "CLIMB":
@@ -62,21 +51,17 @@ public class SetIntake extends Command {
                     m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.HOLD);
                     break;
                 case "OUTTAKE":
-                    m_intake.coralIntakePercentOutput(-.2);//(Constants.CoralIntakeConstants.OUTTAKE);
+                    m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.OUTTAKE);;//(Constants.CoralIntakeConstants.OUTTAKE);
                     break;
             }
-        } else if (!m_robotState.isCoralMode() && !m_intake.HasAlgae()) {
+        } else if (!m_robotState.isCoralMode()) {
             switch (m_level) {
                 case "HOME":
-                    m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.STOP);
+                    m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.HOLD);
                     break;
 
                 case "INTAKE":
                     m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.INTAKE);
-                    break;
-
-                case "INTERMEDIATE":
-                    m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.HOLD);
                     break;
 
                 case "CLIMB":

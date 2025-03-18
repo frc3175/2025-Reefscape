@@ -34,29 +34,30 @@ public class Constants {
         public static final double HOME = 0.4;  //0.4
         public static final double HUMAN = 1.0;
         public static final double L1 = 0;
-        public static final double L2 = 4.6; //4
-        public static final double L3 = 10.2; //10
-        public static final double L4 = 18;
+        public static final double L2 = 0; //4
+        public static final double L3 = 5.8; //10
+        public static final double L4 = 17;
         public static final double BARGE = 17.6;
-        public static final double ALGAET2 = 1.37;
-        public static final double ALGAET3 = 7.15;
+        public static final double ALGAET2 = 3.33;
+        public static final double ALGAET3 = 8.53;
         public static final double INTERMEDIATE = 0;
         public static final double INTAKE = 0;
         public static final double CLIMB = 0;
         public static final double PROCESSOR = 0;
+        public static final double ALGAEHOME = 0;
         
 
         //configs
         public static final double kp = 1; //1
         public static final double ki = 0; //0
-        public static final double kD = 0.05; //0.05
+        public static final double kD = 0; //0.05
         public static final double kV = 0.05; //0.05
         public static final double kS = 0.08; //0.08
         public static final double kG = 0.16; //0.16
 
         public static final double  MotionMagicCruiseVelocity = 90;
-        public static final double  MotionMagicAcceleration = 180;
-        public static final double  MotionMagicJerk = 600;
+        public static final double  MotionMagicAcceleration = 300;
+        public static final double  MotionMagicJerk = 1200;
         public static final boolean EnableFOC = true;
 
         public static final boolean CurrentLimitEnable = true;
@@ -73,17 +74,18 @@ public class WristConstants {
     public static final double HOME = 0; //working
     public static final double HUMAN = 0;
     public static final double UPHUMAN = 0;
-    public static final double L1 = -10;
-    public static final double L2 = -8.8;
-    public static final double L3 = -8.8; //-8.8
-    public static final double L4 = -25;
-    public static final double BARGE = 0.5;
-    public static final double ALGAET2 = 0.25;
-    public static final double ALGAET3 = 0.25;
+    public static final double L1 = -32;
+    public static final double L2 = -34.1;
+    public static final double L3 = -34.1;//-8.8
+    public static final double L4 = -28.3;
+    public static final double BARGE = -18;
+    public static final double ALGAET2 = -7.12;
+    public static final double ALGAET3 = -7.12;
     public static final double INTERMEDIATE = -37.6;
     public static final double INTAKE = 0;
     public static final double CLIMB = 0;
     public static final double PROCESSOR = 0;
+    public static final double ALGAEHOME = 0;
    
 
          
@@ -99,7 +101,7 @@ public class WristConstants {
         public static final double STOP = 0;
         public static final double L1 = -5;
         public static final double INTERMEDIATE = 0;
-        public static final double HOLD = 0.7;
+        public static final double HOLD = 0.4;
     
     }
     public class AlgaeIntakeConstants{
@@ -108,7 +110,7 @@ public class WristConstants {
         public static final int CANRANGEID = 29;
 
         public static final double INTAKE = 12;
-        public static final double OUTTAKE = -10;
+        public static final double OUTTAKE = -12;
         public static final double HOLD = 6;
         public static final double STOP = 0;
         public static final double INTERMEDIATE = 0;
@@ -117,6 +119,8 @@ public class WristConstants {
     public class ClimberConstants{
 
         public static final int MOTORID = 22;
+
+        public static final int SERVOPORT = 0;
         
         public static final double HOME = 0;
     }

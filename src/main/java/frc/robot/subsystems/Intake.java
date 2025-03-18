@@ -52,7 +52,8 @@ public Intake() {
   public void periodic() {
     
     SmartDashboard.putNumber("intake height", 0);
-    //SmartDashboard.putNumber("Coral Distance", m_canrange.getDistance().getValueAsDouble());
+    SmartDashboard.putBoolean("Has Coral", HasCoral());
+    SmartDashboard.putBoolean("Has Algae", HasAlgae());
   }
 
   

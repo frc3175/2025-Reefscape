@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.RobotState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Wrist;
@@ -24,18 +25,13 @@ public class SetWrist extends Command {
         if(m_robotState.isCoralMode()) {
             switch (m_level) {
                 case "HOME":
-                    m_wrist.setangle(Constants.WristConstants.HOME);
-                    wantedPose = Constants.WristConstants.HOME;
+                        m_wrist.setangle(Constants.WristConstants.INTERMEDIATE);
+                        wantedPose = Constants.WristConstants.INTERMEDIATE;
                     break;
 
                 case "INTAKE":
                     m_wrist.setangle(Constants.WristConstants.INTAKE);
                     wantedPose = Constants.WristConstants.INTAKE;
-                    break;
-
-                case "INTERMEDIATE":
-                    m_wrist.setangle(Constants.WristConstants.INTERMEDIATE);
-                    wantedPose = Constants.WristConstants.INTERMEDIATE;
                     break;
 
                 case "CLIMB":
@@ -65,18 +61,13 @@ public class SetWrist extends Command {
         } else {
             switch (m_level) {
                 case "HOME":
-                    m_wrist.setangle(Constants.WristConstants.HOME);
-                    wantedPose = Constants.WristConstants.HOME;
+                    m_wrist.setangle(Constants.WristConstants.ALGAEHOME);
+                    wantedPose = Constants.WristConstants.ALGAEHOME;
                     break;
 
                 case "INTAKE":
                     m_wrist.setangle(Constants.WristConstants.INTAKE);
                     wantedPose = Constants.WristConstants.INTAKE;
-                    break;
-
-                case "INTERMEDIATE":
-                    m_wrist.setangle(Constants.WristConstants.INTERMEDIATE);
-                    wantedPose = Constants.WristConstants.INTERMEDIATE;
                     break;
 
                 case "CLIMB":

@@ -59,6 +59,7 @@ public Wrist() {
     motionMagicConfigs.MotionMagicCruiseVelocity = 160;//160; // 80 rps cruise velocity
     motionMagicConfigs.MotionMagicAcceleration = 600;//240; // 160 rps/s acceleration (0.5 seconds)
     motionMagicConfigs.MotionMagicJerk = 1750;
+    
      // 1600 rps/s^2 jerk (0.1 seconds)
 
     m_motmag.EnableFOC = true;

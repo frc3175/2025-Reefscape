@@ -25,18 +25,13 @@ public class SetElevator extends Command {
         if(m_robotState.isCoralMode()) {
             switch (m_level) {
                 case "HOME":
-                    m_elevator.setpose(Constants.ElevatorConstants.HOME);
-                    wantedPose = Constants.ElevatorConstants.HOME;
+                    m_elevator.setpose(Constants.ElevatorConstants.INTERMEDIATE);
+                    wantedPose = Constants.ElevatorConstants.INTERMEDIATE;
                     break;
 
                 case "INTAKE":
                     m_elevator.setpose(Constants.ElevatorConstants.INTAKE);
                     wantedPose = Constants.ElevatorConstants.INTAKE;
-                    break;
-
-                case "INTERMEDIATE":
-                    m_elevator.setpose(Constants.ElevatorConstants.INTERMEDIATE);
-                    wantedPose = Constants.ElevatorConstants.INTERMEDIATE;
                     break;
 
                 case "CLIMB":
@@ -66,18 +61,13 @@ public class SetElevator extends Command {
         } else {
             switch (m_level) {
                 case "HOME":
-                    m_elevator.setpose(Constants.ElevatorConstants.HOME);
-                    wantedPose = Constants.ElevatorConstants.HOME;
+                    m_elevator.setpose(Constants.ElevatorConstants.ALGAEHOME);
+                    wantedPose = Constants.ElevatorConstants.ALGAEHOME;
                     break;
 
                 case "INTAKE":
                     m_elevator.setpose(Constants.ElevatorConstants.INTAKE);
                     wantedPose = Constants.ElevatorConstants.INTAKE;
-                    break;
-
-                case "INTERMEDIATE":
-                    m_elevator.setpose(Constants.ElevatorConstants.INTERMEDIATE);
-                    wantedPose = Constants.ElevatorConstants.INTERMEDIATE;
                     break;
                 
                 case "CLIMB":
