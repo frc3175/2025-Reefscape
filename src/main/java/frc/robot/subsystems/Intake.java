@@ -129,12 +129,12 @@ public void algaeIntakePercentOutput(double percentOutput) {
 }
 
 public boolean HasCoral(){
-  return m_coralCanrange.getDistance().getValueAsDouble() <= 65.535;
+  return m_coralCanrange.getDistance().getValueAsDouble() <= 0.051;
 
 }
 
 public boolean HasAlgae(){
-  return m_algaeCanrange.getDistance().getValueAsDouble() <= 65.535;
+  return m_algaeCanrange.getDistance().getValueAsDouble() <= 0.051;
 }
 }
 

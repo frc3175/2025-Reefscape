@@ -62,7 +62,7 @@ public class SetIntake extends Command {
                     m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.HOLD);
                     break;
                 case "OUTTAKE":
-                    m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.OUTTAKE);
+                    m_intake.coralIntakePercentOutput(-.2);//(Constants.CoralIntakeConstants.OUTTAKE);
                     break;
             }
         } else if (!m_robotState.isCoralMode() && !m_intake.HasAlgae()) {
@@ -116,5 +116,11 @@ public class SetIntake extends Command {
     public void end(boolean isfinished) {
 
     } 
+
+    @Override
+    public boolean isFinished() {
+        return true;
+        
+    }
     
 }

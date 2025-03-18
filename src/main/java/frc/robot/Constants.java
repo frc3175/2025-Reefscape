@@ -68,19 +68,19 @@ public class Constants {
 public class WristConstants {
 
     public static final int MOTORID = 2;
-    public static final int CANCODERID = 1;
+    public static final int CANCODERID = 56;
 
     public static final double HOME = 0; //working
-    public static final double HUMAN = 19.2;
-    public static final double UPHUMAN = 22.5;
-    public static final double L1 = -12.;
-    public static final double L2 = -10;
-    public static final double L3 = -10; //-8.8
-    public static final double L4 = -11;
-    public static final double BARGE = -20;
-    public static final double ALGAET2 = -11.27;
-    public static final double ALGAET3 = -11.27;
-    public static final double INTERMEDIATE = 0;
+    public static final double HUMAN = 0;
+    public static final double UPHUMAN = 0;
+    public static final double L1 = -10;
+    public static final double L2 = -8.8;
+    public static final double L3 = -8.8; //-8.8
+    public static final double L4 = -25;
+    public static final double BARGE = 0.5;
+    public static final double ALGAET2 = 0.25;
+    public static final double ALGAET3 = 0.25;
+    public static final double INTERMEDIATE = -37.6;
     public static final double INTAKE = 0;
     public static final double CLIMB = 0;
     public static final double PROCESSOR = 0;
@@ -90,33 +90,33 @@ public class WristConstants {
     }
     public class CoralIntakeConstants{
 
-        public static final int MOTORID = 1;
+        public static final int MOTORID = 46;
         public static final int CANRANGEID = 1;
 
         public static final double INTAKE = 12;
-        public static final double OUTTAKE = -10;
+        public static final double OUTTAKE = -6;
         public static final double OUTTAKEFAST = -13; //-0.5
         public static final double STOP = 0;
         public static final double L1 = -5;
         public static final double INTERMEDIATE = 0;
-        public static final double HOLD = 0;
+        public static final double HOLD = 0.7;
     
     }
     public class AlgaeIntakeConstants{
 
-        public static final int MOTORID = 1;
-        public static final int CANRANGEID = 1;
+        public static final int MOTORID = 53;
+        public static final int CANRANGEID = 29;
 
         public static final double INTAKE = 12;
         public static final double OUTTAKE = -10;
-        public static final double HOLD = 0;
+        public static final double HOLD = 6;
         public static final double STOP = 0;
         public static final double INTERMEDIATE = 0;
     
     }    
     public class ClimberConstants{
 
-        public static final int MOTORID = 37;
+        public static final int MOTORID = 22;
         
         public static final double HOME = 0;
     }

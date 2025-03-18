@@ -120,7 +120,7 @@ public class SetWrist extends Command {
     
     @Override
     public boolean isFinished() {
-        if (Math.abs(wantedPose - m_wrist.getpose()) <= 0.1) {
+        if (Math.abs(wantedPose - m_wrist.getpose()) <= 1) {
             return true;
         } else {
             return false;

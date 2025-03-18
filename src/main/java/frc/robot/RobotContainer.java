@@ -42,6 +42,7 @@ public class RobotContainer {
 
     private final CommandXboxController driverController = new CommandXboxController(Constants.DRIVER_CONTROLER);
     private final CommandXboxController opController  = new CommandXboxController(Constants.OPERATOR_CONTROLER);
+    private final CommandXboxController tesController = new CommandXboxController(5);
    
     
     public final Limelight m_ll = new Limelight();
@@ -143,7 +144,8 @@ public class RobotContainer {
         
          
     
-        opController.y().onTrue(new SetIntake(m_intake, m_robotState, "L4")
+        opController.y().onTrue(new SetWrist(m_wrist, m_robotState, "INTERMEDIATE")
+            .andThen(new SetIntake(m_intake, m_robotState, "L4"))
             .andThen(new SetElevator(m_elevator, m_robotState, "L4"))
             .andThen(new SetWrist(m_wrist, m_robotState, "L4")));
             
@@ -167,9 +169,9 @@ public class RobotContainer {
             .andThen(new SetWrist(m_wrist, m_robotState, "L1")));
         
 
-        opController.rightBumper().onTrue(new SetIntake(m_intake, m_robotState, "INTNAKE").onlyIf(()->m_intake.HasCoral())
-            .andThen(new SetElevator(m_elevator, m_robotState, "INTAKE").onlyIf(()->m_intake.HasCoral()))
-            .andThen(new SetWrist(m_wrist, m_robotState, "INTAKE").onlyIf(()->m_intake.HasCoral())));
+        opController.rightBumper().onTrue(new SetIntake(m_intake, m_robotState, "INTAKE").unless(()->m_intake.HasCoral())
+            .andThen(new SetElevator(m_elevator, m_robotState, "INTAKE").unless(()->m_intake.HasCoral()))
+            .andThen(new SetWrist(m_wrist, m_robotState, "INTAKE").unless(()->m_intake.HasCoral())));
 
         opController.rightBumper().onFalse(new SetWrist(m_wrist, m_robotState, "INTERMEDIATE").onlyIf(()->m_intake.HasCoral())
             .andThen(new SetElevator(m_elevator, m_robotState, "HOME").unless(()->m_intake.HasCoral()))
@@ -179,6 +181,18 @@ public class RobotContainer {
         opController.start().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
 
         opController.back().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
+
+        opController.leftBumper().onTrue(new InstantCommand(()-> m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.OUTTAKEFAST)));
+
+        opController.leftBumper().onFalse(new SetIntake(m_intake, m_robotState, "INTERMEDIATE").onlyIf(()->m_intake.HasCoral())
+        .andThen(new SetWrist(m_wrist, m_robotState, "INTERMEDIATE"))
+        .andThen(new SetElevator(m_elevator, m_robotState, "HOME").unless(()->m_intake.HasCoral()))
+        .andThen(new SetElevator(m_elevator, m_robotState, "INTERMEDIATE").onlyIf(()->m_intake.HasCoral()))
+        .andThen(new SetWrist(m_wrist, m_robotState, "HOME").unless(()->m_intake.HasCoral())));
+
+
+        
+        
         
         }
 
