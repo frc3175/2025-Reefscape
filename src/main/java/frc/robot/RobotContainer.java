@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.AutoLeft;
 import frc.robot.commands.AutoRight;
@@ -45,7 +44,6 @@ public class RobotContainer {
 
     private final CommandXboxController driverController = new CommandXboxController(Constants.DRIVER_CONTROLER);
     private final CommandXboxController opController  = new CommandXboxController(Constants.OPERATOR_CONTROLER);
-    private final CommandXboxController tesController = new CommandXboxController(5);
    
     
     public final Limelight m_ll = new Limelight();
@@ -76,19 +74,20 @@ public class RobotContainer {
     
 
     public RobotContainer() {
-        NamedCommands.registerCommand("Intake",  new SequentialCommandGroup(new SetIntake(m_intake, m_robotState,"Intake"),
-            new SetElevator(m_elevator, m_robotState,"Intake"),
-            new SetWrist(m_wrist, m_robotState,"Intake")));
+        NamedCommands.registerCommand("Intake",  new SetIntake(m_intake, m_robotState, "INTAKE")
+            .alongWith(new SetElevator(m_elevator, m_robotState, "INTAKE"))
+            .andThen(new SetWrist(m_wrist, m_robotState, "INTAKE")));
 
-        NamedCommands.registerCommand("Outtake", new SetIntake(m_intake, m_robotState,"Outtake"));
+        NamedCommands.registerCommand("Outtake", new SetIntake(m_intake, m_robotState, "OUTTAKE"));
 
-        NamedCommands.registerCommand("L4", new SequentialCommandGroup(new SetIntake(m_intake, m_robotState,"L4"),
-        new SetElevator(m_elevator, m_robotState,"L4"),
-        new SetWrist(m_wrist, m_robotState,"L4")));
+        NamedCommands.registerCommand("L4", new SetIntake(m_intake, m_robotState, "L4")
+            .alongWith(new SetWrist(m_wrist, m_robotState, "HOME"))
+            .alongWith(new SetElevator(m_elevator, m_robotState, "L4"))
+            .andThen(new SetWrist(m_wrist, m_robotState, "L4")));
 
-        NamedCommands.registerCommand("HOME", new SequentialCommandGroup(new SetIntake(m_intake, m_robotState,"INTERMEDIATE"),
-        new SetElevator(m_elevator, m_robotState,"INTERMEDIATE"),
-        new SetWrist(m_wrist, m_robotState,"INTERMEDIATE")));
+        NamedCommands.registerCommand("HOME", new SetIntake(m_intake, m_robotState, "HOME")
+            .alongWith(new SetWrist(m_wrist, m_robotState, "HOME"))
+            .andThen(new SetElevator(m_elevator, m_robotState, "HOME")));
 
         
         autoChooser = AutoBuilder.buildAutoChooser("Red 2 Piece Left");
