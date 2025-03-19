@@ -111,7 +111,7 @@ public class SetElevator extends Command {
     
     @Override
     public boolean isFinished() {
-        if (Math.abs(wantedPose - m_elevator.getpose()) <= 1) {
+        if (Math.abs(wantedPose - m_elevator.getpose()) <= 0.5) {
             return true;
         } else {
             return false;

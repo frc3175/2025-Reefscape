@@ -70,10 +70,10 @@ public class IntakeAndReset extends Command {
   @Override
   public boolean isFinished() {
     if(SmartDashboard.getBoolean("Has Coral", false)){
-    return true;
-    }
-    else{
-    return false;
+      return true;
+      
+    } else {
+      return false;
     }
   }
 }

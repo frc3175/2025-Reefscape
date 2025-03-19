@@ -48,12 +48,12 @@ public class Constants {
         
 
         //configs
-        public static final double kp = 1; //1
+        public static final double kp = 2; //1
         public static final double ki = 0; //0
-        public static final double kD = 0; //0.05
-        public static final double kV = 0.05; //0.05
+        public static final double kD = 0.05; //0.05
+        public static final double kV = 3.11; //0.05
         public static final double kS = 0.08; //0.08
-        public static final double kG = 0.16; //0.16
+        public static final double kG = 0.14; //0.16
 
         public static final double  MotionMagicCruiseVelocity = 90;
         public static final double  MotionMagicAcceleration = 300;

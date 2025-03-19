@@ -11,6 +11,7 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicExpoTorqueCurrentFOC;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.PositionDutyCycle;
+import com.ctre.phoenix6.controls.PositionTorqueCurrentFOC;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
@@ -26,7 +27,7 @@ import frc.robot.Constants;
 public class Climber extends SubsystemBase {
   
 
-PositionDutyCycle m_motmag;
+PositionTorqueCurrentFOC m_motmag;
 
 PositionDutyCycle m_PositionDutyCycle;
 TalonFX m_motor;
@@ -38,7 +39,7 @@ public Climber() {
     m_motor = new TalonFX(Constants.ClimberConstants.MOTORID , Constants.RIO);
    
 
-    m_motmag = new PositionDutyCycle(0);
+    m_motmag = new PositionTorqueCurrentFOC(0);
 
     m_servo = new Servo(Constants.ClimberConstants.SERVOPORT);
 

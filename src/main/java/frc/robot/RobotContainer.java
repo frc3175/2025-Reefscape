@@ -175,9 +175,11 @@ public class RobotContainer {
             .alongWith(new SetWrist(m_wrist, m_robotState, "L1")));
 
         opController.rightBumper().onTrue(new IntakeAndReset(m_intake, m_wrist, m_elevator, m_robotState));
+        opController.rightBumper().onFalse(new SetIntake(m_intake, m_robotState, "HOME")
+            .alongWith(new SetWrist(m_wrist, m_robotState, "HOME"))
+            .andThen(new SetElevator(m_elevator, m_robotState, "HOME")));
 
         opController.start().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
-
         opController.back().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
 
         opController.pov(0).onTrue(new CimbDeploy(m_climber));
