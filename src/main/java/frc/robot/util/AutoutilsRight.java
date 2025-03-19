@@ -45,27 +45,27 @@ public class AutoutilsRight {
        
         switch(intInput) {
             case 6:
-                goalpose = new Pose2d(13.324 ,3.033,Rotation2d.fromDegrees(120)); //done
+                goalpose = new Pose2d(13.353 ,3.079,Rotation2d.fromDegrees(120)); //done
                 break;
 
             case 7:
-                goalpose = new Pose2d(13.859 ,4.247,Rotation2d.fromDegrees(180)); //done
+                goalpose = new Pose2d(13.856 ,4.303,Rotation2d.fromDegrees(180)); //done
                 break;
 
             case 8:
-                goalpose = new Pose2d(13.076,5.304 ,Rotation2d.fromDegrees(-120)); //done
+                goalpose = new Pose2d(13.009,5.317 ,Rotation2d.fromDegrees(-120)); //done
                 break;
 
             case 9:
-                goalpose = new Pose2d(11.771 ,5.179,Rotation2d.fromDegrees(-60)); //done
+                goalpose = new Pose2d(11.752 ,5.126,Rotation2d.fromDegrees(-60)); //done
                 break;
 
             case 10:
-                goalpose = new Pose2d(11.259 ,3.954,Rotation2d.fromDegrees(0)); //done
+                goalpose = new Pose2d(11.259 ,3.946,Rotation2d.fromDegrees(0)); //done
                 break;
 
             case 11:
-                goalpose = new Pose2d(12.023 ,2.913,Rotation2d.fromDegrees(60)); //done
+                goalpose = new Pose2d(12.050 ,2.908,Rotation2d.fromDegrees(60)); //done
                 break;
 
             case 17:
@@ -77,19 +77,19 @@ public class AutoutilsRight {
                 break;
 
             case 19:
-                goalpose = new Pose2d(3.216 ,5.161,Rotation2d.fromDegrees(-60)); //done
+                goalpose = new Pose2d(3.191 ,5.129,Rotation2d.fromDegrees(-60)); //done
                 break;
 
             case 20:
-                goalpose = new Pose2d(4.505 ,5.305,Rotation2d.fromDegrees(-120)); //done
+                goalpose = new Pose2d(4.479 ,5.314,Rotation2d.fromDegrees(-120)); //done
                 break;
 
             case 21:
-                goalpose = new Pose2d(5.282 ,4.248,Rotation2d.fromDegrees(180)); //done
+                goalpose = new Pose2d(5.281 ,4.257,Rotation2d.fromDegrees(180)); //done
                 break;
 
             case 22:
-                goalpose = new Pose2d(4.754 ,3.055,Rotation2d.fromDegrees(120)); //done
+                goalpose = new Pose2d(4.786 ,3.080,Rotation2d.fromDegrees(120)); //done
                 break;
 
             case -1:

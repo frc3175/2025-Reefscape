@@ -75,8 +75,8 @@ public class WristConstants {
     public static final double HUMAN = 0;
     public static final double UPHUMAN = 0;
     public static final double L1 = -32;
-    public static final double L2 = -34.1;
-    public static final double L3 = -34.1;//-8.8
+    public static final double L2 = -37.6;
+    public static final double L3 = -37.6;//-8.8
     public static final double L4 = -28.3;
     public static final double BARGE = -18;
     public static final double ALGAET2 = -7.12;
