@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
@@ -21,7 +22,6 @@ public class SetIntake extends Command {
 
     @Override
     public void initialize() {
-        if(m_robotState.isCoralMode()) {
             switch (m_level) {
                 case "HOME":
                     m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.HOLD);
@@ -53,44 +53,25 @@ public class SetIntake extends Command {
                 case "OUTTAKE":
                     m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.OUTTAKE);;//(Constants.CoralIntakeConstants.OUTTAKE);
                     break;
+                case "ALGAET2":
+                m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.INTAKE);
+                    break;
+                case "AlGAET3":
+                m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.INTAKE);
+                    break;
+                case "NET":
+                m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.HOLD);
+                    break;
+                default:
+                DriverStation.reportError("State: " + m_level + " does not exist for Subsystem Intake", false);
             }
-        } else if (!m_robotState.isCoralMode()) {
-            switch (m_level) {
-                case "HOME":
-                    m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.HOLD);
-                    break;
+                
+        }
+                                    
+            
 
-                case "INTAKE":
-                    m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.INTAKE);
-                    break;
-
-                case "CLIMB":
-                    m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.STOP);
-                    break;
-
-                case "L1":
-                    m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.HOLD);
-                    break;
-
-                case "L2":
-                    m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.INTAKE);
-                    break;
-
-                case "L3":
-                    m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.INTAKE);
-                    break;
-
-                case "L4":
-                    m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.HOLD);
-                    break;
-
-                case "OUTTAKE":
-                    m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.OUTTAKE);
-                    break;
-            }
-
-        } 
-    }
+         
+    
 
     @Override
     public void execute() {

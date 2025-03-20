@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.AutoLeft;
 import frc.robot.commands.AutoRight;
 import frc.robot.commands.CimbDeploy;
@@ -57,6 +58,8 @@ public class RobotContainer {
     public final RobotState m_robotState = new RobotState();
     
     public final Climber m_climber = new Climber();
+    public final Trigger zr = new Trigger(() -> (opController.getRightTriggerAxis() == 1));
+    public final Trigger zl = new Trigger(() -> (opController.getLeftTriggerAxis() == 1));
    
 
     
@@ -178,11 +181,26 @@ public class RobotContainer {
             .alongWith(new SetWrist(m_wrist, m_robotState, "HOME"))
             .andThen(new SetElevator(m_elevator, m_robotState, "HOME")));
 
-        opController.start().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
-        opController.back().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
+        opController.start().onTrue(new SetIntake(m_intake, m_robotState, "ALGAET2")
+        .alongWith(new SetElevator(m_elevator, m_robotState, "ALGAET2"))
+        .alongWith(new SetWrist(m_wrist, m_robotState, "ALGAET2")));
+        
+        opController.back().onTrue(new SetIntake(m_intake, m_robotState, "ALGAET3")
+        .alongWith(new SetElevator(m_elevator, m_robotState, "ALGAET3"))
+        .alongWith(new SetWrist(m_wrist, m_robotState, "ALGAET3")));
 
         opController.pov(0).onTrue(new CimbDeploy(m_climber));
         opController.pov(180).onTrue(new ClimbBack(m_climber));
+
+        zr.onTrue((new SetIntake(m_intake, m_robotState, "L1")
+        .alongWith(new SetElevator(m_elevator, m_robotState, "PROCESSOR"))
+        .alongWith(new SetWrist(m_wrist, m_robotState, "PROCESSOR"))));
+
+        zl.onTrue(new SetIntake(m_intake, m_robotState, "NET")
+        .alongWith(new SetWrist(m_wrist, m_robotState, "HOME"))
+        .alongWith(new SetElevator(m_elevator, m_robotState, "NET"))
+        .andThen(new SetWrist(m_wrist, m_robotState, "NET")));
+       
 
 
 

@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.RobotState;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Wrist;
@@ -21,7 +22,6 @@ public class SetWrist extends Command {
 
     @Override
     public void initialize() {
-        if(m_robotState.isCoralMode()) {
             switch (m_level) {
                 case "HOME":
                         m_wrist.setangle(Constants.WristConstants.INTERMEDIATE);
@@ -56,47 +56,29 @@ public class SetWrist extends Command {
                     m_wrist.setangle(Constants.WristConstants.L4);
                     wantedPose = Constants.WristConstants.L4;
                     break;
-            }
-        } else {
-            switch (m_level) {
-                case "HOME":
-                    m_wrist.setangle(Constants.WristConstants.ALGAEHOME);
-                    wantedPose = Constants.WristConstants.ALGAEHOME;
-                    break;
-
-                case "INTAKE":
-                    m_wrist.setangle(Constants.WristConstants.INTAKE);
-                    wantedPose = Constants.WristConstants.INTAKE;
-                    break;
-
-                case "CLIMB":
-                    m_wrist.setangle(Constants.WristConstants.CLIMB);
-                    wantedPose = Constants.WristConstants.CLIMB;
-                    break;
-
-                case "L1":
-                    m_wrist.setangle(Constants.WristConstants.PROCESSOR);
+                case "PROCESSOR":
+                m_wrist.setangle(Constants.WristConstants.PROCESSOR);
                     wantedPose = Constants.WristConstants.PROCESSOR;
                     break;
-
-                case "L2":
-                    m_wrist.setangle(Constants.WristConstants.ALGAET2);
+                case "ALGAET2":
+                m_wrist.setangle(Constants.WristConstants.ALGAET2);
                     wantedPose = Constants.WristConstants.ALGAET2;
                     break;
-
-                case "L3":
-                    m_wrist.setangle(Constants.WristConstants.ALGAET3);
+                case "ALGAET3":
+                m_wrist.setangle(Constants.WristConstants.ALGAET3);
                     wantedPose = Constants.WristConstants.ALGAET2;
                     break;
-
-                case "L4":
-                    m_wrist.setangle(Constants.WristConstants.BARGE);
+                case "NET":
+                m_wrist.setangle(Constants.WristConstants.BARGE);
                     wantedPose = Constants.WristConstants.BARGE;
                     break;
+                default:
+                DriverStation.reportError("State: " + m_level + " does not exist for Subsystem Wrist", false);
+                    
             }
 
         }  
-    }
+    
 
     @Override
     public void execute() {

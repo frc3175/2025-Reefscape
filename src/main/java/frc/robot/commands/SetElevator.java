@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Elevator;
@@ -22,7 +23,6 @@ public class SetElevator extends Command {
 
     @Override
     public void initialize() {
-        if(m_robotState.isCoralMode()) {
             switch (m_level) {
                 case "HOME":
                     m_elevator.setpose(Constants.ElevatorConstants.INTERMEDIATE);
@@ -57,47 +57,50 @@ public class SetElevator extends Command {
                     m_elevator.setpose(Constants.ElevatorConstants.L4);
                     wantedPose = Constants.ElevatorConstants.L4;
                     break;
-            }
-        } else {
-            switch (m_level) {
-                case "HOME":
-                    m_elevator.setpose(Constants.ElevatorConstants.ALGAEHOME);
-                    wantedPose = Constants.ElevatorConstants.ALGAEHOME;
-                    break;
-
-                case "INTAKE":
-                    m_elevator.setpose(Constants.ElevatorConstants.INTAKE);
-                    wantedPose = Constants.ElevatorConstants.INTAKE;
-                    break;
-                
-                case "CLIMB":
-                    m_elevator.setpose(Constants.ElevatorConstants.CLIMB);
-                    wantedPose = Constants.ElevatorConstants.CLIMB;
-                    break;
-
-                case "L1":
+                case "PROCESSOR":
                     m_elevator.setpose(Constants.ElevatorConstants.PROCESSOR);
                     wantedPose = Constants.ElevatorConstants.PROCESSOR;
                     break;
-
-                case "L2":
+                case "ALGAET2":
                     m_elevator.setpose(Constants.ElevatorConstants.ALGAET2);
                     wantedPose = Constants.ElevatorConstants.ALGAET2;
                     break;
-
-                case "L3":
+                case "ALGAET3":
                     m_elevator.setpose(Constants.ElevatorConstants.ALGAET3);
                     wantedPose = Constants.ElevatorConstants.ALGAET2;
                     break;
-
-                case "L4":
+                case "NET":
                     m_elevator.setpose(Constants.ElevatorConstants.BARGE);
                     wantedPose = Constants.ElevatorConstants.BARGE;
                     break;
+                default:
+                DriverStation.reportError("State: " + m_level + " does not exist for Subsystem Elevator", false);
             }
 
-        }   
-    }
+                
+                
+
+            
+         
+            
+                
+
+              
+                
+                
+
+                
+
+             
+                    
+
+                
+
+                
+            }
+
+          
+    
 
     @Override
     public void execute() {
