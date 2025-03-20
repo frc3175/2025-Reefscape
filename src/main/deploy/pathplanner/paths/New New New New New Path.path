@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.25525,
-        "y": 5.039
+        "x": 1.3372859589041095,
+        "y": 0.8320419520547944
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.201236082261508,
-        "y": 5.680744146393058
+        "x": 1.9408984530855458,
+        "y": 2.5956661689737643
       },
       "isLocked": false,
-      "linkedName": "p1 to hp"
+      "linkedName": "right hp"
     },
     {
       "anchor": {
-        "x": 1.683799342105263,
-        "y": 7.363733552631578
+        "x": 3.9585000000000004,
+        "y": 2.7575
       },
       "prevControl": {
-        "x": 4.682162768787378,
-        "y": 5.241875697975836
+        "x": 3.164269239740057,
+        "y": 2.21471050846164
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "hp to p2"
+      "linkedName": "dfk"
     }
   ],
   "rotationTargets": [],
@@ -33,8 +33,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Intake",
-      "waypointRelativePos": 0.3,
+      "name": "L4",
+      "waypointRelativePos": 0.48991354466858783,
       "endWaypointRelativePos": null,
       "command": null
     }
@@ -49,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -52.68578991399632
+    "rotation": 58.74796065885554
   },
   "reversed": false,
-  "folder": "Left Side 3piece",
+  "folder": "Right Side 3piece",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -119.9315118405077
+    "rotation": -127.30394827798351
   },
   "useDefaultConstraints": true
 }

@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.25525,
-        "y": 5.039
+        "x": 5.109128289473684,
+        "y": 5.2662006578947365
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.201236082261508,
-        "y": 5.680744146393058
+        "x": 5.831954530519461,
+        "y": 4.823800370653623
       },
       "isLocked": false,
-      "linkedName": "p1 to hp"
+      "linkedName": "dfl"
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 7.363733552631578
       },
       "prevControl": {
-        "x": 4.682162768787378,
-        "y": 5.241875697975836
+        "x": 1.4624946081168848,
+        "y": 7.480027209871915
       },
       "nextControl": null,
       "isLocked": false,
@@ -34,7 +34,7 @@
   "eventMarkers": [
     {
       "name": "Intake",
-      "waypointRelativePos": 0.3,
+      "waypointRelativePos": 0.4693877551020408,
       "endWaypointRelativePos": null,
       "command": null
     }
@@ -55,7 +55,7 @@
   "folder": "Left Side 3piece",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -119.9315118405077
+    "rotation": -118.80890468429166
   },
   "useDefaultConstraints": true
 }

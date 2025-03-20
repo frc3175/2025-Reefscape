@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.6185000000000003,
-        "y": 7.48625
+        "x": 1.683799342105263,
+        "y": 7.363733552631578
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0307648909106453,
-        "y": 7.036147900106312
+        "x": 2.096064233015908,
+        "y": 6.9136314527378895
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "hp to p2"
     },
     {
       "anchor": {
-        "x": 3.75375,
-        "y": 4.980499999999999
+        "x": 3.6952499999999997,
+        "y": 5.097499999999999
       },
       "prevControl": {
-        "x": 3.532142003463075,
-        "y": 5.248495897457835
+        "x": 3.473642003463075,
+        "y": 5.365495897457835
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "djp"
     }
   ],
   "rotationTargets": [],
@@ -40,8 +40,8 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 3.0,
+    "maxVelocity": 3.5,
+    "maxAcceleration": 4.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -49,13 +49,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -59.74356283647081
+    "rotation": -58.39249775375101
   },
   "reversed": false,
-  "folder": "3 piece",
+  "folder": "Left Side 3piece",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -52.52382043863864
+    "rotation": -52.68578991399632
   },
   "useDefaultConstraints": true
 }

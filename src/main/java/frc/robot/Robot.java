@@ -4,19 +4,22 @@
 
 package frc.robot;
 
-import com.ctre.phoenix6.Utils;
 
-import edu.wpi.first.net.PortForwarder;
+import com.pathplanner.lib.commands.PathfindingCommand;
+
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private final RobotContainer m_robotContainer;
 
-  private final boolean kUseLimelight = false;
+  private final boolean kUseLimelight = true;
 
   public Robot() {
     m_robotContainer = new RobotContainer();
@@ -31,6 +34,7 @@ public class Robot extends TimedRobot {
         //     PortForwarder.add(port, "limelight.local", port);
         //     PortForwarder.add(port+10, "limelight1.local", port);
         // }
+        PathfindingCommand.warmupCommand().schedule();
     }
 
   @Override
@@ -46,12 +50,25 @@ public class Robot extends TimedRobot {
      * of how to use vision should be tuned per-robot and to the team's specification.
      */
     if (kUseLimelight) {
+      var driveState = m_robotContainer.drivetrain.getState();
+      
+      double omegaRps = Units.radiansToRotations(driveState.Speeds.omegaRadiansPerSecond);
+      
+     
+  
+      LimelightHelpers.SetRobotOrientation("limelight",m_robotContainer.drivetrain.getgyroyaw().getDegrees(), 0, 0, 0, 0, 0);
       var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight");
-      if (llMeasurement != null) {
-        m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose, Utils.fpgaToCurrentTime(llMeasurement.timestampSeconds));
+      if (llMeasurement != null && llMeasurement.tagCount > 0 && Math.abs(omegaRps) < 2.0) {
+        m_robotContainer.drivetrain.addVisionMeasurement(llMeasurement.pose, llMeasurement.timestampSeconds);
+        
       }
-    }
+      
+      SmartDashboard.putNumber("111 drive pose X", m_robotContainer.drivetrain.getState().Pose.getX());
+      SmartDashboard.putNumber("111 drive pose Y",  m_robotContainer.drivetrain.getState().Pose.getY());
+    } 
+      
   }
+    
 
   @Override
   public void disabledInit() {}

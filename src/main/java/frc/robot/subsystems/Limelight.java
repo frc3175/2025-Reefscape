@@ -14,9 +14,15 @@ public class Limelight extends SubsystemBase {
         // Limelight setup, if any
     }
 
-    public double getHorizontalOffset() {
+    public double getXOffset() {
         return limelightTable.getEntry("tx").getDouble(0.0); // Horizontal offset (degrees)
     }
+
+    public double getYOffset() {
+        return limelightTable.getEntry("ty").getDouble(0.0); // Horizontal offset (degrees)
+    }
+
+    
 
     public double algaegetHorizontalOffset() {
         return limelightalgae.getEntry("tx").getDouble(0.0); // Horizontal offset (degrees)
@@ -31,11 +37,30 @@ public class Limelight extends SubsystemBase {
         return limelightalgae.getEntry("ta").getDouble(0.0) > 0.0; // If target area is > 0
 
     }
+
+    public int getTargetid() {
+        return ((int)limelightTable.getEntry("tid").getDouble(0)); // If target area is > 0
+
+    }
+
+    public double algaegetTargetid() {
+        return limelightalgae.getEntry("tid").getDouble(0.0); // If target area is > 0
+
+    }
+
+    
+
+
+
+
      @Override
   public void periodic() {
-    SmartDashboard.putNumber("horizontal offset",getHorizontalOffset());
+    SmartDashboard.putNumber("x offset",getXOffset());
+    SmartDashboard.putNumber("Y offset",getYOffset());
     SmartDashboard.putBoolean("has tag",hasTarget());
     SmartDashboard.putNumber("algae horizontal offset",algaegetHorizontalOffset());
     SmartDashboard.putBoolean("algae has tag",algaehasTarget());
+    SmartDashboard.putNumber("targetid", getTargetid());
+    SmartDashboard.putNumber("alagaetargetid", algaegetTargetid());
   }
 }
