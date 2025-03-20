@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 
+
 public class Wrist extends SubsystemBase {
   
 
@@ -22,23 +23,18 @@ MotionMagicVoltage m_motmag;
 
 PositionDutyCycle m_PositionDutyCycle;
 TalonFX m_motor;
+double nudge;
 
-private WristState wristState;
+
 
 
 public Wrist() {
     m_motor = new TalonFX(Constants.WristConstants.MOTORID , Constants.CANIVORE);
+     nudge = 0;
     config();
 }
 
-  public void SetWristState(Wriststate state) {
-    setangle(state.wristPosition);
-    wristState = state;
-  }
-
-  public GetWristState() {
-    return wristState;
-  }
+  
 
   public void setangle(double angle){
     m_motor.setControl(m_motmag.withPosition(angle));
@@ -62,15 +58,14 @@ public Wrist() {
     HOME(Constants.WristConstants.HOME);
 
     public double wristPosition;
-    // public double wristVelocity;
-    // public double wristAcceleration;
-    // public int wristCurve;
-    private IntakeState(double wristPosition/* , double wristVelocity, double wristAcceleration, int wristCurve*/){
+    
+    private Wriststate(double wristPosition){
         this.wristPosition = wristPosition;
-        // this.wristVelocity = wristVelocity;
-        // this.wristAcceleration = wristAcceleration;
-        // this.wristCurve = wristCurve;
+       
     }
+  }
+  public void setnudge(double change){
+    nudge = nudge + change;
   }
 
 
@@ -81,23 +76,22 @@ public Wrist() {
     m_motmag = new MotionMagicVoltage(0);    
   
     var talonFXConfigs = new TalonFXConfiguration();
-      talonFXConfigs.CurrentLimits.withStatorCurrentLimitEnable(Constants.WristConstants.CurrentLimitEnable);
-      talonFXConfigs.CurrentLimits.withStatorCurrentLimit(Constants.WristConstants.CurrentLimit);
+    
       
     var slot0Configs = talonFXConfigs.Slot0;
       slot0Configs.kS = 0.24; // add 0.24 V to overcome friction
       slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
   
       
-      slot0Configs.kP = Constants.WristConstants.kp;
-      slot0Configs.kI = Constants.WristConstants.kI;
-      slot0Configs.kD = Constants.WristConstants.kD;
+      slot0Configs.kP = 100;
+      slot0Configs.kI = 0;
+      slot0Configs.kD =  0;
   
       var motionMagicConfigs = talonFXConfigs.MotionMagic;
-      motionMagicConfigs.MotionMagicCruiseVelocity = Constants.WristConstants.MotionMagicCruiseVelocity; // 80 rps cruise velocity
-      motionMagicConfigs.MotionMagicAcceleration   = Constants.WristConstants.MotionMagicAcceleration; // 160 rps/s acceleration (0.5 seconds)
-      motionMagicConfigs.MotionMagicJerk           = Constants.WristConstants.MotionMagicJerk; // 1600 rps/s^2 jerk (0.1 seconds)
-      m_motmag.EnableFOC = Constants.WristConstants.EnableFOC;
+      motionMagicConfigs.MotionMagicCruiseVelocity = 160; // 80 rps cruise velocity
+      motionMagicConfigs.MotionMagicAcceleration = 600; // 160 rps/s acceleration (0.5 seconds)
+      motionMagicConfigs.MotionMagicJerk = 1750;// 1600 rps/s^2 jerk (0.1 seconds)
+      m_motmag.EnableFOC = true;
   
   
   

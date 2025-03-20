@@ -73,8 +73,8 @@ public Elevator() {
     HP(Constants.ElevatorConstants.HUMAN),
     HOME(Constants.ElevatorConstants.HOME);
 
-    public int elevSetpoint;
-    private ElevatorState(int setpoint) {
+    public double elevSetpoint;
+    private ElevatorState(double setpoint) {
         this.elevSetpoint = setpoint;
     }
     

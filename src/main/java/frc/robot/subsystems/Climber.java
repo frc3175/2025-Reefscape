@@ -10,6 +10,7 @@ import com.ctre.phoenix6.controls.PositionDutyCycle;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -22,10 +23,12 @@ MotionMagicVoltage m_motmag;
 
 PositionDutyCycle m_PositionDutyCycle;
 TalonFX m_motor;
+Servo m_servo;
 
 
 public Climber() {
     m_motor = new TalonFX(Constants.ClimberConstants.MOTORID , Constants.CANIVORE);
+    m_servo = new Servo(Constants.ClimberConstants.SERVOPORT);
    
 
     m_motmag = new MotionMagicVoltage(0);
@@ -73,10 +76,19 @@ public Climber() {
 
   }
 
-  enum ClimberState {
+  public void setservo(double angle){
+
+    m_servo.setAngle(angle);
+
+  }
+
+
+  public enum ClimberState {
     HOME(1),
     CLIMBING(1);
 
+
+    public int pose; 
     private ClimberState(int pose) {
       this.pose = pose;
     }

@@ -5,9 +5,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import com.ctre.phoenix6.controls.MotionMagicVoltage;
+import com.ctre.phoenix6.hardware.CANrange;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.controls.VelocityDutyCycle;
 
@@ -19,20 +18,27 @@ public class  Intake extends SubsystemBase {
   
 
 
-TalonFX m_motor;
+  TalonFX m_coralMotor;
+  TalonFX m_algaeMotor;
 VelocityDutyCycle intakeVelocity; 
+
+CANrange m_coralCanrange;
+CANrange m_algaeCanrange;
 
 DutyCycleOut intakePercentOutput;
 
 
 public Intake() {
-    m_motor = new TalonFX(Constants.IntakeConstants.MOTORID , Constants.CANIVORE);
+    m_coralMotor = new TalonFX(Constants.CoralIntakeConstants.MOTORID , Constants.CANIVORE);
+    m_algaeMotor = new TalonFX(Constants.AlgaeIntakeConstants.MOTORID , Constants.CANIVORE);
+     m_coralCanrange = new CANrange(Constants.CoralIntakeConstants.CANRANGEID, Constants.CANIVORE);
+     m_algaeCanrange = new CANrange(Constants.CoralIntakeConstants.CANRANGEID, Constants.CANIVORE);
     final TalonFXConfiguration configuration = new TalonFXConfiguration();
     configuration.CurrentLimits.withStatorCurrentLimitEnable(true);
     configuration.CurrentLimits.withStatorCurrentLimit(40);
    
 
-    m_motor.getConfigurator().apply(configuration, 0.050);
+    m_coralMotor.getConfigurator().apply(configuration, 0.050);
 
     intakeVelocity = new VelocityDutyCycle(0);
 
@@ -54,38 +60,83 @@ public Intake() {
 
   public void intakerun(double velocity){
     intakeVelocity.Velocity = velocity * 5;
-        m_motor.setControl(intakeVelocity);
+        m_coralMotor.setControl(intakeVelocity);
 
     // m_motor.set(velocity);
 
     
   }
 
-  public void OUTTAKE(double velocity){
-    // intakeVelocity.Velocity = velocity;
-    //     m_motor.setControl(intakeVelocity);
+  public void coralintakerunvoltage(double velocity){
+    m_coralMotor.setVoltage(velocity);
 
-    m_motor.set(velocity);
-
-    if(SmartDashboard.getNumber("intake speed", 1) > 0.1 ){
-      m_motor.set(velocity);
-    } else {
-      m_motor.set(Constants.IntakeConstants.L1);
-    }
-  }
-
-  public void intakePercentOutput(double percentOutput) {
-
-    intakePercentOutput.Output = percentOutput;
-    m_motor.setControl(intakePercentOutput);
+// m_motor.set(velocity);
 
 
 }
 
-enum IntakeState{
-  INTAKE(Constants.IntakeConstants.INTAKE),
-  OUTTAKE(Constants.IntakeConstants.OUTTAKE),
-  STOP(Constants.IntakeConstants.STOP);
+public void algaeintakerunvoltage(double velocity){
+    m_algaeMotor.setVoltage(velocity);
+
+// m_motor.set(velocity);
+
+
+}
+
+public void CORALOUTTAKE(double velocity){
+// intakeVelocity.Velocity = velocity;
+//     m_motor.setControl(intakeVelocity);
+
+m_coralMotor.set(velocity);
+
+if(SmartDashboard.getNumber("coral intake speed", 1) > 0.1 ){
+  m_coralMotor.set(velocity);
+} else {
+  m_coralMotor.set(Constants.CoralIntakeConstants.L1);
+}
+}
+
+public void ALGAEOUTTAKE(double velocity){
+// intakeVelocity.Velocity = velocity;
+//     m_motor.setControl(intakeVelocity);
+
+m_algaeMotor.set(velocity);
+
+// if(SmartDashboard.getNumber("algae intake speed", 1) > 0.1 ){
+//   m_algaeMotor.set(velocity);
+// } else {
+//   m_algaeMotor.set(Constants.AlgaeIntakeConstants.L1);
+// }
+}
+
+public void coralIntakePercentOutput(double percentOutput) {
+
+intakePercentOutput.Output = percentOutput;
+m_coralMotor.setControl(intakePercentOutput);
+
+}
+
+public void algaeIntakePercentOutput(double percentOutput) {
+
+intakePercentOutput.Output = percentOutput;
+m_algaeMotor.setControl(intakePercentOutput);
+
+
+}
+
+public boolean HasCoral(){
+return m_coralCanrange.getDistance().getValueAsDouble() <= 0.051;
+
+}
+
+public boolean HasAlgae(){
+return m_algaeCanrange.getDistance().getValueAsDouble() <= 0.051;
+}
+
+public enum IntakeState{
+  INTAKE(Constants.CoralIntakeConstants.INTAKE),
+  OUTTAKE(Constants.CoralIntakeConstants.OUTTAKE),
+  STOP(Constants.CoralIntakeConstants.STOP);
 
   public double speed;
   IntakeState(double speed){
