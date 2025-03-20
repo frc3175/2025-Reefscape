@@ -30,11 +30,14 @@ CANrange m_algaeCanrange;
 public Intake() {
     m_coralMotor = new TalonFX(Constants.CoralIntakeConstants.MOTORID , Constants.CANIVORE);
     m_algaeMotor = new TalonFX(Constants.AlgaeIntakeConstants.MOTORID , Constants.CANIVORE);
-     m_coralCanrange = new CANrange(Constants.CoralIntakeConstants.CANRANGEID, Constants.CANIVORE);
-     m_algaeCanrange = new CANrange(Constants.CoralIntakeConstants.CANRANGEID, Constants.CANIVORE);
+
+    m_coralCanrange = new CANrange(Constants.CoralIntakeConstants.CANRANGEID, Constants.CANIVORE);
+    m_algaeCanrange = new CANrange(Constants.CoralIntakeConstants.CANRANGEID, Constants.CANIVORE);
+
     final TalonFXConfiguration coralConfiguration = new TalonFXConfiguration();
     coralConfiguration.CurrentLimits.withStatorCurrentLimitEnable(true);
     coralConfiguration.CurrentLimits.withStatorCurrentLimit(40);
+
     final TalonFXConfiguration algaeConfiguration = new TalonFXConfiguration();
     algaeConfiguration.CurrentLimits.withStatorCurrentLimitEnable(true);
     algaeConfiguration.CurrentLimits.withStatorCurrentLimit(40);
@@ -55,13 +58,6 @@ public Intake() {
     SmartDashboard.putBoolean("Has Coral", HasCoral());
     SmartDashboard.putBoolean("Has Algae", HasAlgae());
   }
-
-  
- 
-
-  
-
-  
 
   public void intakerun(double velocity){
     intakeVelocity.Velocity = velocity * 5;
@@ -137,6 +133,33 @@ public boolean HasCoral(){
 public boolean HasAlgae(){
   return m_algaeCanrange.getDistance().getValueAsDouble() <= 0.051;
 }
+
+public enum IntakeState {
+
+  HOME(Constants.CoralIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.HOLD, Constants.CoralIntakeConstants.ISCORALOUTTAKE),
+  L1(Constants.CoralIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.HOLD, Constants.CoralIntakeConstants.ISCORALOUTTAKE),
+  L2(Constants.CoralIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.HOLD, Constants.CoralIntakeConstants.ISCORALOUTTAKE),
+  L3(Constants.CoralIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.HOLD, Constants.CoralIntakeConstants.ISCORALOUTTAKE),
+  L4(Constants.CoralIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.HOLD, Constants.CoralIntakeConstants.ISCORALOUTTAKE),
+  BARGE(Constants.CoralIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.ISALGAEOUTTAKE),
+  ALGAET2(Constants.CoralIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.INTAKE, Constants.AlgaeIntakeConstants.ISALGAEOUTTAKE),
+  ALGAET3(Constants.CoralIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.INTAKE, Constants.AlgaeIntakeConstants.ISALGAEOUTTAKE),
+  INTAKE(Constants.CoralIntakeConstants.INTAKE, Constants.AlgaeIntakeConstants.HOLD, Constants.CoralIntakeConstants.ISCORALOUTTAKE),
+  CLIMB(Constants.CoralIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.ISALGAEOUTTAKE),
+  PROCESSOR(Constants.CoralIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.HOLD, Constants.AlgaeIntakeConstants.ISALGAEOUTTAKE);
+
+  public double coralIntakeSpeed;
+  public double algaeIntakeSpeed;
+  public boolean isCoralOuttake;
+  private IntakeState(double coralIntakeSpeed, double algaeIntakeSpeed, boolean isCoralOuttake) {
+    this.coralIntakeSpeed = coralIntakeSpeed;
+    this.algaeIntakeSpeed = algaeIntakeSpeed;
+    this.isCoralOuttake = isCoralOuttake;
+
+  }
+
+}
+
 }
 
 

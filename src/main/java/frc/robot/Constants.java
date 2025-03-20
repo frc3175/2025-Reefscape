@@ -32,7 +32,6 @@ public class Constants {
 
         //set points
         public static final double HOME = 0.4;  //0.4
-        public static final double HUMAN = 1.0;
         public static final double L1 = 0;
         public static final double L2 = 0; //4
         public static final double L3 = 5.8; //10
@@ -40,11 +39,9 @@ public class Constants {
         public static final double BARGE = 17.6;
         public static final double ALGAET2 = 3.33;
         public static final double ALGAET3 = 8.53;
-        public static final double INTERMEDIATE = 0;
         public static final double INTAKE = 0;
         public static final double CLIMB = 0;
         public static final double PROCESSOR = 0;
-        public static final double ALGAEHOME = 0;
         
 
         //configs
@@ -71,9 +68,11 @@ public class WristConstants {
     public static final int MOTORID = 2;
     public static final int CANCODERID = 56;
 
+    public static final double kP = 2;
+    public static final double kI = 0;
+    public static final double kD = 0;
+
     public static final double HOME = 0; //working
-    public static final double HUMAN = 0;
-    public static final double UPHUMAN = 0;
     public static final double L1 = -32;
     public static final double L2 = -37.6;
     public static final double L3 = -37.6;//-8.8
@@ -81,11 +80,17 @@ public class WristConstants {
     public static final double BARGE = -18;
     public static final double ALGAET2 = -7.12;
     public static final double ALGAET3 = -7.12;
-    public static final double INTERMEDIATE = -37.6;
     public static final double INTAKE = 0;
     public static final double CLIMB = 0;
     public static final double PROCESSOR = 0;
-    public static final double ALGAEHOME = 0;
+
+    public static final double DEFUALTVELOCITY = 160;
+    public static final double DEFAULTACCELERATION = 600;
+    public static final double DEFAULTJERK = 1750;
+
+    public static final double L4VELOCITY = 160;
+    public static final double L4ACCELERATION = 600;
+    public static final double L4JERK = 1750;
    
 
          
@@ -97,11 +102,11 @@ public class WristConstants {
 
         public static final double INTAKE = 12;
         public static final double OUTTAKE = -6;
-        public static final double OUTTAKEFAST = -13; //-0.5
         public static final double STOP = 0;
         public static final double L1 = -5;
-        public static final double INTERMEDIATE = 0;
-        public static final double HOLD = 0.4;
+        public static final double HOLD = 1;
+
+        public static final boolean ISCORALOUTTAKE = true;
     
     }
     public class AlgaeIntakeConstants{
@@ -113,7 +118,8 @@ public class WristConstants {
         public static final double OUTTAKE = -12;
         public static final double HOLD = 6;
         public static final double STOP = 0;
-        public static final double INTERMEDIATE = 0;
+
+        public static final boolean ISALGAEOUTTAKE = false;
     
     }    
     public class ClimberConstants{
@@ -123,6 +129,7 @@ public class WristConstants {
         public static final int SERVOPORT = 0;
         
         public static final double HOME = 0;
+        public static final double CLIMBOUT = 90;
     }
 
    

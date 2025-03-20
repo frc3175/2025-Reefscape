@@ -22,7 +22,7 @@ TalonFX m_right;
 TalonFX m_left;
 
 
-public Elevator() {
+  public Elevator() {
     m_right = new TalonFX(Constants.ElevatorConstants.BACKID , Constants.CANIVORE);
     m_left = new TalonFX(Constants.ElevatorConstants.FRONTID , Constants.CANIVORE);
 
@@ -48,8 +48,6 @@ public void setpose(double pose){
 }
 
 
-
-
 public void config(){
   m_motmag = new MotionMagicVoltage(0);    
 
@@ -58,10 +56,7 @@ public void config(){
     talonFXConfigs.CurrentLimits.withStatorCurrentLimit(Constants.ElevatorConstants.CurrentLimit);
     
   var slot0Configs = talonFXConfigs.Slot0;
-    slot0Configs.kS = 0.24; // add 0.24 V to overcome friction
-    slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
 
-    
     slot0Configs.kP = Constants.ElevatorConstants.kp;
     slot0Configs.kI = Constants.ElevatorConstants.ki;
     slot0Configs.kD = Constants.ElevatorConstants.kD;
@@ -72,11 +67,9 @@ public void config(){
 
     var motionMagicConfigs = talonFXConfigs.MotionMagic;
     motionMagicConfigs.MotionMagicCruiseVelocity = Constants.ElevatorConstants.MotionMagicCruiseVelocity; // 80 rps cruise velocity
-    motionMagicConfigs.MotionMagicAcceleration   = Constants.ElevatorConstants.MotionMagicAcceleration; // 160 rps/s acceleration (0.5 seconds)
-    motionMagicConfigs.MotionMagicJerk           = Constants.ElevatorConstants.MotionMagicJerk; // 1600 rps/s^2 jerk (0.1 seconds)
+    motionMagicConfigs.MotionMagicAcceleration = Constants.ElevatorConstants.MotionMagicAcceleration; // 160 rps/s acceleration (0.5 seconds)
+    motionMagicConfigs.MotionMagicJerk = Constants.ElevatorConstants.MotionMagicJerk; // 1600 rps/s^2 jerk (0.1 seconds)
     m_motmag.EnableFOC = Constants.ElevatorConstants.EnableFOC;
-
-
 
     m_left.getConfigurator().apply(talonFXConfigs, 0.050);
     m_left.setNeutralMode(NeutralModeValue.Brake);
@@ -84,7 +77,28 @@ public void config(){
     m_right.setNeutralMode(NeutralModeValue.Brake);
 
 }
-  
+
+public enum ElevatorState {
+
+  HOME(Constants.ElevatorConstants.HOME),
+  L1(Constants.ElevatorConstants.L1),
+  L2(Constants.ElevatorConstants.L2),
+  L3(Constants.ElevatorConstants.L3),
+  L4(Constants.ElevatorConstants.L4),
+  BARGE(Constants.ElevatorConstants.BARGE),
+  ALGAET2(Constants.ElevatorConstants.ALGAET2),
+  ALGAET3(Constants.ElevatorConstants.ALGAET3),
+  INTAKE(Constants.ElevatorConstants.INTAKE),
+  CLIMB(Constants.ElevatorConstants.CLIMB),
+  PROCESSOR(Constants.ElevatorConstants.PROCESSOR);
+
+  public final double elevatorSetpoint;
+  private ElevatorState(double elevatorSetpoint) {
+    this.elevatorSetpoint = elevatorSetpoint;
+
+  }
+
+}
 
 }
 

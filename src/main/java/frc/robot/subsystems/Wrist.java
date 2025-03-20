@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.CANcoderConfiguration;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.DynamicMotionMagicDutyCycle;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.PositionDutyCycle;
 import com.ctre.phoenix6.hardware.CANcoder;
@@ -23,7 +24,7 @@ import frc.robot.Constants;
 public class Wrist extends SubsystemBase {
   
 
-MotionMagicVoltage m_motmag;
+DynamicMotionMagicDutyCycle m_motmag;
 
 PositionDutyCycle m_PositionDutyCycle;
 TalonFX m_motor;
@@ -42,42 +43,35 @@ public Wrist() {
 
     
 
-    m_motmag = new MotionMagicVoltage(0);
+    m_motmag = new DynamicMotionMagicDutyCycle(0, 0, 0, 0);
 
     var talonFXConfigs = new TalonFXConfiguration();
     
-    var canCoderConfigs = new CANcoderConfiguration();
+    // var canCoderConfigs = new CANcoderConfiguration();
 
     var slot0Configs = talonFXConfigs.Slot0;
     
 
-    slot0Configs.kP = 100; // change as needed
-    slot0Configs.kI = 0;
-    slot0Configs.kD = 0;
-
-    var motionMagicConfigs = talonFXConfigs.MotionMagic;
-    motionMagicConfigs.MotionMagicCruiseVelocity = 160;//160; // 80 rps cruise velocity
-    motionMagicConfigs.MotionMagicAcceleration = 600;//240; // 160 rps/s acceleration (0.5 seconds)
-    motionMagicConfigs.MotionMagicJerk = 1750;
-    
-     // 1600 rps/s^2 jerk (0.1 seconds)
+    slot0Configs.kP = Constants.WristConstants.kP; // change as needed
+    slot0Configs.kI = Constants.WristConstants.kI;
+    slot0Configs.kD = Constants.WristConstants.kD;
 
     m_motmag.EnableFOC = true;
 
 
 
-    talonFXConfigs.Feedback.FeedbackRemoteSensorID = m_canCoder.getDeviceID();
-    talonFXConfigs.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.SyncCANcoder;
-    talonFXConfigs.Feedback.SensorToMechanismRatio = 1.0;
-    talonFXConfigs.Feedback.RotorToSensorRatio = -60.7639;
+    // talonFXConfigs.Feedback.FeedbackRemoteSensorID = m_canCoder.getDeviceID();
+    // talonFXConfigs.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.SyncCANcoder;
+    // talonFXConfigs.Feedback.SensorToMechanismRatio = 1.0;
+    // talonFXConfigs.Feedback.RotorToSensorRatio = -60.7639;
 
-    canCoderConfigs.MagnetSensor.withAbsoluteSensorDiscontinuityPoint(1);
-    canCoderConfigs.MagnetSensor.withSensorDirection(SensorDirectionValue.CounterClockwise_Positive);
-    canCoderConfigs.MagnetSensor.withMagnetOffset(Rotations.of(0.1));
+    // canCoderConfigs.MagnetSensor.withAbsoluteSensorDiscontinuityPoint(1);
+    // canCoderConfigs.MagnetSensor.withSensorDirection(SensorDirectionValue.CounterClockwise_Positive);
+    // canCoderConfigs.MagnetSensor.withMagnetOffset(Rotations.of(0.1));
 
     
     m_motor.getConfigurator().apply(talonFXConfigs, 0.050);
-    m_canCoder.getConfigurator().apply(canCoderConfigs, 0.050);
+    // m_canCoder.getConfigurator().apply(canCoderConfigs, 0.050);
     m_motor.setNeutralMode(NeutralModeValue.Brake);
     // periodic, run Motion Magic with slot 0 configs,
   }
@@ -95,14 +89,42 @@ public Wrist() {
 
   }
 
-  public void setangle(double angle){
+  public void setangle(double angle, double velocity, double accleration, double jerk){
 
-    m_motor.setControl(m_motmag.withPosition(angle+nudge));
+    m_motor.setControl(m_motmag.withPosition(angle+nudge).withVelocity(velocity).withAcceleration(accleration).withJerk(jerk));
 
 
   }
   public void setnudge(double change){
     nudge = nudge + change;
+  }
+
+  public enum WristState {
+
+    HOME(Constants.WristConstants.HOME, Constants.WristConstants.DEFUALTVELOCITY, Constants.WristConstants.DEFAULTACCELERATION, Constants.WristConstants.DEFAULTJERK),
+    L1(Constants.WristConstants.L1, Constants.WristConstants.DEFUALTVELOCITY, Constants.WristConstants.DEFAULTACCELERATION, Constants.WristConstants.DEFAULTJERK),
+    L2(Constants.WristConstants.L2, Constants.WristConstants.DEFUALTVELOCITY, Constants.WristConstants.DEFAULTACCELERATION, Constants.WristConstants.DEFAULTJERK),
+    L3(Constants.WristConstants.L3, Constants.WristConstants.DEFUALTVELOCITY, Constants.WristConstants.DEFAULTACCELERATION, Constants.WristConstants.DEFAULTJERK),
+    L4(Constants.WristConstants.L4, Constants.WristConstants.L4VELOCITY, Constants.WristConstants.L4ACCELERATION, Constants.WristConstants.L4JERK),
+    BARGE(Constants.WristConstants.BARGE, Constants.WristConstants.DEFUALTVELOCITY, Constants.WristConstants.DEFAULTACCELERATION, Constants.WristConstants.DEFAULTJERK),
+    ALGAET2(Constants.WristConstants.ALGAET2, Constants.WristConstants.DEFUALTVELOCITY, Constants.WristConstants.DEFAULTACCELERATION, Constants.WristConstants.DEFAULTJERK),
+    ALGAET3(Constants.WristConstants.ALGAET3, Constants.WristConstants.DEFUALTVELOCITY, Constants.WristConstants.DEFAULTACCELERATION, Constants.WristConstants.DEFAULTJERK),
+    INTAKE(Constants.WristConstants.INTAKE, Constants.WristConstants.DEFUALTVELOCITY, Constants.WristConstants.DEFAULTACCELERATION, Constants.WristConstants.DEFAULTJERK),
+    CLIMB(Constants.WristConstants.CLIMB, Constants.WristConstants.DEFUALTVELOCITY, Constants.WristConstants.DEFAULTACCELERATION, Constants.WristConstants.DEFAULTJERK),
+    PROCESSOR(Constants.WristConstants.PROCESSOR, Constants.WristConstants.DEFUALTVELOCITY, Constants.WristConstants.DEFAULTACCELERATION, Constants.WristConstants.DEFAULTJERK);
+
+    public final double wristSetpoint;
+    public final double wristVelocity;
+    public final double wristAcceleration;
+    public final double wristJerk;
+    private WristState (double wristSetpoint, double wristVelocity, double wristAcceleration, double wristJerk) {
+      this.wristSetpoint = wristSetpoint;
+      this.wristVelocity = wristVelocity;
+      this.wristAcceleration = wristAcceleration;
+      this.wristJerk = wristJerk;
+
+    }
+
   }
 
 }
