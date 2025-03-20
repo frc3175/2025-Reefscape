@@ -8,6 +8,16 @@ import frc.robot.subsystems.Intake.IntakeState;
 import frc.robot.subsystems.Wrist.WristState;
 
 public class BotState extends SubsystemBase {
+
+    private BobotState m_bobotState = BobotState.HOME;
+
+    public BobotState getCurrentBotState() {
+        return m_bobotState;
+    }
+
+    public void setBotState(BobotState state) {
+        m_bobotState = state;
+    }
  
     public enum BobotState {
 

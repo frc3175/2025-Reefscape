@@ -18,6 +18,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.AutoLeft;
 import frc.robot.commands.AutoRight;
+import frc.robot.commands.IntakeAndReset;
+import frc.robot.commands.Outtake;
+import frc.robot.commands.SetBotState;
 import frc.robot.commands.SetElevator;
 import frc.robot.commands.SetIntake;
 import frc.robot.commands.SetWrist;
@@ -29,6 +32,7 @@ import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Wrist;
+import frc.robot.subsystems.BotState.BobotState;
 import frc.robot.subsystems.BotState;
 
 
@@ -52,12 +56,10 @@ public class RobotContainer {
     public final Elevator m_elevator = new Elevator();
     public final Wrist m_wrist = new Wrist();
     public final Intake m_intake = new Intake();
-    public final BotState m_robotState = new BotState();
-    
+    public final BotState m_botState = new BotState();
     public final Climber m_climber = new Climber();
    
 
-    
 
     private final int translationAxis = XboxController.Axis.kLeftY.value;
     private final int strafeAxis = XboxController.Axis.kLeftX.value;
@@ -66,10 +68,6 @@ public class RobotContainer {
     /* Path follower */
     private final SendableChooser<Command> autoChooser;
 
-
-
-    
-    
 
     public RobotContainer() {
         
@@ -122,21 +120,7 @@ public class RobotContainer {
 
          driverController.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
-         driverController.leftBumper().onTrue(new SetIntake(m_intake, m_robotState, "OUTTAKE"));
-
-         driverController.pov(0).onTrue(new InstantCommand(()-> m_wrist.setnudge(-.1)));
-         driverController.pov(180).onTrue(new InstantCommand(()-> m_wrist.setnudge(.1)));
-         driverController.pov(180).onTrue(new InstantCommand(()-> m_wrist.setangle(m_wrist.getpose())));
-         driverController.pov(0).onTrue(new InstantCommand(()-> m_wrist.setangle(m_wrist.getpose())));
-
-         driverController.start().onTrue(new SetIntake(m_intake, m_robotState, "INTAKE")
-            .andThen(new SetElevator(m_elevator, m_robotState, "INTAKE"))
-            .andThen(new SetWrist(m_wrist, m_robotState, "INTAKE")));
-
-         driverController.back().onTrue(new SetIntake(m_intake, m_robotState, "INTERMEDIATE")
-            .andThen(new SetElevator(m_elevator, m_robotState, "INTERMEDIATE"))
-            .andThen(new SetWrist(m_wrist, m_robotState, "INTERMEDIATE")));
-
+         driverController.leftBumper().onTrue(new Outtake(m_intake, m_botState));
 
         driverController.rightTrigger().onTrue(new AutoRight(m_ll));
         driverController.leftTrigger().onTrue(new AutoLeft(m_ll));
@@ -144,38 +128,19 @@ public class RobotContainer {
         
          
     
-        opController.y().onTrue(new SetIntake(m_intake, m_robotState, "L4")
-            .andThen(new SetElevator(m_elevator, m_robotState, "L4"))
-            .andThen(new SetWrist(m_wrist, m_robotState, "L4")));
+        opController.y().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.L4));
             
-        opController.b().onTrue(new SetIntake(m_intake, m_robotState, "L3")
-            .andThen(new SetElevator(m_elevator, m_robotState, "L3"))
-            .andThen(new SetWrist(m_wrist, m_robotState, "L3")));
+        opController.b().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.L3));
 
-        opController.x().onTrue(new SetIntake(m_intake, m_robotState, "L2")
-            .andThen(new SetElevator(m_elevator, m_robotState, "L2"))
-            .andThen(new SetWrist(m_wrist, m_robotState, "L2")));
+        opController.x().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.L2));
 
-        opController.a().onTrue(new SetIntake(m_intake, m_robotState, "HOME").unless(()->m_intake.HasCoral())
-            .andThen(new SetIntake(m_intake, m_robotState, "INTERMEDIATE").onlyIf(()->m_intake.HasCoral()))
-            .andThen(new SetWrist(m_wrist, m_robotState, "INTERMEDIATE"))
-            .andThen(new SetElevator(m_elevator, m_robotState, "HOME").unless(()->m_intake.HasCoral()))
-            .andThen(new SetElevator(m_elevator, m_robotState, "INTERMEDIATE").onlyIf(()->m_intake.HasCoral()))
-            .andThen(new SetWrist(m_wrist, m_robotState, "HOME").unless(()->m_intake.HasCoral())));
+        opController.a().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME));
         
-        opController.button(10).onTrue(new SetIntake(m_intake, m_robotState, "L1")
-            .andThen(new SetElevator(m_elevator, m_robotState, "L1"))
-            .andThen(new SetWrist(m_wrist, m_robotState, "L1")));
+        opController.button(10).onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.L1));
         
 
-        opController.rightBumper().onTrue(new SetIntake(m_intake, m_robotState, "INTNAKE").onlyIf(()->m_intake.HasCoral())
-            .andThen(new SetElevator(m_elevator, m_robotState, "INTAKE").onlyIf(()->m_intake.HasCoral()))
-            .andThen(new SetWrist(m_wrist, m_robotState, "INTAKE").onlyIf(()->m_intake.HasCoral())));
-
-        opController.rightBumper().onFalse(new SetWrist(m_wrist, m_robotState, "INTERMEDIATE").onlyIf(()->m_intake.HasCoral())
-            .andThen(new SetElevator(m_elevator, m_robotState, "HOME").unless(()->m_intake.HasCoral()))
-            .andThen(new SetElevator(m_elevator, m_robotState, "INTERMEDIATE").onlyIf(()->m_intake.HasCoral()))
-            .andThen(new SetWrist(m_wrist, m_robotState, "HOME").unless(()->m_intake.HasCoral())));
+        opController.rightBumper().onTrue(new IntakeAndReset(m_intake, m_wrist, m_elevator, m_botState));
+        opController.rightBumper().onFalse(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME));
 
         opController.start().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
 
