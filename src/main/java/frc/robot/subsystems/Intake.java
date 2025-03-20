@@ -134,9 +134,19 @@ return m_algaeCanrange.getDistance().getValueAsDouble() <= 0.051;
 }
 
 public enum IntakeState{
+  HOME(Constants.CoralIntakeConstants.HOLD),
   INTAKE(Constants.CoralIntakeConstants.INTAKE),
   OUTTAKE(Constants.CoralIntakeConstants.OUTTAKE),
-  STOP(Constants.CoralIntakeConstants.STOP);
+  L1(Constants.CoralIntakeConstants.HOLD),
+  L2(Constants.CoralIntakeConstants.HOLD),
+  L3(Constants.CoralIntakeConstants.HOLD),
+  L4(Constants.CoralIntakeConstants.HOLD),
+  CLIMB(Constants.CoralIntakeConstants.STOP),
+  ALGAET2(Constants.AlgaeIntakeConstants.INTAKE),
+  ALGAET3(Constants.AlgaeIntakeConstants.INTAKE),
+  NET(Constants.AlgaeIntakeConstants.HOLD);
+
+  
 
   public double speed;
   IntakeState(double speed){

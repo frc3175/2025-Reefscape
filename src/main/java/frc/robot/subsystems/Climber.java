@@ -83,17 +83,7 @@ public Climber() {
   }
 
 
-  public enum ClimberState {
-    HOME(1),
-    CLIMBING(1);
-
-
-    public int pose; 
-    private ClimberState(int pose) {
-      this.pose = pose;
-    }
-  }
-
+  
 }
 
 

@@ -67,11 +67,13 @@ public Elevator() {
     L2(Constants.ElevatorConstants.L2),
     L3(Constants.ElevatorConstants.L3),
     L4(Constants.ElevatorConstants.L4),
-    BARGE(Constants.ElevatorConstants.BARGE),
+    NET(Constants.ElevatorConstants.BARGE),
     ALGAET2(Constants.ElevatorConstants.ALGAET2),
     ALGAET3(Constants.ElevatorConstants.ALGAET3),
-    HP(Constants.ElevatorConstants.HUMAN),
-    HOME(Constants.ElevatorConstants.HOME);
+    INTAKE(Constants.ElevatorConstants.INTAKE),
+    HOME(Constants.ElevatorConstants.INTERMEDIATE),
+    CLIMB(Constants.ElevatorConstants.CLIMB),
+    PROCESSOR(Constants.ElevatorConstants.PROCESSOR);
 
     public double elevSetpoint;
     private ElevatorState(double setpoint) {

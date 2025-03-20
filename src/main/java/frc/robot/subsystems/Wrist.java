@@ -53,9 +53,17 @@ public Wrist() {
 
 
   public enum Wriststate {
-
-    HP(Constants.WristConstants.HUMAN),
-    HOME(Constants.WristConstants.HOME);
+    CLIMB(Constants.WristConstants.CLIMB),
+    INTAKE(Constants.WristConstants.INTAKE),
+    HOME(Constants.WristConstants.HOME),
+    L1(Constants.WristConstants.L1),
+    L2(Constants.WristConstants.L2),
+    L3(Constants.WristConstants.L3),
+    L4(Constants.WristConstants.L4),
+    PROCESSOR(Constants.WristConstants.PROCESSOR),
+    ALGAET2(Constants.WristConstants.ALGAET2),
+    ALGAET3(Constants.WristConstants.ALGAET3),
+    NET(Constants.WristConstants.BARGE); 
 
     public double wristPosition;
     
