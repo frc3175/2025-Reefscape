@@ -33,8 +33,8 @@ public class Constants {
         //set points
         public static final double HOME = 0.4;  //0.4
         public static final double L1 = 0;
-        public static final double L2 = 0; //4
-        public static final double L3 = 5.8; //10
+        public static final double L2 = 2.2; //4
+        public static final double L3 = 8.2; //10
         public static final double L4 = 17;
         public static final double BARGE = 17.6;
         public static final double ALGAET2 = 3.33;
@@ -45,12 +45,12 @@ public class Constants {
         
 
         //configs
-        public static final double kp = 2; //1
+        public static final double kp = 1; //1
         public static final double ki = 0; //0
-        public static final double kD = 0.05; //0.05
-        public static final double kV = 3.11; //0.05
+        public static final double kD = 0; //0.05
+        public static final double kV = 0.05; //0.05
         public static final double kS = 0.08; //0.08
-        public static final double kG = 0.14; //0.16
+        public static final double kG = 0.12; //0.16
 
         public static final double  MotionMagicCruiseVelocity = 90;
         public static final double  MotionMagicAcceleration = 300;
@@ -72,10 +72,10 @@ public class WristConstants {
     public static final double kI = 0;
     public static final double kD = 0;
 
-    public static final double HOME = 0; //working
+    public static final double HOME = -31.3; //working
     public static final double L1 = -32;
-    public static final double L2 = -37.6;
-    public static final double L3 = -37.6;//-8.8
+    public static final double L2 = -31.3;
+    public static final double L3 = -31.3;//-8.8
     public static final double L4 = -28.3;
     public static final double BARGE = -18;
     public static final double ALGAET2 = -7.12;
