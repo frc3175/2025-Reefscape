@@ -137,6 +137,7 @@ public class RobotContainer {
         opController.rightBumper().onTrue(m_IntakeAndReset);
         opController.rightBumper().onFalse(new InstantCommand(()->m_IntakeAndReset.cancel())
             .andThen(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME)));
+            
 
         opController.start().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAET2));
 

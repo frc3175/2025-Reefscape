@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.FieldConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Limelight;
+import frc.robot.util.AutoutilsLeft;
+import frc.robot.util.AutoutilsRight;
 
 
 
@@ -35,7 +37,7 @@ public class AutoLeft extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    endPose = FieldConstants.getNearestLeftPose(m_drivetrain.getState().Pose);
+    endPose = AutoutilsLeft.getnewpose(m_limelight.algaegetTargetid());
 
             // Create the path using the waypoints created above
             final  Command path =  AutoBuilder.pathfindToPose(

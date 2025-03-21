@@ -38,7 +38,7 @@ public class IntakeAndReset extends Command {
   @Override
   public void initialize() {
 
-    new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.INTAKE);
+    new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.INTAKE).schedule();;
     
   }
 

@@ -9,10 +9,12 @@ import com.pathplanner.lib.path.PathConstraints;
 
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.FieldConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Limelight;
+import frc.robot.util.AutoutilsRight;
 
 
 
@@ -29,6 +31,7 @@ public class AutoRight extends Command {
   /** Creates a new AutoWorkPlease. */
   public AutoRight(Limelight limelight) {
     m_limelight = limelight;
+
     
 
     // Use addRequirements() here to declare subsystem dependencies.
@@ -39,7 +42,10 @@ public class AutoRight extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    endPose = FieldConstants.getNearestRightPose(m_drivetrain.getState().Pose);
+    endPose = AutoutilsRight.getnewpose(m_limelight.algaegetTargetid());
+
+    SmartDashboard.putNumber("333 X", endPose.getX());
+    SmartDashboard.putNumber("333 Y", endPose.getY());
 
             // Create the path using the waypoints created above
             final  Command path =  AutoBuilder.pathfindToPose(

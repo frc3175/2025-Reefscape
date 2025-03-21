@@ -72,7 +72,7 @@ public class WristConstants {
     public static final double kI = 0;
     public static final double kD = 0;
 
-    public static final double HOME = -31.3; //working
+    public static final double HOME = -37; //working
     public static final double L1 = -32;
     public static final double L2 = -31.3;
     public static final double L3 = -31.3;//-8.8
@@ -81,16 +81,16 @@ public class WristConstants {
     public static final double ALGAET2 = -7.12;
     public static final double ALGAET3 = -7.12;
     public static final double INTAKE = 0;
-    public static final double CLIMB = 0;
+    public static final double CLIMB = -6.26;
     public static final double PROCESSOR = 0;
 
     public static final double DEFUALTVELOCITY = 160;
     public static final double DEFAULTACCELERATION = 600;
     public static final double DEFAULTJERK = 1750;
 
-    public static final double L4VELOCITY = 160;
-    public static final double L4ACCELERATION = 600;
-    public static final double L4JERK = 1750;
+    public static final double L4VELOCITY = 25;
+    public static final double L4ACCELERATION = 50;
+    public static final double L4JERK = 100;
    
 
          
