@@ -65,6 +65,7 @@ public class Robot extends TimedRobot {
       
       SmartDashboard.putNumber("111 drive pose X", m_robotContainer.drivetrain.getState().Pose.getX());
       SmartDashboard.putNumber("111 drive pose Y",  m_robotContainer.drivetrain.getState().Pose.getY());
+      SmartDashboard.putData(m_robotContainer.m_elevator);
     } 
       
   }

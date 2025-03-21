@@ -1,3 +1,4 @@
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -55,6 +56,7 @@ public class RobotContainer {
     public final Wrist m_wrist = new Wrist();
     public final Intake m_intake = new Intake();
     public final RobotState m_robotState = new RobotState();
+    public final Command Intake = new IntakeAndReset(m_intake, m_wrist, m_elevator, m_robotState);
     
     public final Climber m_climber = new Climber();
    
@@ -165,21 +167,27 @@ public class RobotContainer {
             .alongWith(new SetElevator(m_elevator, m_robotState, "L2"))
             .alongWith(new SetWrist(m_wrist, m_robotState, "L2")));
 
-        opController.a().onTrue(new SetIntake(m_intake, m_robotState, "HOME")
-            .alongWith(new SetWrist(m_wrist, m_robotState, "HOME"))
-            .andThen(new SetElevator(m_elevator, m_robotState, "HOME")));
+        // opController.a().onTrue(new SetIntake(m_intake, m_robotState, "HOME")
+        //     .alongWith(new SetWrist(m_wrist, m_robotState, "HOME"))
+        //     .andThen(new InstantCommand(()-> m_elevator.setpose(0))));
         
         opController.button(10).onTrue(new SetIntake(m_intake, m_robotState, "L1")
             .alongWith(new SetElevator(m_elevator, m_robotState, "L1"))
             .alongWith(new SetWrist(m_wrist, m_robotState, "L1")));
 
-        opController.rightBumper().onTrue(new IntakeAndReset(m_intake, m_wrist, m_elevator, m_robotState));
+        opController.rightBumper().onTrue(Intake);
         opController.rightBumper().onFalse(new SetIntake(m_intake, m_robotState, "HOME")
             .alongWith(new SetWrist(m_wrist, m_robotState, "HOME"))
-            .andThen(new SetElevator(m_elevator, m_robotState, "HOME")));
+            .alongWith(new InstantCommand(() -> Intake.cancel()))
+            .andThen(new InstantCommand(()->m_elevator.setpose(0))));
 
-        opController.start().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
-        opController.back().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
+        opController.start().onTrue(new InstantCommand(() -> m_robotState.changeMode()).andThen((new SetIntake(m_intake, m_robotState, "L2"))).alongWith(new SetElevator(m_elevator, m_robotState, "L2"))
+        .alongWith(new SetWrist(m_wrist, m_robotState, "L2")).andThen(new InstantCommand(() -> m_robotState.changeMode())));
+        opController.back().onTrue(new InstantCommand(() -> m_robotState.changeMode()).andThen((new SetIntake(m_intake, m_robotState, "L3"))).alongWith(new SetElevator(m_elevator, m_robotState, "L3"))
+        .alongWith(new SetWrist(m_wrist, m_robotState, "L3")).andThen(new InstantCommand(() -> m_robotState.changeMode())));
+        
+
+        
 
         opController.pov(0).onTrue(new CimbDeploy(m_climber));
         opController.pov(180).onTrue(new ClimbBack(m_climber));

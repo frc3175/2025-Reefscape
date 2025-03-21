@@ -10,8 +10,10 @@ public class SetIntake extends Command {
     Intake m_intake;
     String m_level;
     RobotState m_robotState;
+    public boolean exucuting;
 
     public SetIntake(Intake intake, RobotState robotState, String level) {
+        exucuting = false;
 
         m_level = level;
         m_intake = intake;
@@ -94,11 +96,13 @@ public class SetIntake extends Command {
 
     @Override
     public void execute() {
+        exucuting = true;
 
     }
 
     @Override 
     public void end(boolean isfinished) {
+        exucuting = false;
 
     } 
 

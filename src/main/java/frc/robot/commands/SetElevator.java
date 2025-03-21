@@ -11,8 +11,10 @@ public class SetElevator extends Command {
     String m_level;
     double wantedPose;
     RobotState m_robotState;
+    public boolean exucuting;
 
     public SetElevator(Elevator elevator, RobotState robotState, String level) {
+        exucuting = false;
 
         m_level = level;
         m_elevator = elevator;
@@ -101,11 +103,13 @@ public class SetElevator extends Command {
 
     @Override
     public void execute() {
+        exucuting = true;
 
     }
 
     @Override 
     public void end(boolean isfinished) {
+        exucuting = false;
 
     } 
     

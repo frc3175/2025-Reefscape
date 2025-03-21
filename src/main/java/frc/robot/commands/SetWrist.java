@@ -11,6 +11,7 @@ public class SetWrist extends Command {
     String m_level;
     double wantedPose;
     RobotState m_robotState;
+    public boolean exucuting;
 
     public SetWrist(Wrist wrist, RobotState robotState, String level) {
 
@@ -21,6 +22,7 @@ public class SetWrist extends Command {
 
     @Override
     public void initialize() {
+        exucuting = false;
         if(m_robotState.isCoralMode()) {
             switch (m_level) {
                 case "HOME":
@@ -105,6 +107,7 @@ public class SetWrist extends Command {
 
     @Override 
     public void end(boolean isfinished) {
+        exucuting = false;
 
     } 
     

@@ -35,9 +35,9 @@ double cancoderoffset = 0;
 
 public Wrist() {
     m_motor = new TalonFX(Constants.WristConstants.MOTORID , Constants.CANIVORE);
-    m_canCoder = new CANcoder(Constants.WristConstants.CANCODERID, Constants.CANIVORE);
+    // m_canCoder = new CANcoder(Constants.WristConstants.CANCODERID, Constants.CANIVORE);
 
-    cancoderoffset = m_canCoder.getAbsolutePosition().getValueAsDouble() - cancoderoffset;
+    // cancoderoffset = m_canCoder.getAbsolutePosition().getValueAsDouble() - cancoderoffset;
 
 
     
@@ -46,12 +46,12 @@ public Wrist() {
 
     var talonFXConfigs = new TalonFXConfiguration();
     
-    var canCoderConfigs = new CANcoderConfiguration();
+    // var canCoderConfigs = new CANcoderConfiguration();
 
     var slot0Configs = talonFXConfigs.Slot0;
     
 
-    slot0Configs.kP = 100; // change as needed
+    slot0Configs.kP = 2; // change as needed
     slot0Configs.kI = 0;
     slot0Configs.kD = 0;
 
@@ -66,18 +66,18 @@ public Wrist() {
 
 
 
-    talonFXConfigs.Feedback.FeedbackRemoteSensorID = m_canCoder.getDeviceID();
-    talonFXConfigs.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.SyncCANcoder;
-    talonFXConfigs.Feedback.SensorToMechanismRatio = 1.0;
-    talonFXConfigs.Feedback.RotorToSensorRatio = -60.7639;
+    // talonFXConfigs.Feedback.FeedbackRemoteSensorID = m_canCoder.getDeviceID();
+    // talonFXConfigs.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.SyncCANcoder;
+    // talonFXConfigs.Feedback.SensorToMechanismRatio = 1.0;
+    // talonFXConfigs.Feedback.RotorToSensorRatio = -60.7639;
 
-    canCoderConfigs.MagnetSensor.withAbsoluteSensorDiscontinuityPoint(1);
-    canCoderConfigs.MagnetSensor.withSensorDirection(SensorDirectionValue.CounterClockwise_Positive);
-    canCoderConfigs.MagnetSensor.withMagnetOffset(Rotations.of(0.1));
+    // canCoderConfigs.MagnetSensor.withAbsoluteSensorDiscontinuityPoint(1);
+    // canCoderConfigs.MagnetSensor.withSensorDirection(SensorDirectionValue.CounterClockwise_Positive);
+    // canCoderConfigs.MagnetSensor.withMagnetOffset(Rotations.of(0.1));
 
     
     m_motor.getConfigurator().apply(talonFXConfigs, 0.050);
-    m_canCoder.getConfigurator().apply(canCoderConfigs, 0.050);
+    // m_canCoder.getConfigurator().apply(canCoderConfigs, 0.050);
     m_motor.setNeutralMode(NeutralModeValue.Brake);
     // periodic, run Motion Magic with slot 0 configs,
   }
