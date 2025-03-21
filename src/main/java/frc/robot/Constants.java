@@ -58,7 +58,7 @@ public class Constants {
         public static final boolean EnableFOC = true;
 
         public static final boolean CurrentLimitEnable = true;
-        public static final double  CurrentLimit       = 80;
+        public static final double  CurrentLimit = 80;
 
 }
 
