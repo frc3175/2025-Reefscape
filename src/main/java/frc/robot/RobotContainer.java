@@ -13,17 +13,17 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.AutoLeft;
 import frc.robot.commands.AutoRight;
+import frc.robot.commands.ClimbBack;
+import frc.robot.commands.ClimbDeploy;
 import frc.robot.commands.IntakeAndReset;
 import frc.robot.commands.Outtake;
 import frc.robot.commands.SetBotState;
-import frc.robot.commands.SetElevator;
-import frc.robot.commands.SetIntake;
-import frc.robot.commands.SetWrist;
 import frc.robot.commands.SwerveDrive;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.Climber;
@@ -58,6 +58,8 @@ public class RobotContainer {
     public final Intake m_intake = new Intake();
     public final BotState m_botState = new BotState();
     public final Climber m_climber = new Climber();
+
+    public Command m_IntakeAndReset = new IntakeAndReset(m_intake, m_wrist, m_elevator, m_botState);
    
 
 
@@ -71,19 +73,13 @@ public class RobotContainer {
 
     public RobotContainer() {
         
-        NamedCommands.registerCommand("Intake",  new SequentialCommandGroup(new SetIntake(m_intake, m_robotState,"Intake"),
-            new SetElevator(m_elevator, m_robotState,"Intake"),
-            new SetWrist(m_wrist, m_robotState,"Intake")));
+        NamedCommands.registerCommand("Intake",  new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.INTAKE));
 
-        NamedCommands.registerCommand("Outtake", new SetIntake(m_intake, m_robotState,"Outtake"));
+        NamedCommands.registerCommand("Outtake", new InstantCommand(()->m_intake.coralintakerunvoltage(Constants.CoralIntakeConstants.OUTTAKE)));
 
-        NamedCommands.registerCommand("L4", new SequentialCommandGroup(new SetIntake(m_intake, m_robotState,"L4"),
-        new SetElevator(m_elevator, m_robotState,"L4"),
-        new SetWrist(m_wrist, m_robotState,"L4")));
+        NamedCommands.registerCommand("L4", new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.L4));
 
-        NamedCommands.registerCommand("HOME", new SequentialCommandGroup(new SetIntake(m_intake, m_robotState,"INTERMEDIATE"),
-        new SetElevator(m_elevator, m_robotState,"INTERMEDIATE"),
-        new SetWrist(m_wrist, m_robotState,"INTERMEDIATE")));
+        NamedCommands.registerCommand("HOME", new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME));
 
         
         autoChooser = AutoBuilder.buildAutoChooser("Red 2 Piece Left");
@@ -121,6 +117,7 @@ public class RobotContainer {
          driverController.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
          driverController.leftBumper().onTrue(new Outtake(m_intake, m_botState));
+         driverController.leftBumper().onFalse((new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME)));
 
         driverController.rightTrigger().onTrue(new AutoRight(m_ll));
         driverController.leftTrigger().onTrue(new AutoLeft(m_ll));
@@ -139,12 +136,19 @@ public class RobotContainer {
         opController.button(10).onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.L1));
         
 
-        opController.rightBumper().onTrue(new IntakeAndReset(m_intake, m_wrist, m_elevator, m_botState));
-        opController.rightBumper().onFalse(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME));
+        opController.rightBumper().onTrue(m_IntakeAndReset);
+        opController.rightBumper().onFalse(new InstantCommand(()->m_IntakeAndReset.cancel())
+            .andThen(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME)));
 
-        opController.start().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
+        opController.start().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAET2));
 
-        opController.back().onTrue(new InstantCommand(() -> m_robotState.changeMode()));
+        opController.back().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAET3));
+
+
+        opController.pov(0).onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.CLIMB)
+            .alongWith(new ClimbDeploy(m_climber)));
+        opController.pov(0).onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.CLIMB)
+            .alongWith(new ClimbBack(m_climber)));
         
         }
 
