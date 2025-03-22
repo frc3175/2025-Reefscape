@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.AutoLeft;
 import frc.robot.commands.AutoRight;
 import frc.robot.commands.ClimbBack;
@@ -56,8 +57,10 @@ public class RobotContainer {
     public final Intake m_intake = new Intake();
     public final BotState m_botState = new BotState();
     public final Climber m_climber = new Climber();
+    public final Trigger zr = new Trigger(() -> (opController.getRightTriggerAxis() == 1));
 
     public Command m_IntakeAndReset = new IntakeAndReset(m_intake, m_wrist, m_elevator, m_botState);
+
    
 
 
@@ -91,6 +94,7 @@ public class RobotContainer {
        
         SmartDashboard.putData("Auto Mode", autoChooser);
         SmartDashboard.putNumber("set elevator", 0);
+       
 
         configureBindings();
         
@@ -139,15 +143,17 @@ public class RobotContainer {
             .andThen(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME)));
             
 
-        opController.start().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAET2));
+        opController.start().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAET3));
 
-        opController.back().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAET3));
+        opController.back().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAET2));
 
 
         opController.pov(0).onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.CLIMB)
             .alongWith(new ClimbDeploy(m_climber)));
-        opController.pov(0).onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.CLIMB)
+        opController.pov(180).onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.CLIMB)
             .alongWith(new ClimbBack(m_climber)));
+
+        zr.onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.PROCESSOR));
         
         }
 

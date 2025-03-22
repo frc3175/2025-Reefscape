@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.6215,
-        "y": 2.8842499999999998
+        "x": 4.507159090909091,
+        "y": 2.9729971590909092
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.126089309871196,
-        "y": 2.8402295622749385
+        "x": 5.011748400780286,
+        "y": 2.928976721365848
       },
       "isLocked": false,
       "linkedName": "blue3piecerightmove1"
@@ -20,7 +20,7 @@
         "y": 0.9561475409836078
       },
       "prevControl": {
-        "x": 0.4700316174447189,
+        "x": 0.47003161744471883,
         "y": 0.7619554036655054
       },
       "nextControl": null,
@@ -59,7 +59,7 @@
     "rotation": 55.0
   },
   "reversed": false,
-  "folder": "Blue 3 Piece Right",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": 119.99999999999999

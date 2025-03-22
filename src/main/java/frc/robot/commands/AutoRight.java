@@ -42,7 +42,7 @@ public class AutoRight extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    endPose = AutoutilsRight.getnewpose(m_limelight.algaegetTargetid());
+    endPose = AutoutilsRight.getnewpose(m_limelight.getTargetid());
 
     SmartDashboard.putNumber("333 X", endPose.getX());
     SmartDashboard.putNumber("333 Y", endPose.getY());

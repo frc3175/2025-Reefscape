@@ -1,3 +1,39 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 package frc.robot.util;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -43,11 +79,11 @@ public class AutoutilsLeft {
                 break;
 
             case 17:
-                goalpose = new Pose2d(3.182 ,3.085 ,Rotation2d.fromDegrees(60)); //done
+                goalpose = new Pose2d(3.216 ,3.060 ,Rotation2d.fromDegrees(60)); //done
                 break;
 
             case 18:
-                goalpose = new Pose2d(2.691 ,4.289 ,Rotation2d.fromDegrees(0)); //done
+                goalpose = new Pose2d(2.692 ,4.227 ,Rotation2d.fromDegrees(0)); //done
                 break;
 
             case 19:
@@ -69,6 +105,8 @@ public class AutoutilsLeft {
             case -1:
                 goalpose = new Pose2d(999,999, Rotation2d.fromDegrees(999)); // Default case if input is not in the range
                 break;
+            default:
+            goalpose = new Pose2d();
         }
 
         return goalpose;

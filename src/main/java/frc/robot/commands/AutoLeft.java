@@ -37,7 +37,7 @@ public class AutoLeft extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    endPose = AutoutilsLeft.getnewpose(m_limelight.algaegetTargetid());
+    endPose = AutoutilsLeft.getnewpose(m_limelight.getTargetid());
 
             // Create the path using the waypoints created above
             final  Command path =  AutoBuilder.pathfindToPose(

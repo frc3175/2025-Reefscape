@@ -23,7 +23,7 @@ public class ClimbBack extends Command {
   @Override
   public void initialize() { 
     m_climber.setservo(90);
-    m_climber.setpose(-15);
+    m_climber.setpose(69);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

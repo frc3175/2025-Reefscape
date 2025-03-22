@@ -43,11 +43,11 @@ public class AutoutilsRight {
                 break;
 
             case 17:
-                goalpose = new Pose2d(3.448 ,2.926,Rotation2d.fromDegrees(60)); //done
+                goalpose = new Pose2d(3.507 ,2.877,Rotation2d.fromDegrees(60)); //done
                 break;
 
             case 18:
-                goalpose = new Pose2d(2.692 ,3.949,Rotation2d.fromDegrees(0)); //done
+                goalpose = new Pose2d(2.696 ,3.906,Rotation2d.fromDegrees(0)); //done
                 break;
 
             case 19:
@@ -69,6 +69,8 @@ public class AutoutilsRight {
             case -1:
                 goalpose = new Pose2d(999,999, Rotation2d.fromDegrees(999)); // Default case if input is not in the range
                 break;
+            default:
+                goalpose = new Pose2d();
         }
 
         return goalpose;

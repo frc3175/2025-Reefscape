@@ -24,7 +24,7 @@ public class ClimbDeploy extends Command {
   @Override
   public void initialize() {
     m_climber.setservo(0);
-    m_climber.setpose(-113.33);
+    m_climber.setpose(-100);
   }
   
   // Called every time the scheduler runs while the command is scheduled.
