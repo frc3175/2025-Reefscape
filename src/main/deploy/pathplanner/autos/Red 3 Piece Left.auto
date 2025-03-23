@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Red 3 Piece Right Move 1"
+                  "pathName": "Red 3 Piece Left Move 1"
                 }
               },
               {
@@ -61,7 +61,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Red 3 Piece Right Move 2"
+                  "pathName": "Red 3 Piece Left Move 2"
                 }
               },
               {
@@ -105,7 +105,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Red 3 Piece Right Move 3"
+                  "pathName": "Red 3 Piece Left Move 3"
                 }
               },
               {
@@ -168,7 +168,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Red 3 Piece Right Move 4"
+                  "pathName": "Red 3 Piece Left Move 4"
                 }
               },
               {
@@ -212,7 +212,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Red 3 Piece Right Move 5"
+                  "pathName": "Red 3 Piece Left Move 5"
                 }
               },
               {

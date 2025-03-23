@@ -3,40 +3,40 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.430655737704918,
-        "y": 2.7015573770491788
+        "x": 1.590962837837838,
+        "y": 7.3353885135135135
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.887763105344854,
-        "y": 2.9803152840844724
+        "x": 2.2985673059750966,
+        "y": 6.677583172839272
       },
       "isLocked": false,
-      "linkedName": "3piece move 3"
+      "linkedName": "red3pieceleftmove2"
     },
     {
       "anchor": {
-        "x": 1.6902663934426232,
-        "y": 0.8530532786885238
+        "x": 4.011993243243243,
+        "y": 5.220692567567567
       },
       "prevControl": {
-        "x": 1.4315589077211193,
-        "y": 0.69543630711164
+        "x": 3.868088742655986,
+        "y": 5.425122249147155
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "3piecemove4"
+      "linkedName": "red3pieceleftmove3"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.7720394736842097,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 0.7502175805047786,
+      "maxWaypointRelativePos": 0.9973890339425571,
       "constraints": {
-        "maxVelocity": 1.0,
-        "maxAcceleration": 4.0,
+        "maxVelocity": 2.0,
+        "maxAcceleration": 2.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -47,8 +47,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.5,
-    "maxAcceleration": 4.0,
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -56,13 +56,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 55.0
+    "rotation": -59.99999999999999
   },
   "reversed": false,
-  "folder": "Red 3 Piece Right",
+  "folder": "Red 3 Piece Left",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 59.99999999999999
+    "rotation": -55.0
   },
   "useDefaultConstraints": true
 }

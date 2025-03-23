@@ -3,12 +3,16 @@
   "robotLength": 0.762,
   "holonomicMode": true,
   "pathFolders": [
-    "3 piece",
+    "Blue 3 Piece Left",
+    "Blue 3 Piece Right",
     "Move auto",
-    "Right Center 3-Piece",
-    "testautodrive"
+    "New Folder",
+    "Red 3 Piece Left",
+    "Red 3 Piece Right"
   ],
-  "autoFolders": [],
+  "autoFolders": [
+    "Old"
+  ],
   "defaultMaxVel": 3.0,
   "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 540.0,
