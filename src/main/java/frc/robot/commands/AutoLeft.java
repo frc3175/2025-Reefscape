@@ -8,7 +8,6 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.path.PathConstraints;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Limelight;
 import frc.robot.util.AutoutilsLeft;
 
@@ -21,13 +20,11 @@ public class AutoLeft extends Command {
  private boolean end = false;
  private Pose2d endPose;
  private Limelight m_limelight;
- private CommandSwerveDrivetrain m_drivetrain;
 
  PathConstraints constraints = new PathConstraints(4, 2, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
   /** Creates a new AutoWorkPlease. */
   public AutoLeft(Limelight limelight) {
     m_limelight = limelight;
-    m_drivetrain = drivetrain;
     
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -52,7 +49,7 @@ public class AutoLeft extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(m_limelight.getTargetid()!=-1 && m_limelight.getTargetid!=null) {
+    if(m_limelight.getTargetid()!=-1) {
       m_path.schedule();
     }
 

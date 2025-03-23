@@ -5,7 +5,6 @@
 package frc.robot;
 
 import static edu.wpi.first.units.Units.MetersPerSecond;
-import static edu.wpi.first.units.Units.Newton;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -135,7 +134,6 @@ public class RobotContainer {
 
         driverController.rightTrigger().onTrue(m_AutoRight);
         driverController.leftTrigger().onTrue(m_AutoLeft);
-        
         driverController.start().onTrue(new InstantCommand(()->m_AutoRight.cancel())
             .alongWith(new InstantCommand(()->m_AutoLeft.cancel())));
 
