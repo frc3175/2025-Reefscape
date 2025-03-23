@@ -44,9 +44,6 @@ public class AutoRight extends Command {
   public void initialize() {
     endPose = AutoutilsRight.getnewpose(m_limelight.getTargetid());
 
-    SmartDashboard.putNumber("333 X", endPose.getX());
-    SmartDashboard.putNumber("333 Y", endPose.getY());
-
             // Create the path using the waypoints created above
             final  Command path =  AutoBuilder.pathfindToPose(
               endPose,
@@ -60,7 +57,7 @@ public class AutoRight extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(m_limelight.algaegetTargetid()!=-1) {
+    if(m_limelight.algaegetTargetid()!=-1 && m_limelight.getTargetid!=null) {
       m_path.schedule();
     }
 
