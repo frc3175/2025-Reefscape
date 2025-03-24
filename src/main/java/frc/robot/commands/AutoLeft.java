@@ -27,7 +27,6 @@ public class AutoLeft extends Command {
   /** Creates a new AutoWorkPlease. */
   public AutoLeft(Limelight limelight) {
     m_limelight = limelight;
-    m_drivetrain = drivetrain;
     
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -52,7 +51,7 @@ public class AutoLeft extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(m_limelight.getTargetid()!=-1 && m_limelight.getTargetid!=null) {
+    if(m_limelight.getTargetid()!=-1) {
       m_path.schedule();
     }
 

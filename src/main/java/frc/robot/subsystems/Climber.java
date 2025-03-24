@@ -4,19 +4,15 @@
 
 package frc.robot.subsystems;
 
-
-import java.util.Map;
-
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.PositionDutyCycle;
 import com.ctre.phoenix6.controls.PositionTorqueCurrentFOC;
+import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.Servo;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -25,9 +21,9 @@ import frc.robot.Constants;
 public class Climber extends SubsystemBase {
   
 
-PositionTorqueCurrentFOC m_motmag;
+PositionDutyCycle m_motmag;
 
-PositionDutyCycle m_PositionDutyCycle;
+PositionDutyCycle m_PositionDutyCyle;
 TalonFX m_motor;
 public Servo m_servo;
 GenericEntry slider;
@@ -36,25 +32,16 @@ GenericEntry slider;
 public Climber() {
     m_motor = new TalonFX(Constants.ClimberConstants.MOTORID , Constants.RIO);
    
-
-    m_motmag = new PositionTorqueCurrentFOC(0);
+    m_motmag = new PositionDutyCycle(0);
 
     m_servo = new Servo(Constants.ClimberConstants.SERVOPORT);
-
-      slider = Shuffleboard.getTab("My Tab")
-   .add("My Number", 0)
-   .withWidget(BuiltInWidgets.kNumberSlider)
-   .withProperties(Map.of("min", 0, "max", 1))
-   .getEntry();
-
-
-
 
     var talonFXConfigs = new TalonFXConfiguration();
     
     var slot0Configs = talonFXConfigs.Slot0;
-    // slot0Configs.kS = 0.24; // add 0.24 V to overcome friction
-    // slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
+    slot0Configs.kS = 6.59; // add 0.24 V to overcome friction
+    slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
+    slot0Configs.kA = 0.11;
     // // PID runs on position
 
     slot0Configs.kP = 1; // change as needed
