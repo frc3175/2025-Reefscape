@@ -90,7 +90,8 @@ public enum ElevatorState {
   ALGAET3(Constants.ElevatorConstants.ALGAET3),
   INTAKE(Constants.ElevatorConstants.INTAKE),
   CLIMB(Constants.ElevatorConstants.CLIMB),
-  PROCESSOR(Constants.ElevatorConstants.PROCESSOR);
+  PROCESSOR(Constants.ElevatorConstants.PROCESSOR),
+  ALGAEHOME(Constants.ElevatorConstants.ALGAEHOME);
 
   public final double elevatorSetpoint;
   private ElevatorState(double elevatorSetpoint) {

@@ -58,6 +58,7 @@ public class RobotContainer {
     public final Intake m_intake = new Intake();
     public final BotState m_botState = new BotState();
     public final Climber m_climber = new Climber();
+    
     public final Trigger zr = new Trigger(() -> (opController.getRightTriggerAxis() == 1));
 
     public Command m_IntakeAndReset = new IntakeAndReset(m_intake, m_wrist, m_elevator, m_botState);
