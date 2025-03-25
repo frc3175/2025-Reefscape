@@ -1,0 +1,97 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.911,
+        "y": 0.956
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.3568047494245192,
+        "y": 1.1155223276938344
+      },
+      "isLocked": false,
+      "linkedName": "blue4pieceright2"
+    },
+    {
+      "anchor": {
+        "x": 2.044176136363636,
+        "y": 1.4181412337662334
+      },
+      "prevControl": {
+        "x": 1.6775883979217094,
+        "y": 1.1246026656757557
+      },
+      "nextControl": {
+        "x": 3.854537174839079,
+        "y": 2.8677554222262094
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.507,
+        "y": 2.877
+      },
+      "prevControl": {
+        "x": 3.2575911004627987,
+        "y": 2.8598185905222495
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "blue4pieceright3"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 1.6,
+      "maxWaypointRelativePos": 2.0,
+      "constraints": {
+        "maxVelocity": 2.0,
+        "maxAcceleration": 2.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "HOME",
+      "waypointRelativePos": 0.8,
+      "endWaypointRelativePos": null,
+      "command": null
+    },
+    {
+      "name": "L4",
+      "waypointRelativePos": 1.8,
+      "endWaypointRelativePos": null,
+      "command": null
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 4.0,
+    "maxAcceleration": 6.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 59.99999999999999
+  },
+  "reversed": false,
+  "folder": "Blue 4 Piece Left",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 55.0
+  },
+  "useDefaultConstraints": false
+}

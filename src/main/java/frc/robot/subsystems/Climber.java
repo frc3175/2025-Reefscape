@@ -6,8 +6,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.PositionDutyCycle;
-import com.ctre.phoenix6.controls.PositionTorqueCurrentFOC;
-import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
@@ -39,19 +37,13 @@ public Climber() {
     var talonFXConfigs = new TalonFXConfiguration();
     
     var slot0Configs = talonFXConfigs.Slot0;
-    slot0Configs.kS = 6.59; // add 0.24 V to overcome friction
-    slot0Configs.kV = 0.12; // apply 12 V for a target velocity of 100 rps
-    slot0Configs.kA = 0.11;
-    // // PID runs on position
+    slot0Configs.kS = Constants.ClimberConstants.kS;;
+    slot0Configs.kV = Constants.ClimberConstants.kV;;
+    slot0Configs.kA = Constants.ClimberConstants.kA;;
 
-    slot0Configs.kP = 1; // change as needed
-    slot0Configs.kI = 0;
-    slot0Configs.kD = 0;
-
-    // var motionMagicConfigs = talonFXConfigs.MotionMagic;
-    // motionMagicConfigs.MotionMagicCruiseVelocity = 160; // 80 rps cruise velocity
-    // motionMagicConfigs.MotionMagicAcceleration = 1000; // 160 rps/s acceleration (0.5 seconds)
-    // motionMagicConfigs.MotionMagicJerk = 2000; // 1600 rps/s^2 jerk (0.1 seconds)
+    slot0Configs.kP = Constants.ClimberConstants.kP;
+    slot0Configs.kI = Constants.ClimberConstants.kI;;
+    slot0Configs.kD = Constants.ClimberConstants.kD;;
     
     m_motor.getConfigurator().apply(talonFXConfigs, 0.050);
     m_motor.setNeutralMode(NeutralModeValue.Brake);

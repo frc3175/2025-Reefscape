@@ -58,7 +58,7 @@ public void config(){
   var slot0Configs = talonFXConfigs.Slot0;
 
     slot0Configs.kP = Constants.ElevatorConstants.kp;
-    slot0Configs.kI = Constants.ElevatorConstants.ki;
+    slot0Configs.kI = Constants.ElevatorConstants.kI;
     slot0Configs.kD = Constants.ElevatorConstants.kD;
 
     slot0Configs.kV = Constants.ElevatorConstants.kV;

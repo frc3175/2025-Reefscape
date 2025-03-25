@@ -1,7 +1,11 @@
 package frc.robot.util;
 
+import java.util.Arrays;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import frc.robot.Constants;
+import frc.robot.FieldConstants;
 
 @SuppressWarnings("all")
 
@@ -11,6 +15,53 @@ public class AutoutilsRight {
         // Constructor
         
     }
+
+    public static Pose2d getNewRightPose(Pose2d currentPose) {
+        Pose2d closestTag = currentPose.nearest(Arrays.asList(FieldConstants.ReefFaces.TAGS));
+        
+        Pose2d newPose = new Pose2d();
+
+        if (closestTag == FieldConstants.ReefFaces.TAG6) {
+            newPose = Constants.AutoAlignConstants.TAG6R;
+
+        } else if (closestTag == FieldConstants.ReefFaces.TAG7) {
+            newPose = Constants.AutoAlignConstants.TAG7R;
+            
+        } else if (closestTag == FieldConstants.ReefFaces.TAG8) {
+            newPose = Constants.AutoAlignConstants.TAG8R;
+            
+        } else if (closestTag == FieldConstants.ReefFaces.TAG9) {
+            newPose = Constants.AutoAlignConstants.TAG9R;
+            
+        } else if (closestTag == FieldConstants.ReefFaces.TAG10) {
+            newPose = Constants.AutoAlignConstants.TAG10R;
+            
+        } else if (closestTag == FieldConstants.ReefFaces.TAG11) {
+            newPose = Constants.AutoAlignConstants.TAG11R;
+            
+        } else if (closestTag == FieldConstants.ReefFaces.TAG17) {
+            newPose = Constants.AutoAlignConstants.TAG17R;
+            
+        } else if (closestTag == FieldConstants.ReefFaces.TAG18) {
+            newPose = Constants.AutoAlignConstants.TAG18R;
+            
+        } else if (closestTag == FieldConstants.ReefFaces.TAG19) {
+            newPose = Constants.AutoAlignConstants.TAG19R;
+            
+        } else if (closestTag == FieldConstants.ReefFaces.TAG20) {
+            newPose = Constants.AutoAlignConstants.TAG20R;
+            
+        } else if (closestTag == FieldConstants.ReefFaces.TAG21) {
+            newPose = Constants.AutoAlignConstants.TAG21R;
+            
+        } else if (closestTag == FieldConstants.ReefFaces.TAG22) {
+            newPose = Constants.AutoAlignConstants.TAG22R;
+            
+        }
+
+        return newPose;
+    }
+    
     
     public static Pose2d getnewpose(double input) {
         Double doubleInput = new Double(input);

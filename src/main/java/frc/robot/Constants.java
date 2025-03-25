@@ -46,7 +46,7 @@ public class Constants {
 
         //configs
         public static final double kp = 1; //1
-        public static final double ki = 0; //0
+        public static final double kI = 0; //0
         public static final double kD = 0; //0.05
         public static final double kV = 0.05; //0.05
         public static final double kS = 0.08; //0.08
@@ -127,9 +127,19 @@ public class WristConstants {
         public static final int MOTORID = 22;
 
         public static final int SERVOPORT = 0;
+
+        public static final double kP = 1;
+        public static final double kI = 0;
+        public static final double kD = 0;
+        public static final double kV = 0.12;
+        public static final double kS = 6.59;
+        public static final double kA = 0.11;
         
-        public static final double HOME = 0;
-        public static final double CLIMBOUT = 90;
+        public static final double CLIMBIN = 25;
+        public static final double CLIMBOUT = -110;
+
+        public static final double SERVOIN = 90;
+        public static final double SERVOOUT = 0;
     }
 
    

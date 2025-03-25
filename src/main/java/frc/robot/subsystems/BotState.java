@@ -29,7 +29,8 @@ public class BotState extends SubsystemBase {
         ALGAET3(ElevatorState.ALGAET3, WristState.ALGAET3, IntakeState.ALGAET3),
         INTAKE(ElevatorState.INTAKE, WristState.INTAKE, IntakeState.INTAKE),
         CLIMB(ElevatorState.CLIMB, WristState.CLIMB, IntakeState.CLIMB),
-        PROCESSOR(ElevatorState.PROCESSOR, WristState.PROCESSOR, IntakeState.PROCESSOR);
+        PROCESSOR(ElevatorState.PROCESSOR, WristState.PROCESSOR, IntakeState.PROCESSOR),
+        ALGAEHOME(ElevatorState.ALGAEHOME, WristState.ALGAEHOME, IntakeState.ALGAEHOME);
 
         public ElevatorState elevatorState;
         public WristState wristState;

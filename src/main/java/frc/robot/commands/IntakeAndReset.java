@@ -4,10 +4,6 @@
 
 package frc.robot.commands;
 
-
-
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
@@ -42,10 +38,6 @@ public class IntakeAndReset extends Command {
     
   }
 
-
-
-
-
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {}
@@ -61,7 +53,7 @@ public class IntakeAndReset extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(SmartDashboard.getBoolean("Has Coral", false)){
+    if(m_intake.HasCoral()) {
       return true;
   
     } else {

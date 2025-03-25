@@ -5,7 +5,6 @@
 package frc.robot;
 
 import static edu.wpi.first.units.Units.MetersPerSecond;
-import static edu.wpi.first.units.Units.Newton;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -23,6 +22,7 @@ import frc.robot.commands.ClimbBack;
 import frc.robot.commands.ClimbDeploy;
 import frc.robot.commands.IntakeAndReset;
 import frc.robot.commands.Outtake;
+import frc.robot.commands.Reset;
 import frc.robot.commands.SetBotState;
 import frc.robot.commands.SwerveDrive;
 import frc.robot.generated.TunerConstants;
@@ -61,8 +61,8 @@ public class RobotContainer {
     public final Trigger zr = new Trigger(() -> (opController.getRightTriggerAxis() == 1));
 
     public Command m_IntakeAndReset = new IntakeAndReset(m_intake, m_wrist, m_elevator, m_botState);
-    public Command m_AutoLeft = new AutoLeft(m_ll);
-    public Command m_AutoRight = new AutoRight(m_ll);
+    public Command m_AutoLeft = new AutoLeft(m_ll, drivetrain);
+    public Command m_AutoRight = new AutoRight(m_ll, drivetrain);
 
    
 
@@ -87,7 +87,7 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("AlgaeT2", new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAET2));
 
-        NamedCommands.registerCommand("PROCESSOR", new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.PROCESSOR));
+        NamedCommands.registerCommand("NET", new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.BARGE));
 
         NamedCommands.registerCommand("AlgaeOuttake", new InstantCommand(()->m_intake.algaeintakerunvoltage(Constants.AlgaeIntakeConstants.OUTTAKE)));
 
@@ -128,7 +128,7 @@ public class RobotContainer {
          driverController.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
          driverController.leftBumper().onTrue(new Outtake(m_intake, m_botState));
-         driverController.leftBumper().onFalse((new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME)));
+         driverController.leftBumper().onFalse(new Reset(m_intake, m_wrist, m_elevator, m_botState));
 
         // driverController.rightTrigger().onTrue(new AutoRight(m_ll));
         // driverController.leftTrigger().onTrue(new AutoLeft(m_ll));

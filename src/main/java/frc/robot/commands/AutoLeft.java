@@ -25,8 +25,9 @@ public class AutoLeft extends Command {
 
  PathConstraints constraints = new PathConstraints(4, 2, 2 * Math.PI, 4 * Math.PI); // The constraints for this path.
   /** Creates a new AutoWorkPlease. */
-  public AutoLeft(Limelight limelight) {
+  public AutoLeft(Limelight limelight, CommandSwerveDrivetrain drivetrain) {
     m_limelight = limelight;
+    m_drivetrain = drivetrain;
     
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -36,7 +37,7 @@ public class AutoLeft extends Command {
   @Override
   public void initialize() {
     //endPose = getNearestLeftPose(m_drivetrain.getState().Pose);
-    endPose = AutoutilsLeft.getnewpose(m_limelight.getTargetid());
+    endPose = AutoutilsLeft.getNewLeftPose(m_drivetrain.getState().Pose);
 
             // Create the path using the waypoints created above
             final  Command path =  AutoBuilder.pathfindToPose(

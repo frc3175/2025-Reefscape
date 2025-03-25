@@ -52,7 +52,7 @@
     "rotation": -127.30394827798351
   },
   "reversed": false,
-  "folder": "Right Side 3piece",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": 120.07946993746714
