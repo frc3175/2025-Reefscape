@@ -147,42 +147,42 @@ public class WristConstants {
     }
     public class AutoAlignConstants{
 
-        public static final Pose2d TAG6L = new Pose2d(13.048 ,2.913 ,Rotation2d.fromDegrees(120));
-        public static final Pose2d TAG6R = new Pose2d(13.353 ,3.079,Rotation2d.fromDegrees(120));
+        public static final Pose2d TAG6L = new Pose2d(13.048, 2.913, Rotation2d.fromDegrees(120));
+        public static final Pose2d TAG6R = new Pose2d(13.353, 3.079, Rotation2d.fromDegrees(120));
 
-        public static final Pose2d TAG7L = new Pose2d(13.846 ,3.973 ,Rotation2d.fromDegrees(180));
-        public static final Pose2d TAG7R = new Pose2d(13.856 ,4.303,Rotation2d.fromDegrees(180));
+        public static final Pose2d TAG7L = new Pose2d(13.846, 3.973, Rotation2d.fromDegrees(180));
+        public static final Pose2d TAG7R = new Pose2d(13.856, 4.303, Rotation2d.fromDegrees(180));
 
-        public static final Pose2d TAG8L = new Pose2d(13.374,5.123 ,Rotation2d.fromDegrees(-120));
-        public static final Pose2d TAG8R = new Pose2d(13.009,5.317 ,Rotation2d.fromDegrees(-120));
+        public static final Pose2d TAG8L = new Pose2d(13.374, 5.123, Rotation2d.fromDegrees(-120));
+        public static final Pose2d TAG8R = new Pose2d(13.009, 5.317, Rotation2d.fromDegrees(-120));
 
-        public static final Pose2d TAG9L = new Pose2d(12.050 ,5.294 ,Rotation2d.fromDegrees(-60));
-        public static final Pose2d TAG9R = new Pose2d(11.752 ,5.126,Rotation2d.fromDegrees(-60));
+        public static final Pose2d TAG9L = new Pose2d(12.050, 5.294, Rotation2d.fromDegrees(-60));
+        public static final Pose2d TAG9R = new Pose2d(11.752, 5.126, Rotation2d.fromDegrees(-60));
 
-        public static final Pose2d TAG10L = new Pose2d(11.262 ,4.236 ,Rotation2d.fromDegrees(0));
-        public static final Pose2d TAG10R = new Pose2d(11.259 ,3.946,Rotation2d.fromDegrees(0));
+        public static final Pose2d TAG10L = new Pose2d(11.262, 4.236, Rotation2d.fromDegrees(0));
+        public static final Pose2d TAG10R = new Pose2d(11.259, 3.946, Rotation2d.fromDegrees(0));
 
-        public static final Pose2d TAG11L = new Pose2d(11.769 ,3.077 ,Rotation2d.fromDegrees(60));
-        public static final Pose2d TAG11R = new Pose2d(12.050 ,2.908,Rotation2d.fromDegrees(60));
+        public static final Pose2d TAG11L = new Pose2d(11.769, 3.077, Rotation2d.fromDegrees(60));
+        public static final Pose2d TAG11R = new Pose2d(12.050, 2.908, Rotation2d.fromDegrees(60));
 
 
 
-        public static final Pose2d TAG17L = new Pose2d(3.216 ,3.060 ,Rotation2d.fromDegrees(60));
-        public static final Pose2d TAG17R = new Pose2d(3.507 ,2.877,Rotation2d.fromDegrees(60));
+        public static final Pose2d TAG17L = new Pose2d(3.216, 3.060, Rotation2d.fromDegrees(60));
+        public static final Pose2d TAG17R = new Pose2d(3.507, 2.877, Rotation2d.fromDegrees(60));
 
-        public static final Pose2d TAG18L = new Pose2d(2.692 ,4.227 ,Rotation2d.fromDegrees(0));
-        public static final Pose2d TAG18R = new Pose2d(2.696 ,3.906,Rotation2d.fromDegrees(0));
+        public static final Pose2d TAG18L = new Pose2d(2.692, 4.227, Rotation2d.fromDegrees(0));
+        public static final Pose2d TAG18R = new Pose2d(2.696, 3.906, Rotation2d.fromDegrees(0));
 
-        public static final Pose2d TAG19L = new Pose2d(3.484 ,5.289 ,Rotation2d.fromDegrees(-60));
-        public static final Pose2d TAG19R = new Pose2d(3.191 ,5.129,Rotation2d.fromDegrees(-60));
+        public static final Pose2d TAG19L = new Pose2d(3.484, 5.289, Rotation2d.fromDegrees(-60));
+        public static final Pose2d TAG19R = new Pose2d(3.191, 5.129, Rotation2d.fromDegrees(-60));
 
-        public static final Pose2d TAG20L = new Pose2d(4.770 ,5.128 ,Rotation2d.fromDegrees(-120));
-        public static final Pose2d TAG20R = new Pose2d(4.479 ,5.314,Rotation2d.fromDegrees(-120));
+        public static final Pose2d TAG20L = new Pose2d(4.770, 5.128, Rotation2d.fromDegrees(-120));
+        public static final Pose2d TAG20R = new Pose2d(4.479, 5.314, Rotation2d.fromDegrees(-120));
 
-        public static final Pose2d TAG21L = new Pose2d(5.267 ,3.949 ,Rotation2d.fromDegrees(180));
-        public static final Pose2d TAG21R = new Pose2d(5.281 ,4.257,Rotation2d.fromDegrees(180));
+        public static final Pose2d TAG21L = new Pose2d(5.267, 3.949, Rotation2d.fromDegrees(180));
+        public static final Pose2d TAG21R = new Pose2d(5.281, 4.257, Rotation2d.fromDegrees(180));
 
-        public static final Pose2d TAG22L = new Pose2d(4.485 ,2.927 ,Rotation2d.fromDegrees(120));
-        public static final Pose2d TAG22R = new Pose2d(4.786 ,3.080,Rotation2d.fromDegrees(120));
+        public static final Pose2d TAG22L = new Pose2d(4.485, 2.927, Rotation2d.fromDegrees(120));
+        public static final Pose2d TAG22R = new Pose2d(4.786, 3.080, Rotation2d.fromDegrees(120));
     }
 }
