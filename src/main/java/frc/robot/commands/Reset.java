@@ -35,9 +35,9 @@ public class Reset extends Command {
   public void initialize() {
 
     if (m_intake.HasAlgae()) {
-      new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAEHOME);
+      new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAEHOME).schedule();
     } else {
-      new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME);
+      new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME).schedule();
     }
     
   }

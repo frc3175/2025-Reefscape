@@ -52,9 +52,9 @@ public class AutoLeft extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(m_limelight.getTargetid()!=-1) {
+    //if(m_limelight.getTargetid()!=-1) {
       m_path.schedule();
-    }
+    //}
 
     end = true;
   }

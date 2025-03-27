@@ -60,6 +60,7 @@ public class RobotContainer {
     public final Climber m_climber = new Climber();
     
     public final Trigger zr = new Trigger(() -> (opController.getRightTriggerAxis() == 1));
+    public final Trigger zl = new Trigger(() -> (opController.getLeftTriggerAxis() == 1));
 
     public Command m_IntakeAndReset = new IntakeAndReset(m_intake, m_wrist, m_elevator, m_botState);
     public Command m_AutoLeft = new AutoLeft(m_ll, drivetrain);
@@ -156,7 +157,7 @@ public class RobotContainer {
 
         opController.rightBumper().onTrue(m_IntakeAndReset);
         opController.rightBumper().onFalse(new InstantCommand(()->m_IntakeAndReset.cancel())
-            .andThen(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME)));
+            .andThen(new Reset(m_intake, m_wrist, m_elevator, m_botState)));
             
 
         opController.start().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAET3));
@@ -169,7 +170,8 @@ public class RobotContainer {
         opController.pov(180).onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.CLIMB)
             .alongWith(new ClimbBack(m_climber)));
 
-        zr.onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.PROCESSOR));
+        zl.onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.PROCESSOR));
+        zr.onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.BARGE));
         
         }
 

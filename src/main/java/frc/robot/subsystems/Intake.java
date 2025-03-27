@@ -32,7 +32,7 @@ public Intake() {
     m_algaeMotor = new TalonFX(Constants.AlgaeIntakeConstants.MOTORID , Constants.CANIVORE);
 
     m_coralCanrange = new CANrange(Constants.CoralIntakeConstants.CANRANGEID, Constants.CANIVORE);
-    m_algaeCanrange = new CANrange(Constants.CoralIntakeConstants.CANRANGEID, Constants.CANIVORE);
+    m_algaeCanrange = new CANrange(Constants.AlgaeIntakeConstants.CANRANGEID, Constants.CANIVORE);
 
     final TalonFXConfiguration coralConfiguration = new TalonFXConfiguration();
     coralConfiguration.CurrentLimits.withStatorCurrentLimitEnable(true);
@@ -131,7 +131,7 @@ public boolean HasCoral(){
 }
 
 public boolean HasAlgae(){
-  return m_algaeCanrange.getDistance().getValueAsDouble() <= 0.051;
+  return m_algaeCanrange.getDistance().getValueAsDouble() <= 0.1; //0.051
 }
 
 public enum IntakeState {
