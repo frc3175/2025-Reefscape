@@ -130,7 +130,7 @@ public class RobotContainer {
          driverController.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
          driverController.leftBumper().onTrue(new Outtake(m_intake, m_botState));
-         driverController.leftBumper().onFalse(new Reset(m_intake, m_wrist, m_elevator, m_botState));
+         driverController.leftBumper().onFalse(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME));
 
         // driverController.rightTrigger().onTrue(new AutoRight(m_ll));
         // driverController.leftTrigger().onTrue(new AutoLeft(m_ll));
@@ -155,9 +155,8 @@ public class RobotContainer {
         opController.button(10).onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.L1));
         
 
-        opController.rightBumper().onTrue(m_IntakeAndReset);
-        opController.rightBumper().onFalse(new InstantCommand(()->m_IntakeAndReset.cancel())
-            .andThen(new Reset(m_intake, m_wrist, m_elevator, m_botState)));
+        opController.rightBumper().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.INTAKE));
+        opController.rightBumper().onFalse(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.HOME));
             
 
         opController.start().onTrue(new SetBotState(m_botState, m_elevator, m_wrist, m_intake, BobotState.ALGAET3));

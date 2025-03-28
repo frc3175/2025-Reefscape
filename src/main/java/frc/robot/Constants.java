@@ -35,8 +35,8 @@ public class Constants {
         //set points
         public static final double HOME = 0.4;  //0.4
         public static final double L1 = 0.4;
-        public static final double L2 = 3.2; //4
-        public static final double L3 = 8.5; //10
+        public static final double L2 = 3.0; //4
+        public static final double L3 = 8.2; //10
         public static final double L4 = 17;
         public static final double BARGE = 17;
         public static final double ALGAET2 = 3.33;
@@ -105,7 +105,7 @@ public class WristConstants {
         public static final int CANRANGEID = 1;
 
         public static final double INTAKE = 12;
-        public static final double OUTTAKE = -6;
+        public static final double OUTTAKE = -3.5;
         public static final double STOP = 0;
         public static final double L1 = -5;
         public static final double HOLD = 1;
@@ -120,7 +120,7 @@ public class WristConstants {
 
         public static final double INTAKE = 12;
         public static final double OUTTAKE = -12;
-        public static final double HOLD = 6;
+        public static final double HOLD = 3;
         public static final double STOP = 0;
 
         public static final boolean ISALGAEOUTTAKE = false;
@@ -139,8 +139,8 @@ public class WristConstants {
         public static final double kS = 6.59;
         public static final double kA = 0.11;
         
-        public static final double CLIMBIN = 25;
-        public static final double CLIMBOUT = -110;
+        public static final double CLIMBIN = -25;
+        public static final double CLIMBOUT = 110;
 
         public static final double SERVOIN = 90;
         public static final double SERVOOUT = 0;

@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.767690212675582,
-        "y": 2.8059459892173404
+        "x": 3.763861644508381,
+        "y": 2.7950363299111274
       },
       "isLocked": false,
       "linkedName": "blue3piecerightmove3"
     },
     {
       "anchor": {
-        "x": 0.911,
-        "y": 0.956
+        "x": 0.768,
+        "y": 0.739
       },
       "prevControl": {
-        "x": 0.41591856918615383,
-        "y": 0.632158373332897
+        "x": 0.3628425962091591,
+        "y": 0.4626948349993651
       },
       "nextControl": null,
       "isLocked": false,
